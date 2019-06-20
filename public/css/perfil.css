@@ -1,0 +1,152 @@
+.perfil-container {
+  padding: 5vw;
+  /* background: white; */
+  text-align: center;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: column;
+  justify-content: center;
+  background-image: url('../img/Fondos/FondoSeccionesTres.png');
+}
+
+.perfil-container h2 {
+  font-family: 'Bree Serif', serif;
+  font-size: 2em;
+  margin-top: 2vh;
+}
+
+.fotoPerfil {
+  margin: 2vh 0;
+}
+
+.fotoPerfil img {
+  width: 50vw;
+  border: solid 2px #CAE9F2; /*Lighter lightblue*/
+  border-radius: 25%;
+}
+
+.datosBasicos {
+  text-align: left;
+}
+
+#nombreUsuario {
+  text-transform: capitalize;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+  font-size: 1.5em;
+  text-align: center;
+}
+
+.datosBasicos h4 {
+  margin-top: 1vh;
+}
+
+/*BOTONES EDITAR*/
+.caja-botones form {
+  margin: 3vw;
+}
+
+.editar-button-amarillo button {
+  padding: 5vw;
+  margin-top: 2vh;
+  border: none;
+  text-transform: uppercase;
+  font-family: 'Bree Serif', serif;
+  margin: auto;
+  color: black;
+  cursor: pointer;
+  background: #F7EB61;
+  box-shadow: 4px 4px 0 #73d2e6;
+}
+
+.editar-button-amarillo button:hover{
+    background: linear-gradient(to left,#F7EB61 0,#73d2e6 100%);
+}
+
+.editar-button-violeta button {
+  padding: 5vw;
+  margin-top: 2vh;
+  background: #C4AAD7;
+  box-shadow: 4px 4px 0 #73d2e6;
+  border: none;
+  text-transform: uppercase;
+  font-family: 'Bree Serif', serif;
+  margin: auto;
+  color: black;
+  cursor: pointer;
+}
+
+.editar-button-violeta button:hover{
+    background: linear-gradient(to left,#C4AAD7 0,#f08ccd 100%);
+}
+
+.editar-button-rosa button {
+  padding: 5vw;
+  margin-top: 2vh;
+  background: #FFB6BF;
+  box-shadow: 4px 4px 0 #C4AAD7;
+  border: none;
+  text-transform: uppercase;
+  font-family: 'Bree Serif', serif;
+  margin: auto;
+  color: black;
+  cursor: pointer;
+}
+
+.editar-button-rosa button:hover{
+    background: linear-gradient(to left,#FFB6BF 0,#f08ccd 100%);
+}
+
+@media (min-width: 700px) { /*TABLET*/ }
+
+@media (min-width: 992px) { /*DESKTOP*/
+  .perfil-container {
+    padding: 50px;
+    /* background: white; */
+    text-align: center;
+    display: block;
+  }
+
+  .fotoPerfil {
+    margin: 20px 0;
+  }
+
+  .fotoPerfil img {
+    width: 25%;
+  }
+
+  .datosBasicos {
+    padding-left:20%;
+  }
+
+  /*BOTON EDITAR*/
+  .editar-button {
+    margin: 20px;
+  }
+
+  .editar-button button {
+    padding: 20px;
+  }
+
+  .caja-botones form {
+    margin: 30px;
+  }
+
+  .editar-button-rosa button {
+    /* margin: 20px; */
+    padding: 20px;
+  }
+
+  .editar-button-amarillo button {
+    /* margin: 20px; */
+    padding: 20px;
+  }
+
+  .editar-button-violeta button {
+    /* margin: 20px; */
+    padding: 20px;
+  }
+
+
+
+}

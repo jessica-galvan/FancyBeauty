@@ -1,0 +1,55 @@
+
+.main-container {
+  padding: 5vw;
+  background-image: url(../img/Fondos/FondoSeccionesDos.png);
+
+}
+
+
+.faq-body {
+  padding: 5vw;
+
+  
+}
+
+.imagenDePreguntas img{
+    width: 50px;
+    margin-right: 5px;
+    margin-top: 7px;
+}
+
+.faq-title {
+  font-family: 'Bree Serif', serif;
+  font-size: 1.8em;
+  text-align: center;
+}
+
+.cajaDePregunta{
+  margin-top: 3vh;
+  display: flex;
+  flex-direction: row; 
+  justify-content: flex-start;    
+}
+
+.cajaDePreguntas img {
+    order: -1;
+}
+
+.preguntas{
+  font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.respuestas {
+  font-size: 1em;
+}
+
+@media (min-width: 992px) { /*DESKTOP*/
+  .main-container {
+    padding: 3% 5%;
+  }
+
+  .faq-body {
+    padding: 0 5%;
+  }
+}

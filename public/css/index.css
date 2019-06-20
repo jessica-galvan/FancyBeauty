@@ -1,0 +1,211 @@
+/*INTRO*/
+.intro {
+  width: 100vw;
+  padding: 0;
+  display: flex;
+  flex-wrap: wrap;
+  flex-direction: row;
+  background: url("../img/Fondos/FondoSeccionesUno.png");
+  background-size: cover;
+}
+
+.intro-imagen {
+  width: 100vw;
+}
+
+.intro-imagen img {
+  width: 100%;
+}
+
+.intro-texto {
+  width: 100vw;
+  text-align: justify;
+  padding: 1vw;
+  margin-top: 2vh;
+  margin-bottom: 2vh;
+}
+
+.intro-texto h1 {
+  font-family: 'Bree Serif', serif;
+  font-size: 2em;
+  margin-bottom: 3vh;
+  color: black;
+  text-align: center;
+}
+
+.intro-texto p {
+  margin: 0 15%;
+  color: black;
+  font-size: 1.2em;
+}
+
+/*PUBLICIDAD*/
+.publicidad-mobile {
+  margin-top:50px;
+  width: 100%;
+}
+.publicidad-mobile  img {
+  width: 100%;
+}
+
+.publicidad-desktop {
+  display: none;
+}
+
+/*OFERTAS*/
+.ofertas-mobile {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+}
+
+.foto {
+  width: 100%;
+  height: 15%;
+  margin-top: 15px;
+}
+
+.ofertas{
+  display: none;
+}
+
+/*PRODUCTS*/
+.productos {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  background: white;
+}
+
+.productos .titulo-seccion h2 {
+  text-align: center;
+  font-family: 'Bree Serif', serif;
+  color: black;
+  background: white;
+  padding: 10vw;
+  width: 100vw;
+}
+
+button {
+  cursor: pointer;
+}
+
+/*VER MAS*/
+.mas {
+  width: 100vw;
+  margin: 5vh auto;
+  display: flex;
+  align-self: center;
+}
+
+.ver-mas {
+  padding: 2vw;
+  margin-top: 2vh;
+  background: #F7EB61; /*Yellow*/
+  box-shadow: 4px 4px 0 #73d2e6;
+  border: none;
+  text-transform: uppercase;
+  font-family: 'Bree Serif', serif;
+  margin: auto;
+  color: black;
+}
+
+.ver-mas:hover {
+    background: linear-gradient(to left,#F7EB61 0,#73d2e6 100%);
+}
+
+@media (min-width: 992px) { /*DESKTOP*/
+  /*INTRO*/
+  .intro {
+    width: 100%;
+    padding: 0;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: row;
+    background-image: url("../img/Fondos/FondoSeccionesTres.png");
+    background-size: auto;
+  }
+
+  .intro-imagen {
+    width: 45%;
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+  }
+
+  .intro-imagen img {
+    width: 100%;
+  }
+
+  .intro-texto {
+    margin: 0;
+    width: 55%;
+    text-align: center;
+    padding: 7%;
+  }
+
+  .intro-texto h1 {
+    font-family: 'Bree Serif', serif;
+    font-size: 2.5em;
+    margin-bottom: 20px;
+    color: black;
+  }
+
+  .intro-texto p {
+    margin: 0 15%;
+    color: black;
+    font-size: 1.2em;
+  }
+
+  /*PUBLICIDAD*/
+  .publicidad-mobile {
+    display: none;
+  }
+
+  .publicidad-desktop {
+    display: block;
+    width: 100%;
+    margin-top: 5px;
+  }
+  .publicidad-desktop img {
+    width: 100%;
+  }
+
+  /*OFERTAS*/
+  .ofertas-mobile {
+    display: none;
+  }
+
+  .ofertas {
+  display: flex;
+  flex-direction: row;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  }
+
+  .foto {
+    width: 20%;
+    height: 15%;
+  }
+
+  .productos .titulo-seccion h2 {
+    display: block;
+    text-align: center;
+    font-size: 2em;
+    font-family: 'Bree Serif', serif;
+    color: black;
+    background: white;
+    padding-top: 50px;
+    padding-bottom: 25px;
+  }
+
+  .ver-mas {
+    padding: 25px;
+    margin-top: 50px;
+    background: #F7EB61; /*Yellow*/
+    border: none;
+    text-transform: uppercase;
+    font-family: 'Bree Serif', serif;
+    margin: auto;
+    color: black;
+}

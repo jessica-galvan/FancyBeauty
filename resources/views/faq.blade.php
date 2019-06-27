@@ -57,7 +57,7 @@
             @foreach ($listaDePreguntas as $pregunta)
             <section class="cajaDePregunta">
                 <div class="imagenDePreguntas">
-                    <img src="{{$pregunta["imagen"]}}" alt="icono">
+                    <img src="/{{$pregunta["imagen"]}}" alt="icono">
                 </div>
                 <div class="preguntaYRespuesta">
                     <div class="preguntas">

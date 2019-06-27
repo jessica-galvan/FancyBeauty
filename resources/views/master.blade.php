@@ -1,10 +1,18 @@
 <?php /*Aca es para que se pueda definir el $CSS que teniamos antes.*/
+  /*OJO: Este parte va a ser temporal, hasta que logre reemplazar en Laravel la clase que tenia en php, que era para autenticar si alguien estaba logueado y si lo estaba, que cambiaran los siguientes textos.
+  Idem $categorias, hasta que no logre conectarme con la base de datos, para traer la info de categorias y eso.., cree esta basura para safar y no tener que volver a modificar todo de nuevo.*/
   $textoBienvenida = "Ingresar";
   $textoHamburguesa = "Ingresar";
-  $linkUsuario = 'login.php';
+  $linkUsuario = 'login';
   $nombre_usuario = "";
   $textoLogout = "";
-  $categorias = [ ['id' => 1, 'nombre' =>'Rostro'], ['id' => 2,'nombre' =>'Accesorios'] ];
+
+  $categorias = [
+      ['id' => '1', 'nombre' => 'Rostro'],
+      ['id' => '2', 'nombre' => 'Labios'],
+      ['id' => '3', 'nombre' => 'Ojos'],
+      ['id' => '4', 'nombre' => 'Accesorios'],
+  ];
 ?>
 @yield('css')
 <!DOCTYPE html>
@@ -46,15 +54,15 @@
                             </div>
                         </nav>
 
-                        <a href="index"><img class="logo" src="img/icons/LogoMobile.png" alt="Logo"></a>
+                        <a href="/"><img class="logo" src="/img/icons/LogoMobile.png" alt="Logo"></a>
 
                         <div class="icons">
                             <a id="user-icon" href="{{$linkUsuario}}">
-                                <img id="icon-img" class="icon-img" src="img/icons/logInRegister.png" alt="User">
+                                <img id="icon-img" class="icon-img" src="/img/icons/logInRegister.png" alt="User">
                             </a>
 
                             <a href="#">
-                                <img class="icon-img" src="img/icons/BolsaDeCompra.png" alt="Carrito">
+                                <img class="icon-img" src="/img/icons/BolsaDeCompra.png" alt="Carrito">
                             </a>
                         </div>
                     </nav>
@@ -66,20 +74,20 @@
                             <div class="icons">
                                 <a href="#">
                                     <div class="icon-box">
-                                        <img id="lupa" class="icon-img" src="img/icons/LupaDeBusqueda.png" alt="Busqueda">
+                                        <img id="lupa" class="icon-img" src="/img/icons/LupaDeBusqueda.png" alt="Busqueda">
                                         <p>Buscar</p>
                                     </div>
                                 </a>
                             </div>
 
-                            <a href="index">
-                                <img class="logo" src="img/icons/LogoComputadora.png" alt="Logo">
+                            <a href="/">
+                                <img class="logo" src="/img/icons/LogoComputadora.png" alt="Logo">
                             </a>
 
                             <div class="icons">
                                 <a href="{{$linkUsuario}}">
                                     <div id="user-box" class="icon-box">
-                                        <img id="user" class="icon-img" src="img/icons/logInRegister.png" alt="User">
+                                        <img id="user" class="icon-img" src="/img/icons/logInRegister.png" alt="User">
                                         <p>{{$textoBienvenida}}</p>
                                     </div>
                                 </a>
@@ -98,13 +106,13 @@
 
                                 <a href="#">
                                     <div id='bag-box' class="icon-box">
-                                        <img id="bag" class="icon-img" src="img/icons/BolsaDeCompra.png" alt="Carrito">
+                                        <img id="bag" class="icon-img" src="/img/icons/BolsaDeCompra.png" alt="Carrito">
                                         <p>Carrito</p>
                                     </div>
                                 </a>
                             </div>
                         </div>
-                        <?php/*Segunda Linea del Menu*/ ?>
+                        {{-- /*Segunda Linea del Menu*/ --}}
                         <div class="menu-bottom">
                             <ul>
                                 <li><a href="index">INICIO</a></li>
@@ -128,11 +136,7 @@
                     </nav>
             </header>
             <main class="main-container">
-
-                <?php /*Aca va al contenido que quiero que varie en cada página*/?>
                 @yield('content')
-
-
             </main>
             <footer class="footer-info">
                 <?php /*MOBILE VERSION*/?>

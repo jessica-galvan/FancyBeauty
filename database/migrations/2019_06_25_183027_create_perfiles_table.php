@@ -4,7 +4,7 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateCategoriasTable extends Migration
+class CreatePerfilsTable extends Migration
 {
     /**
      * Run the migrations.
@@ -13,9 +13,14 @@ class CreateCategoriasTable extends Migration
      */
     public function up()
     {
-        Schema::create('categorias', function (Blueprint $table) {
+        Schema::create('perfiles', function (Blueprint $table) {
             $table->bigIncrements('id');
-            $table->string('nombre', 100);
+            $table->string('foto', 255);
+            $table->string('tipoPiel', 20);
+            $table->string('tonoPiel', 20);
+            $table->string('provincia', 20);
+            $table->string('genero', 20);
+            $table->date('date_of_birth');
             $table->timestamps();
         });
     }
@@ -27,6 +32,6 @@ class CreateCategoriasTable extends Migration
      */
     public function down()
     {
-        Schema::dropIfExists('categorias');
+        Schema::dropIfExists('perfils');
     }
 }

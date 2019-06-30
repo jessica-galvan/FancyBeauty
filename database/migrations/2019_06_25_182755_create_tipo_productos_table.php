@@ -15,6 +15,7 @@ class CreateTipoProductosTable extends Migration
     {
         Schema::create('tipo_productos', function (Blueprint $table) {
             $table->bigIncrements('id');
+            $table->string('nombre', 100);
             $table->timestamps();
         });
     }

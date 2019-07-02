@@ -2,10 +2,10 @@
 @section('css')
   <?php $CSS = ['infoProducto'];?>
 @endsection
-@section('contenido')
+@section('content')
       <div class="caja-producto">
           <div class="fotoProducto">
-              <img src="/img/productos/{{$producto['foto']}}" alt="Foto Producto">
+              <img src="/storage/productos/{{$producto['foto']}}" alt="Foto Producto">
           </div>
 
           <div class="textoProducto">

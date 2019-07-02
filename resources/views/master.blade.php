@@ -1,18 +1,27 @@
-<?php /*Aca es para que se pueda definir el $CSS que teniamos antes.*/
-  /*OJO: Este parte va a ser temporal, hasta que logre reemplazar en Laravel la clase que tenia en php, que era para autenticar si alguien estaba logueado y si lo estaba, que cambiaran los siguientes textos.
-  Idem $categorias, hasta que no logre conectarme con la base de datos, para traer la info de categorias y eso.., cree esta basura para safar y no tener que volver a modificar todo de nuevo.*/
-  $textoBienvenida = "Ingresar";
-  $textoHamburguesa = "Ingresar";
-  $linkUsuario = 'login';
-  $nombre_usuario = "";
-  $textoLogout = "";
+<?php
+  if(Auth::check()){
+    $nombre_usuario  = "";
+    $linkUsuario = "/perfil";
+    $textoBienvenida = "Hola ".Auth::user()->name;
+    $textoHamburguesa = "Perfil";
+    $textoLogout = "Cerrar Sesión";
+  } else {
+    $textoBienvenida = "Ingresar";
+    $textoHamburguesa = "Ingresar";
+    $linkUsuario = 'login';
+    $nombre_usuario = "";
+    $textoLogout = "";
+  }
 
+  /* OJO $categorias, hasta que no logre conectarme con la base de datos, para traer la info de categorias y eso.., cree esta basura para safar y no tener que volver a modificar todo de nuevo.*/
   $categorias = [
       ['id' => '1', 'nombre' => 'Rostro'],
       ['id' => '2', 'nombre' => 'Labios'],
       ['id' => '3', 'nombre' => 'Ojos'],
       ['id' => '4', 'nombre' => 'Accesorios'],
   ];
+
+  /*El yield('css') de aca abajo es para que se pueda definir el $CSS que teniamos antes.*/
 ?>
 @yield('css')
 <!DOCTYPE html>
@@ -91,15 +100,15 @@
                                         <p>{{$textoBienvenida}}</p>
                                     </div>
                                 </a>
-                                @if(isset($_SESSION['email_usuario']))
+                                @if(Auth::check())
                                 <div class="dropdown">
                                     <button class="dropbtn">
                                     <i class="fa fa-caret-down"></i>
                                     </button>
                                     <div class="dropdown-content">
-                                        <a href="perfilUsuario">Perfil</a>
-                                        <a href="editarPerfil">Editar Perfil</a>
-                                        <a href="actions/logout">Cerrar Sesión</a>
+                                        <a href="/perfil">Perfil</a>
+                                        <a href="/perfil/editar">Editar Perfil</a>
+                                        {{-- <a href="actions/logout">Cerrar Sesión</a> --}}
                                     </div>
                                 </div>
                                 @endif

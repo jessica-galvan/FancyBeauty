@@ -22,7 +22,7 @@ class RegisterController extends Controller
     */
 
     use RegistersUsers;
-    protected $redirectTo = '/confrmacion';
+    protected $redirectTo = '/confirmacion';
 
     public function __construct(){
         $this->middleware('guest');

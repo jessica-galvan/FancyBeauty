@@ -8,6 +8,6 @@ class Perfil extends Model{
     public $table = 'perfiles';
 
     public function usuario(){
-        return $this->hasOne('App\Usuario', 'perfil_id');
+        return $this->hasOne('App\User', 'user_id');
     }
 }

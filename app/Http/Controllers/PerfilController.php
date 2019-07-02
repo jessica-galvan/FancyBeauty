@@ -12,8 +12,7 @@ class PerfilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function index()
-    {
+    public function index(){
         //
     }
 
@@ -22,8 +21,7 @@ class PerfilController extends Controller
      *
      * @return \Illuminate\Http\Response
      */
-    public function create()
-    {
+    public function create(){
         //
     }
 
@@ -33,8 +31,7 @@ class PerfilController extends Controller
      * @param  \Illuminate\Http\Request  $request
      * @return \Illuminate\Http\Response
      */
-    public function store(Request $request)
-    {
+    public function store(Request $request){
         //
     }
 
@@ -44,8 +41,7 @@ class PerfilController extends Controller
      * @param  \App\perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function show(perfil $perfil)
-    {
+    public function show(perfil $perfil){
         //
     }
 
@@ -55,8 +51,7 @@ class PerfilController extends Controller
      * @param  \App\perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function edit(perfil $perfil)
-    {
+    public function edit(perfil $perfil){
         //
     }
 
@@ -67,8 +62,7 @@ class PerfilController extends Controller
      * @param  \App\perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function update(Request $request, perfil $perfil)
-    {
+    public function update(Request $request, perfil $perfil){
         //
     }
 
@@ -78,8 +72,7 @@ class PerfilController extends Controller
      * @param  \App\perfil  $perfil
      * @return \Illuminate\Http\Response
      */
-    public function destroy(perfil $perfil)
-    {
+    public function destroy(perfil $perfil){
         //
     }
 }

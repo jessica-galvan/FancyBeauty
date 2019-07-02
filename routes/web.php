@@ -9,11 +9,11 @@ Route::get('/producto/{id}', 'ProductoController@show'); /*Detalle producto*/
 Route::get('/faq', function(){return view('faq');});
 
 /*PERFIL USUARIO*/
-Route::get('/perfil', 'UsuarioController@index');
-Route::get('/perfil/editar', 'UsuarioController@edit');
-Route::post('/perfil/editar', 'UsuarioController@update');
-Route::get('/perfil/password', 'UsuarioController@editPass');
-Route::post('/perfil/password', 'UsuarioController@updatePass');
+Route::get('/perfil', 'UsuarioController@show')->middleware('auth');
+Route::get('/perfil/editar', 'UsuarioController@edit')->middleware('auth');
+Route::post('/perfil/editar', 'UsuarioController@update')->middleware('auth');
+Route::get('/perfil/password', 'UsuarioController@editPass')->middleware('auth');
+Route::post('/perfil/password', 'UsuarioController@updatePass')->middleware('auth');
 
 //SECCION ADMINS para agregar, editar y borrar productos
 Route::get('/lista', 'ProductoController@indexEdit');
@@ -26,7 +26,7 @@ Route::post('/borrar/{id}', 'ProductoController@destroy');
 
 /*SECCION LOGIN, RECUPERO Y REGISTER*/
 Auth::routes();
-Route::get('/confirmacion', function(){return view('confirmacion');}); /*Cuando te registras correctamente, te lleva a esta*/
+Route::get('/confirmacion', function(){return view('confirmacion');})->middleware('guest'); /*Cuando te registras correctamente, te lleva a esta*/
 
 //A BORRAR
 Route::get('/register2', function(){return view('/auth/register-backup');});

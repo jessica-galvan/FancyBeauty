@@ -3,7 +3,9 @@ namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
 use App\Producto;
-// use App\Categoria;
+use App\Categoria;
+use App\Estado;
+use App\ TipoProducto;
 
 class ProductoController extends Controller {
 
@@ -65,6 +67,10 @@ class ProductoController extends Controller {
     }
 
     public function edit($id){
+        // $tipoProductos = TipoProducto::all();
+        // $categorias = Categoria::all();
+        // $estados = Estado::all();
+        // return view('editarProducto', compact('categorias', 'estados', 'tiposProductos'));
         return view('editarProducto');
     }
 
@@ -74,9 +80,9 @@ class ProductoController extends Controller {
           'nombre' => 'require|string',
           'descripcion' => 'require|string',
           'precio' => 'require|int',
-          'estado_id' => 'require|string',
-          'categoria_id' => 'require|string',
-          'tipoProducto_id' => 'require|string',
+          'estado_id' => 'require|int',
+          'categoria_id' => 'require|int',
+          'tipoProducto_id' => 'require|int',
           'foto' => 'image',
         ];
 

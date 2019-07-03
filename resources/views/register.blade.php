@@ -13,7 +13,6 @@
     $errorApellido = "";
     $errorEmail = "";
     $errorContrasenia = "";
-    $errorPregunta = "";
     $errorPrincial = "";
     $CSS = ['index'];
     ?>

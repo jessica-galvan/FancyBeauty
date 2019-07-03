@@ -1,23 +1,10 @@
 @extends('master')
 @section('css')
-  <?php
-    // $nombre = "";
-    // $precio = "";
-    // $descripcion = "";
-    // $categoria = "";
-    // $estado = "";
-    // $tipoProducto = "";
-    // $errorNombre = "";
-    // $errorDescripcion = "";
-    // $errorPrecio = "";
-    // $errorFoto = "";
-    // $errorEstado = "";
-    // $errorTipoProducto = "";
-    // $errorCategoria = "";
-    $errorPrincipal = "";
-    $mensajePrincipal = "";
-
-    $CSS = ['editor-productos'];?>
+    @php
+        // $errorPrincipal = "";
+        // $mensajePrincipal = "";
+        $CSS = ['editor-productos'];
+    @endphp
 @endsection
 @section('content')
 <div class="editar-form">
@@ -29,14 +16,13 @@
         <span style="color:blue;" class = "mensajeConfirmar">{{$mensajePrincipal}}</span>
       @endif
 
-      <form action="nuevoProducto.php" method="post" enctype="multipart/form-data">
+      <form action="/nuevo" method="post" enctype="multipart/form-data">
           @csrf
           <div class="form-editar">
               <label for="foto">Foto Producto:</label>
               <input type="file" name="foto" value="">
               <span class="error-form">{{$errors->first('foto')}}</span>
           </div>
-
 
         <div class="form-editar">
             <label for="nombre">Nombre</label>
@@ -46,7 +32,7 @@
 
         <div class="form-editar">
             <label for="nombre">Descripcion</label>
-            <textarea name="descripcion" rows="8" cols="80">{{old('descripcion')}}></textarea>
+            <textarea name="descripcion" rows="8" cols="80">{{old('descripcion')}}</textarea>
             <span class="error-form">{{$errors->first('descripcion')}}</span>
         </div>
 
@@ -56,36 +42,35 @@
             <span class="error-form">{{$errors->first('precio')}}</span>
         </div>
 
-        {{-- Estado --}}
         <section class="form-editar">
             <label for="estado">Estado:</label>
             <div class="check-product">
-                @foreach($listaEstados as $estados)
-                    @if({{old('estado_id')}} == $estados['id'])
+                @foreach($estados as $estado)
+                    @if(old('estado_id') == $estado['id'])
                     <div class="check-box">
-                        <input type="radio" name="estado_id" value="<?=$estados['id']?>" checked><span><?=$estados['nombre']?></span>
+                        <input type="radio" name="estado_id" value="{{$estado['id']}}" checked><span>{{$estado['nombre']}}</span>
                     </div>
-                @else:
+                    @else
                     <div class="check-box">
-                        <input type="radio" name="estado_id" value="<?=$estados['id']?>"><span><?=$estados['nombre']?></span>
+                        <input type="radio" name="estado_id" value="{{$estado['id']}}"><span>{{$estado['nombre']}}</span>
                     </div>
-                @endif
+                    @endif
+                @endforeach
             </div>
             <span class="error-form">{{$errors->first('estado_id')}}</span>
         </section>
 
-        {{-- Categoria --}}
         <section class="form-editar">
             <label for="categoria">Categoria:</label>
             <div class="check-product">
-                @foreach ($categorias as $opcion)
-                    @if ({{old('categoria_id')}} == $opcion['id'])
+                @foreach ($categorias as $categoria)
+                    @if(old('categoria_id') == $categoria['id'])
                     <div class="check-box">
-                        <input type="radio" name="categoria_id" value="<?=$opcion['id']?>" checked><span><?=$opcion['nombre']?></span>
+                        <input type="radio" name="categoria_id" value="{{$categoria['id']}}" checked><span>{{$categoria['nombre']}}</span>
                     </div>
                     @else
                     <div class="check-box">
-                        <input type="radio" name="categoria_id" value="<?=$opcion['id']?>"><span><?=$opcion['nombre']?></span>
+                        <input type="radio" name="categoria_id" value="{{$categoria['id']}}"><span>{{$categoria['nombre']}}</span>
                     </div>
                     @endif
                 @endforeach
@@ -93,15 +78,14 @@
             <span class="error-form">{{$errors->first('categoria_id')}}</span>
         </section>
 
-        {{-- Tipo de producto --}}
         <section class="form-editar">
             <label for="tipoProducto">Tipo de Producto:</label>
             <select name="tipoProducto_id">
-                @if({{old('tipoProducto_id')}}  == "")
+                @if(old('tipoProducto_id') == "")
                     <option hidden value=""> <i>Seleccionar</i> </option>
                 @endif
-                @foreach($listaTiposProductos as $tipoProducto)
-                    @if({{old('tipoProducto_id')}} == $tipoProducto['id'])
+                @foreach($tipoProductos as $tipoProducto)
+                    @if(old('tipoProducto_id') == $tipoProducto['id'])
                         <option value='{{$tipoProducto['id']}}' selected>
                             {{$tipoProducto['nombre']}}
                         </option>
@@ -115,11 +99,11 @@
             <span class="error-form">{{$errors->first('tipoProducto_id')}}</span>
         </section>
 
-        <div class="/login-button">
-            <button type="submit" name="crearProducto">ENVIAR</button>
+        <div class="login-button">
+            <button type="submit" name="">ENVIAR</button>
         </div>
     </form>
-    <a href="/lista-productos">
+    <a href="/lista">
         <button class="return" type="button">Volver</button>
     </a>
 </div>

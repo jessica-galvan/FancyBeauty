@@ -15,18 +15,24 @@ class ProductoController extends Controller {
     }
 
     public function create(){
-        return view('nuevoProducto');
+        $tipoProductos = TipoProducto::all();
+        $categorias = Categoria::all();
+        $estados = Estado::all();
+        return view('nuevoProducto', compact('categorias', 'estados', 'tipoProductos'));
     }
 
     public function store(Request $req){
+        $tipoProductos = TipoProducto::all();
+        $categorias = Categoria::all();
+        $estados = Estado::all();
         $reglas = [
-          'nombre' => 'require|string',
-          'descripcion' => 'require|string',
-          'precio' => 'require|int',
-          'estado_id' => 'require|string',
-          'categoria_id' => 'require|string',
-          'tipoProducto_id' => 'require|string',
-          'foto' => 'require|image',
+          'nombre' => 'required|string',
+          'descripcion' => 'required|string',
+          'precio' => 'required|int',
+          'estado_id' => 'required|string',
+          'categoria_id' => 'required|string',
+          'tipoProducto_id' => 'required|string',
+          'foto' => 'required|image',
         ];
 
         $mensajes = [
@@ -34,7 +40,7 @@ class ProductoController extends Controller {
           'int' => '* El campo debe ser númerico',
           'required' => '* El campo no puede estar vacio',
           'image' => '* El archivo subido no es una imagen',
-          'image.require' => '* El producto debe tener una imagen',
+          'image.required' => '* El producto debe tener una imagen',
         ];
 
         $this->validate($req, $reglas, $mensajes);
@@ -48,12 +54,11 @@ class ProductoController extends Controller {
         $nuevoProducto->precio = $req['precio'];
         $nuevoProducto->estado_id = $req['estado_id'];
         $nuevoProducto->categoria_id = $req['categoria_id'];
-        $nuevoProducto->tipoProducto_id = $req['tipoProducto_id'];
+        $nuevoProducto->tipoproducto_id = $req['tipoProducto_id'];
         $nuevoProducto->foto = $foto;
         $nuevoProducto->save();
-        $mensajePrincial = 'El producto se ha agregado exitosamente';
-
-        return view('nuevoProducto', compact('mensajePrincipal'));
+        $mensajePrincipal = 'El producto se ha agregado exitosamente';
+        return view('nuevoProducto', compact('mensajePrincipal','categorias', 'estados', 'tipoProductos'));
     }
 
     public function show($id){
@@ -67,22 +72,23 @@ class ProductoController extends Controller {
     }
 
     public function edit($id){
-        // $tipoProductos = TipoProducto::all();
-        // $categorias = Categoria::all();
-        // $estados = Estado::all();
-        // return view('editarProducto', compact('categorias', 'estados', 'tiposProductos'));
-        return view('editarProducto');
+        $tipoProductos = TipoProducto::all();
+        $categorias = Categoria::all();
+        $estados = Estado::all();
+        $producto = Producto::find($id);
+        return view('editarProducto', compact('producto', 'categorias', 'estados', 'tipoProductos'));
+        // return view('editarProducto');
     }
 
-    public function update(Request $request, $id){
+    public function update(Request $req, $id){
         /*VALIDACIONES*/
         $reglas = [
-          'nombre' => 'require|string',
-          'descripcion' => 'require|string',
-          'precio' => 'require|int',
-          'estado_id' => 'require|int',
-          'categoria_id' => 'require|int',
-          'tipoProducto_id' => 'require|int',
+          'nombre' => 'required|string',
+          'descripcion' => 'required|string',
+          'precio' => 'required|numeric',
+          'estado_id' => 'required|int',
+          'categoria_id' => 'required|int',
+          'tipoProducto_id' => 'required|int',
           'foto' => 'image',
         ];
 
@@ -91,7 +97,7 @@ class ProductoController extends Controller {
           'int' => '* El campo debe ser númerico',
           'required' => '* El campo no puede estar vacio',
           'image' => '* El archivo subido no es una imagen',
-          'image.require' => '* El producto debe tener una imagen',
+          'numeric' => '* El precio debe ser numérico'
         ];
         $this->validate($req, $reglas, $mensajes);
 

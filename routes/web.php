@@ -1,12 +1,13 @@
 <?php
 Route::get('/home', 'HomeController@index')->name('home');
-Route::get('/laravel', function () {return view('welcome');}); /*Este es temporal, just in case*/
+// Route::get('/laravel', function () {return view('welcome');}); /*Este es temporal, just in case*/
 
 /*SECCION OTROS*/
 Route::get('/', 'ProductoController@index');
 Route::get('/index', 'ProductoController@index');
 Route::get('/producto/{id}', 'ProductoController@show'); /*Detalle producto*/
 Route::get('/faq', function(){return view('faq');});
+// Route::get('/categoria/{id}', 'ProductoController@filtro');
 
 /*PERFIL USUARIO*/
 Route::get('/perfil', 'UsuarioController@show')->middleware('auth');
@@ -22,12 +23,10 @@ Route::post('/nuevo', 'ProductoController@store');
 Route::get('/editar/{id}', 'ProductoController@edit');
 Route::post('/editar/{id}', 'ProductoController@update');
 Route::get('/borrar/{id}', 'ProductoController@showDestroy');
-Route::post('/borrar/{id}', 'ProductoController@destroy');
+Route::post('/borrar', 'ProductoController@destroy');
+Route::get('/confirmacion-borrado', function(){return view('confirmacion-borrado');});
 
 /*SECCION LOGIN, RECUPERO Y REGISTER*/
 Auth::routes();
-Route::get('/confirmacion', function(){return view('confirmacion');})->middleware('guest'); /*Cuando te registras correctamente, te lleva a esta*/
-
-//A BORRAR
-Route::get('/register2', function(){return view('/auth/register-backup');});
-Route::get('/login2', function(){return view('/auth/login-backup');});
+Route::get('/confirmacion', function(){return view('confirmacion');})->middleware('guest');
+/*Cuando te registras correctamente, te lleva a esta, no se si sirve o es necesaria luego*/

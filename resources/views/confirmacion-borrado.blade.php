@@ -7,7 +7,7 @@
         <div class="titulo-seccion">
             <h2>El producto ha sido borrado correctamente</h2>
         </div>
-        <a href="lista-productos.php">
+        <a href="/lista">
             <button class="cancelar-button" type="button" name="">Volver</button>
         </a>
     </section>

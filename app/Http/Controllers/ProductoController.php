@@ -77,8 +77,8 @@ class ProductoController extends Controller {
         $estados = Estado::all();
         $producto = Producto::find($id);
         return view('editarProducto', compact('producto', 'categorias', 'estados', 'tipoProductos'));
-        // return view('editarProducto');
     }
+
 
     public function update(Request $req, $id){
         /*VALIDACIONES*/
@@ -86,38 +86,42 @@ class ProductoController extends Controller {
           'nombre' => 'required|string',
           'descripcion' => 'required|string',
           'precio' => 'required|numeric',
-          'estado_id' => 'required|int',
-          'categoria_id' => 'required|int',
-          'tipoProducto_id' => 'required|int',
+          'estado' => 'required|int',
+          'categoria' => 'required|int',
+          'tipoProducto' => 'required|int',
           'foto' => 'image',
         ];
 
         $mensajes = [
-          'string' => '* El campo debe ser de texto',
+          'string' => ' El campo :atribute debe ser de texto',
           'int' => '* El campo debe ser númerico',
           'required' => '* El campo no puede estar vacio',
           'image' => '* El archivo subido no es una imagen',
           'numeric' => '* El precio debe ser numérico'
         ];
+        //dd($this->validate($req, $reglas, $mensajes));
         $this->validate($req, $reglas, $mensajes);
 
-        /*Guardamos foto producto, si hay una nueva -VER TEMA*/
-        $path = $req->file('foto')->store('/public/productos'); /*Esto trae el archivo*/
-        $foto = basename($path);
         /*Traemos el dato original*/
         $producto = Producto::find($id);
+        /*VALIDAR FOTO*/
+        if($req->file('foto')){
+          $path = $req->file('foto')->store('/public/productos'); /*Esto trae el archivo*/
+          $foto = basename($path);
+          $producto->foto = $foto;
+        }
         /*Guardamos encima*/
         $producto->nombre = $req['nombre'];
         $producto->descripcion = $req['descripcion'];
         $producto->precio = $req['precio'];
         $producto->tipoProducto_id = $req['tipoProducto'];
         $producto->categoria_id = $req['categoria'];
-        $producto->estado_id = $req['estado_id'];
-        $producto->foto = $foto;
+        $producto->estado_id = $req['estado'];
+
         /*Subimos a base de datos*/
         $producto->save();
         /*Cuando terminas de editar, mandame de nuevo a la lista de productos...*/
-        return redirect('lista-productos');
+        return redirect('/lista');
     }
 
     public function showDestroy($id){
@@ -125,9 +129,10 @@ class ProductoController extends Controller {
         return view('borrarProducto', compact('producto'));
     }
 
-    public function destroy($id){
-      $producto = Producto::find($id);
+    public function destroy(Request $req){
+      $producto = Producto::find($req['id']);
+      // unlink("/public/productos/".$producto['foto']);
       $producto->delete();
-      return redirect('confirmacion-borrado');
+      return redirect('/confirmacion-borrado');
     }
 }

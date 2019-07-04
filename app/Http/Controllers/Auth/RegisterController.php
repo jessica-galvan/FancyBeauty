@@ -34,14 +34,22 @@ class RegisterController extends Controller
      * @param  array  $data
      * @return \Illuminate\Contracts\Validation\Validator
      */
-    protected function validator(array $data)
-    {
+    protected function validator(array $data) {
+        $mensajes = [
+          'string' => '* El campo debe ser de texto',
+          'min' => '* La contraseña debe tener como minimo 6 caracteres',
+          'max' => '* El campo debe tener como máximo 255 caracteres',
+          'unique' => '* Ese email ya esta registrado',
+          'confirmed' => '* Las contraseñas no coinciden',
+          'email' => '* No es valido como email',
+          'required' => '* El campo no puede estar vacio',
+        ];
         return Validator::make($data, [
             'name' => ['required', 'string', 'max:255'],
             'surname' => ['required', 'string', 'max:255'],
             'email' => ['required', 'string', 'email', 'max:255', 'unique:users'],
             'password' => ['required', 'string', 'min:6', 'confirmed'],
-        ]);
+        ], $mensajes);
     }
 
     protected function create(array $data){

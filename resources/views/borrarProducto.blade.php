@@ -25,7 +25,7 @@
             <div class="producto-boton">
                 <h4>Precio:</h4><p>
                 <p class="precio">${{$producto["precio"]}}</p>
-                <form action="/borrarProducto" method="post">
+                <form action="/borrar" method="post">
                     @csrf
                     <input type="hidden" name="id" value="{{$producto['id']}}">
                     <button class="borrar-button" type="submit" name="" value="">Borrar</button>

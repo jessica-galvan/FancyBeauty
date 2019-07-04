@@ -4,15 +4,9 @@ use Illuminate\Support\Facades\Schema;
 use Illuminate\Database\Schema\Blueprint;
 use Illuminate\Database\Migrations\Migration;
 
-class CreateEstadosTable extends Migration
-{
-    /**
-     * Run the migrations.
-     *
-     * @return void
-     */
-    public function up()
-    {
+class CreateEstadosTable extends Migration{
+
+    public function up(){
         Schema::create('estados', function (Blueprint $table) {
             $table->bigIncrements('id');
             $table->string('nombre', 100);
@@ -20,13 +14,7 @@ class CreateEstadosTable extends Migration
         });
     }
 
-    /**
-     * Reverse the migrations.
-     *
-     * @return void
-     */
-    public function down()
-    {
+    public function down(){
         Schema::dropIfExists('estados');
     }
 }

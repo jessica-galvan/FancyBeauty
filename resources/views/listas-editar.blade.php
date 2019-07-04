@@ -1,3 +1,4 @@
+@section('lista-editar')
 <?php
     /*TIPO DE PIEL*/
     $listaArray = [
@@ -163,3 +164,4 @@
         }
     }
 ?>
+@endsection

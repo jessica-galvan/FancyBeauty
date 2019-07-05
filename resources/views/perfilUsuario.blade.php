@@ -27,15 +27,21 @@
       </div>
 
       <div class="caja-botones">
-          <form class="editar-button-violeta " action="/perfil/editar" method="post">
-              <button type="submit" name="">Editar Perfil</button>
-          </form>
-          <form class="editar-button-amarillo" action="/perfil/password" method="post">
-              <button type="submit" name="">Cambiar Contraseña</button>
-          </form>
-          <form class="editar-button-rosa" action="/logout" method="post">
-              <button type="submit" name="logout">Cerra sesión</button>
-          </form>
+          <div class="editar-button-violeta">
+              <a href="/perfil/editar">
+                  <button type="button" name="">Editar Perfil</button>
+              </a>
+          </div>
+          <div class="editar-button-amarillo">
+              <a href="/perfil/password">
+                  <button type="button" name="">Cambiar Contraseña</button>
+              </a>
+          </div>
+          <div class="editar-button-rosa">
+              <a href="/perfil/logout">
+                  <button type="button" name="">Cerrar Sesión</button>
+              </a>
+          </div>
       </div>
   </div>
 @endsection

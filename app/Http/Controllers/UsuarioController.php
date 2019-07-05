@@ -6,6 +6,7 @@ use Illuminate\Http\Request;
 // use App\Usuario;
 use Illuminate\Support\Facades\Auth;
 use App\User;
+use App\EditarPerfil;
 
 
 
@@ -87,24 +88,26 @@ class UsuarioController extends Controller{
 
   public function edit(){
       $usuario = Auth::user();
-      return view('editarPerfil', compact('usuario'));
+      $info = new EditarPerfil;
+      $listaArray = $info->array();
+      return view('editarPerfil', compact('usuario', 'listaArray'));
   }
 
-  public function update(Request $request){
+  public function update(Request $req){
       $usuario = Auth::user();
 
       $reglas = [
-        'tonoPiel' => 'string',
-        'tipoPiel' => 'string',
-        'genero' => 'string',
-        'provincia' => 'string',
-        'fechaNacimiento' => 'date',
+        // 'tonoPiel' => 'string',
+        // 'tipoPiel' => 'string',
+        // 'genero' => 'string',
+        // 'provincia' => 'string',
+        // 'fechaNacimiento' => 'date',
         'foto' => 'image',
       ];
 
       $mensajes = [
-        'string' => '* El campo debe ser de texto',
-        'date' => '* Debe ser una fecha',
+        // 'string' => '* El campo debe ser de texto',
+        // 'date' => '* Debe ser una fecha',
         'image' => '* El archivo subido no es una imagen',
       ];
 
@@ -115,20 +118,21 @@ class UsuarioController extends Controller{
         $foto = basename($path);
         $producto->foto = $foto;
       }
-      /*Hasta acá guardo el archivo en la carpeta de fotos de usuario y */
-      $usuario->genero = $req['genero'];
-      $usuario->tonoPiel = $req['tonoPiel'];
-      $usuario->tipoPiel = $req['tipoPiel'];
-      $usuario->provincia = $req['provincia'];
-      $usuario->date_of_birth = $req['fechaNacimiento'];
-      $usuario->foto = $foto;
+      /*Hasta acá guardo el archivo en la carpeta de fotos de usuario y ahora viene la parte de recuperar el dato y no el valor del array con una funcion de antes.*/
+      $info = new EditarPerfil;
+      $listaArray = $info->array();
+
+      $usuario->genero = $info->recuperarDato('genero', $req['genero']);
+      $usuario->tonoPiel = $info->recuperarDato('genero', $req['tonoPiel']);
+      $usuario->tipoPiel = $info->recuperarDato('genero', $req['tipoPiel']);
+      $usuario->provincia = $info->recuperarDato('genero', $req['provincia']);
+      $usuario->date_of_birth = $info->recuperarDato('genero', $req['fechaNacimiento']);
       $usuario->save();
-      return redirect('/perfil', compact('usuario'));
+      return view('perfilUsuario', compact('usuario'));
   }
 
   public function editPass(){
       return view('cambiarContrasenia');
-
   }
 
   public function updatePass(Request $req){

@@ -11,6 +11,7 @@
             <span class="error-form">{{$errorPrincipal}}</span>
         @endif
         <form class="cambiarContraseña" action="/perfil/password" method="post">
+            @csrf
             <div class="form">
                 <label for="oldPassword">Contraseña Original:</label>
                 <input class="cambiarContrasenia" id="oldPassword" type="password" name="oldPassword" value="">

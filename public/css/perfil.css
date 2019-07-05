@@ -42,7 +42,7 @@
 }
 
 /*BOTONES EDITAR*/
-.caja-botones form {
+.caja-botones div {
   margin: 3vw;
 }
 
@@ -128,7 +128,7 @@
     padding: 20px;
   }
 
-  .caja-botones form {
+  .caja-botones div {
     margin: 30px;
   }
 

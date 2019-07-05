@@ -1,8 +1,6 @@
 @extends('master')
 @section('css')
-  <?php
-    include('/partials/listas-editar.php');
-    $CSS = ['form', 'perfil'];?>
+  <?php $CSS = ['form', 'perfil'];?>
 @endsection
 @section('content')
     @yield('lista-editar')
@@ -10,89 +8,100 @@
         <div class="login-text">
             <h2 id="titulo-editar">Editar mi perfil</h2>
         </div>
-        <form class="container-editarPerfil" action="editarPerfil.php" method="post" enctype="multipart/form-data">
-            <!-- SECCION TIPO -->
+        <form class="container-editarPerfil" action="/perfil/editar" method="post" enctype="multipart/form-data">
+            @csrf
             <section class="form-editar">
-                <label for="tipoDePiel">Tipo de piel:</label>
-                <?php
-                foreach ($listaTipoDePiel as $tipo) {
-                    if ($usuario['tipoPiel'] == $tipo['dato']): ?>
+                <label for="tipoPiel">Tipo de piel:</label>
+                @foreach ($listaArray['tipoPiel'] as $tipo)
+                    @if ($usuario['tipoPiel'] == $tipo['dato'] || old('tipoPiel') == $tipo['valor'])
                         <div class="check-box">
-                            <input type="radio" name="tipoDePiel" value="<?=$tipo['valor']?>" checked><span><?=$tipo['dato']?></span>
+                            <input type="radio" name="tipoPiel" value="<?=$tipo['valor']?>" checked><span><?=$tipo['dato']?></span>
                         </div>
-                    <?php else: ?>
+                    @else
                         <div class="check-box">
-                            <input type="radio" name="tipoDePiel" value="<?=$tipo['valor']?>"><span><?=$tipo['dato']?></span>
+                            <input type="radio" name="tipoPiel" value="<?=$tipo['valor']?>"><span><?=$tipo['dato']?></span>
                         </div>
-                    <?php endif; } ?>
+                    @endif
+                @endforeach
+            </section>
+            @foreach ($errors->all() as $error)
+                <span>{{$error}}</span>
+            @endforeach
+
+            <section class="form-editar">
+                <label for="tonoPiel">Tono de piel:</label>
+                @foreach ($listaArray['tonoPiel'] as $tono)
+                    @if ($usuario['tonoPiel'] == $tono['dato'] || old('tonoPiel') == $tono['valor'])
+                    <div class="check-box">
+                        <input type="radio" name="tonoPiel" value="<?=$tono['valor']?>" checked><span><?=$tono['dato']?></span>
+                    </div>
+                    @else
+                    <div class="check-box">
+                        <input type="radio" name="tonoPiel" value="<?=$tono['valor']?>"><span><?=$tono['dato']?></span>
+                    </div>
+                    @endif
+                @endforeach
             </section>
 
-            <!-- SECCION TONO -->
-            <section class="form-editar">
-                <label for="tonoDePiel">Tono de piel:</label>
-                <?php foreach ($listaTonoDePiel as $tono) {
-                    if ($usuario['tonoPiel'] == $tono['dato']):?>
-                    <div class="check-box">
-                        <input type="radio" name="tonoDePiel" value="<?=$tono['valor']?>" checked><span><?=$tono['dato']?></span>
-                    </div>
-                <?php else: ?>
-                    <div class="check-box">
-                        <input type="radio" name="tonoDePiel" value="<?=$tono['valor']?>"><span><?=$tono['dato']?></span>
-                    </div>
-                <?php endif; }?>
-            </section>
-
-            <!-- SECCION GENERO -->
             <section class="form-editar" id='genero-checkbox'>
                 <label for="genero">Género:</label>
                 <div class="genero-options">
-                    <?php foreach ($listaGenero as $generos) {
-                        if ($usuario['genero'] == $generos['dato']):?>
+                    @foreach ($listaArray['genero'] as $generos)
+                        @if ($usuario['genero'] == $generos['dato'] || old('genero') == $generos['valor'])
                         <div class="check-box">
                             <input type="radio" name="genero" value="<?=$generos['valor']?>" checked><span><?=$generos['dato']?></span>
                         </div>
-                    <?php else: ?>
+                        @else
                         <div class="check-box">
                             <input type="radio" name="genero" value="<?=$generos['valor']?>"><span><?=$generos['dato']?></span>
                         </div>
-                    <?php endif; }?>
+                        @endif
+                    @endforeach
                 </div>
             </section>
 
-            <!--SECCION PROVINCIA-->
             <section class="form-editar">
                 <label for="ubicacion">Provincia:</label>
                 <select class="" name="provincia">
-                    <?php if($provinciaRespuesta  == ""): ?>
+                    @if($usuario['provincia']  == "" || old('provincia') == "")
                         <option hidden value=""> <i>Seleccionar</i> </option>
-                    <?php endif; ?>
-                    <?php foreach ($listaProvincia as $unaProvincia) {
-                        if ($usuario['provincia'] == $unaProvincia['dato']):?>
+                    @endif
+                    @foreach ($listaArray['provincia'] as $unaProvincia) {
+                        @if ($usuario['provincia'] == $unaProvincia['dato'] || old('provincia') == $unaProvincia['valor'])
                         <option value='<?=$unaProvincia['valor']?>' selected>
                             <?=$unaProvincia['dato']?>
                         </option>
-                        <?php else: ?>
+                        @else
                             <option value='<?=$unaProvincia['valor']?>'>
                                 <?=$unaProvincia['dato']?>
                             </option>
-                        <?php endif; }?>
+                        @endif
+                    @endforeach
                 </select>
             </section>
 
-            <!-- FECHA DE NACIMIENTO -->
+            @php
+                if($usuario['date_of_birth'] != ""){
+                    $fecha = $usuario['date_of_birth'];
+                } elseif(old('fechaNacimiento') != "") {
+                    $fecha = old('fechaNacimiento');
+                } else {
+                    $fecha = "";
+                }
+            @endphp
             <div class="form-editar">
                 <label for="fechaNacimiento">Fecha de Nacimiento:</label>
-                <input type="date" name="fechaNacimiento" value="{{$usuario['date_of_birth']}}">
+                <input type="date" name="fechaNacimiento" value="{{$fecha}}">
             </div>
 
-            <!--SECCION FOTO-->
             <div class="form-editar">
                 <label for="foto">Foto de Perfil:</label>
                 <input type="file" name="foto" value="">
-                <span class="error-form">{{$errors->foto}}</span>
+                @if(isset($errors->foto))
+                    <span class="error-form">{{$errors->foto}}</span>
+                @endif
             </div>
 
-            <!--BOTON ENVIAR-->
             <div class="editar-button">
                 <button type="submit" name="editar">ENVIAR</button>
             </div>

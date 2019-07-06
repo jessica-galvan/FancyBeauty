@@ -34,14 +34,19 @@ class CarritoController extends Controller{
           $cantidad = 1;
         }
 
-        $carrito->usuario_id = Auth::user()->id;
+        $carrito->user_id = Auth::user()->id;
+        $carrito->producto_id = $producto['id'];
         $carrito->nombre = $producto['nombre'];
         $carrito->precio = $producto['precio'];
         $carrito->cantidad = $cantidad;
         $carrito->foto = $producto['foto'];
+        $carrito->estado = '0';
+        $carrito->num_carrito = 0;
+        $carrito->save();
 
-        return Redirect::back()->with('mensaje', 'El producto ha sido agregado al carrito');
-        // return Redirect::back();
+        // return redirect::back()->with('mensaje', 'El producto ha sido agregado al carrito');
+        // return redirect::back();
+        return redirect('/');
     }
 
     public function show(Carrito $carrito){
@@ -57,7 +62,7 @@ class CarritoController extends Controller{
     }
 
     public function destroy($id){
-        $carrito = Carrito::where('id', $id)->where('usuario_id', Auth::user()->id)->where('estado', '0')->first();
+        $carrito = Carrito::where('id', $id)->where('user_id', Auth::user()->id)->where('estado', '0')->first();
         $carrito->delete();
         return redirect('/carrito');
     }

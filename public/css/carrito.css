@@ -1,0 +1,120 @@
+/*Error*/
+.main-container {
+  background: rgba(196,170,215, 0.8);
+  padding: 5vw;
+}
+
+#titulo-carrito {
+  font-family: 'Bree Serif', serif;
+  font-size: 2em;
+  margin-top: 2vh;
+}
+
+/*Form Cantidad*/
+.formulario-cantidad {
+    margin: auto;
+    display: flex;
+    flex-wrap: wrap;
+    flex-direction: column;
+    justify-content: center;
+}
+
+.cantidad{
+    border: 1px solid black;
+	height: 40px;
+	position: relative;
+	width: 122px;
+    display: flex;
+    flex-wrap: wrap;
+    /* flex-direction: column; */
+    justify-content: center;
+}
+
+.cantidad i {
+    cursor: pointer;
+    font-family: serif;
+    height: 40px;
+    float: left;
+    line-height: 40px;
+    text-align: center;
+    user-select: none;
+    transition: all 150ms ease-out;
+    width: 33px;
+}
+
+
+.cantidad i:active{
+    background: #F1F1F1;
+    transition: none;
+}
+
+.cantidad input {
+    border: 0px solid;
+    float: left;
+    font-size: 24px;
+    height: 38px;
+    text-align: center;
+    outline: none;
+    width: 54px;
+}
+
+.precio {
+    margin-top: 2vh;
+    font-size: 1.5em;
+    text-align: center;
+}
+
+
+@media (min-width: 992px) { /*DESKTOP*/
+    .main-container {
+      background: rgba(196,170,215, 0.8);
+      padding: 2%;
+    }
+
+    #titulo-carrito {
+      font-family: 'Bree Serif', serif;
+      font-size: 2em;
+      text-align: center;
+      padding-bottom: 1%;
+    }
+
+    /*Item*/
+    .item {
+        background: white;
+        border: 1px solid grey;
+        padding: 1%;
+    }
+
+    .item ul {
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: space-between;
+    }
+    .item ul li {
+        margin: auto;
+        list-style: none;
+    }
+
+    .item img {
+        width: 50px;
+    }
+
+    /*Form Cantidad*/
+    .formulario-cantidad {
+        margin: auto;
+        display: flex;
+        flex-wrap: wrap;
+        flex-direction: row;
+        justify-content: center;
+    }
+
+    .cantidad{
+        margin:auto;
+    }
+
+    .precio {
+        margin-top: 20px;
+        font-size: 1.5em;
+    }
+}

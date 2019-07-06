@@ -13,7 +13,7 @@ Route::get('/producto/{id}', 'ProductoController@show'); /*Detalle producto*/
 Route::get('/carrito', 'CarritoController@index')->middleware('auth');
 Route::post('/addtocart', 'CarritoController@store')->middleware('auth');
 // Route::post('/producto/{id}', 'CarritoController@store')->middleware('auth');
-Route::post('/deletefromcart/{id}', 'CarritoController@destroy')->middleware('auth');
+Route::get('/eliminar/{id}', 'CarritoController@destroy')->middleware('auth');
 Route::get('/comprar/{{id}}', 'CarritoController@comprar')->middleware('auth');
 
 

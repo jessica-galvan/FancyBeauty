@@ -70,7 +70,7 @@
                                 <img id="icon-img" class="icon-img" src="/img/icons/logInRegister.png" alt="User">
                             </a>
 
-                            <a href="#">
+                            <a href="/carrito">
                                 <img class="icon-img" src="/img/icons/BolsaDeCompra.png" alt="Carrito">
                             </a>
                         </div>
@@ -113,7 +113,7 @@
                                 </div>
                                 @endif
 
-                                <a href="#">
+                                <a href="/carrito">
                                     <div id='bag-box' class="icon-box">
                                         <img id="bag" class="icon-img" src="/img/icons/BolsaDeCompra.png" alt="Carrito">
                                         <p>Carrito</p>
@@ -160,7 +160,7 @@
                     </article>
 
                     <article class="footer-info-mobile">
-                        <a href="#"><h3>VER CARRITO</h3></a>
+                        <a href="/carrito"><h3>VER CARRITO</h3></a>
                     </article>
 
                     <article class="footer-info-mobile">

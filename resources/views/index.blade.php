@@ -38,7 +38,11 @@
                 </a>
                 <div class="producto-boton">
                     <p class="precio">${{$producto["precio"]}}</p>
-                    <button class="comprar" type="button" name="button">Comprar</button>
+                    <form class="" action="/addtocart" method="post">
+                      @csrf
+                        <input type="text" hidden name="id" value="{{$producto['id']}}">
+                        <button class="comprar" type="submit" name="button">Comprar</button>
+                    </form>
                 </div>
             </article>
             @endif
@@ -79,7 +83,11 @@
                     </a>
                     <div class="producto-boton">
                         <p class="precio">${{$producto["precio"]}}</p>
-                        <button class="comprar" type="button" name="button">Comprar</button>
+                        <form class="" action="/addtocart" method="post">
+                          @csrf
+                            <input type="text" hidden name="id" value="{{$producto['id']}}">
+                            <button class="comprar" type="submit" name="button">Comprar</button>
+                        </form>
                     </div>
                 </article>
             @endif

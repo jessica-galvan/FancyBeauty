@@ -44,7 +44,7 @@
             <h2>¿No tenés una cuenta?</h2>
             <p>Completa este formulario y crea tu cuenta para obtener varios beneficios.</p>
         </div>
-        <a class='login-button' href="/register">
+        <a class='login-button' href="/password/reset">
           <button type="button" name="">Registrarse</button>
         </a>
     </div>

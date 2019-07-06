@@ -3,8 +3,11 @@
 namespace App\Http\Controllers;
 
 use Illuminate\Http\Request;
-// use App\Usuario;
 use Illuminate\Support\Facades\Auth;
+use Illuminate\Support\Facades\Hash;
+use Illuminate\Contracts\Validation\Validator;
+use Illuminate\Foundation\Auth\RegistersUsers;
+use Illuminate\Foundation\Validation\ValidatesRequests;
 use App\User;
 use App\EditarPerfil;
 
@@ -16,39 +19,7 @@ class UsuarioController extends Controller{
   }
 
   public function create(Request $req){
-    // $reglas = [
-    //   'nombre' => 'require|string',
-    //   'apellido' => 'require|string',
-    //   'email' => 'require|email|unique:usuario, email',
-    //   'contrasenia' => 'require|string|min:6',
-    //   'confirmarContrasenia' => 'require|string',
-    //   'preguntaSeguridad' => 'require|string',
-    //   'respuestaSeguridad' => 'require|string',
-    // ];
-    //
-    // $mensajes = [
-    //   'string' => 'El campo :attribute debe ser de texto',
-    //   'min' => 'La contraseña debe tener como minimo 6 caracteres',
-    //   'email' => 'No es valido como email',
-    //   'required' => 'El campo :attribute no puede estar vacio',
-    // ];
-    //
-    // $this->validate($req, $reglas, $mensajes);
-    //
-    // //Aca empiezo a guardar todo en el objeto usuario
-    // $nuevoUsuario = new Usuario();
-    // $nuevoUsuario->nombre = $req['nombre'];
-    // $nuevoUsuario->apellido = $req['apellido'];
-    // $nuevoUsuario->email = $req['email'];
-    // $contrasenia = password_hash($req['contrasenia'], PASSWORD_DEFAULT);
-    // $nuevoUsuario->contrasenia = $contrasenia;
-    // $nuevoUsuario->preguntaSeguridad = $req['preguntaSeguridad'];
-    // $respuestaSeguridad = password_hash($req['respuestaSeguridad'], PASSWORD_DEFAULT);
-    // $nuevoUsuario->respuestaSeguridad = $respuestaSeguridad;
-    //
-    // //Acá se guarda
-    // $nuevoUsuario->save();
-    // return redirect('confirmacion');
+      //
   }
 
   public function store(Request $request){
@@ -57,6 +28,8 @@ class UsuarioController extends Controller{
 
   public function show(){
       $usuario = Auth::user();
+      $info = new EditarPerfil;
+      $listaArray = $info->array();
 
       function calcularEdad($fecha){
           $dia = date("j");
@@ -78,10 +51,14 @@ class UsuarioController extends Controller{
           return $edad;
       }
 
-    if($usuario['date_of_birth'] != "") {
-        $usuario['fechaNacimiento'] = date("d-m-Y", strtotime($usuario['date_of_birth']));
-        $usuario['edad'] = calcularEdad($fechaNacimientoOriginal);
-    }
+      $usuario['tonoPielDato'] = $info->recuperarDato('tipoPiel', $usuario['tipoPiel']);
+      $usuario['tipoPielDato'] = $info->recuperarDato('tonoPiel', $usuario['tonoPiel']);
+      $usuario['provinciaDato']= $info->recuperarDato('provincia', $usuario['provincia']);
+      $usuario['generoDato'] = $info->recuperarDato('genero', $usuario['genero']);
+      if($usuario['date_of_birth'] != "") {
+          $usuario['fechaNacimiento'] = date("d-m-Y", strtotime($usuario['date_of_birth']));
+          $usuario['edad'] = calcularEdad($usuario['date_of_birth']);
+      }
 
       return view('perfilUsuario', compact('usuario'));
   }
@@ -116,19 +93,15 @@ class UsuarioController extends Controller{
       if($req->file('foto')){
         $path = $req->file('foto')->store('/public/user-avatar');
         $foto = basename($path);
-        $producto->foto = $foto;
+        $usuario->foto = $foto;
       }
-      /*Hasta acá guardo el archivo en la carpeta de fotos de usuario y ahora viene la parte de recuperar el dato y no el valor del array con una funcion de antes.*/
-      $info = new EditarPerfil;
-      $listaArray = $info->array();
-
-      $usuario->genero = $info->recuperarDato('genero', $req['genero']);
-      $usuario->tonoPiel = $info->recuperarDato('genero', $req['tonoPiel']);
-      $usuario->tipoPiel = $info->recuperarDato('genero', $req['tipoPiel']);
-      $usuario->provincia = $info->recuperarDato('genero', $req['provincia']);
-      $usuario->date_of_birth = $info->recuperarDato('genero', $req['fechaNacimiento']);
+      $usuario->genero = $req['genero'];
+      $usuario->tonoPiel = $req['tonoPiel'];
+      $usuario->tipoPiel = $req['tipoPiel'];
+      $usuario->provincia = $req['provincia'];
+      $usuario->date_of_birth = $req['fechaNacimiento'];
       $usuario->save();
-      return view('perfilUsuario', compact('usuario'));
+      return redirect('/perfil');
   }
 
   public function editPass(){
@@ -146,17 +119,19 @@ class UsuarioController extends Controller{
           'string' => '* El campo debe ser del tipo texto',
           'min' => '* La contraseña debe tener al menos caracteres',
           'confirmed' => '* Las contraseñas no coinciden',
-          'different' => '* La nueva contraseña no puede ser igual a la anterior'
+          'different' => '* La nueva contraseña no puede ser igual a la anterior',
       ];
       $this->validate($req, $reglas, $mensajes);
+
       $contraseniaOriginal = $usuario->password;
       if(!password_verify($req['oldPassword'], $contraseniaOriginal)){
           $errorPrincipal = 'Contraseña incorrecta';
           return view('cambiarContrasenia', compact('errorPrincipal'));
       }
       /*HASTA ACÁ VALIDA*/
-      $usuario->password = password_hash($req['password'], PASSWORD_DEFAULT);
+dd($req);
+      $usuario->password = Hash::make($req['password']);
       $usuario->save();
-      return redirect('/perfil', compact('usuario'));
+      return redirect('/perfil');
   }
 }

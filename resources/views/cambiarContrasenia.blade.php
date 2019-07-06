@@ -15,13 +15,17 @@
             <div class="form">
                 <label for="oldPassword">Contraseña Original:</label>
                 <input class="cambiarContrasenia" id="oldPassword" type="password" name="oldPassword" value="">
-                <span class="error-form">{{$errors->oldPassword}}</span>
+                @if(isset($errors->oldPassword))
+                    <span class="error-form">{{$errors->oldPassword}}</span>
+                @endif
             </div>
 
             <div class="form">
                 <label for="newPassword">Contraseña Nueva</label>
                 <input class="cambiarContrasenia" id="newPassword" type="password" name="password" value="">
-                <span class="error-form">{{$errors->newPassword}}</span>
+                @if(isset($errors->newPassword))
+                    <span class="error-form">{{$errors->newPassword}}</span>
+                @endif
             </div>
 
             <div class="form">

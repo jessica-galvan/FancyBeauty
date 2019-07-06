@@ -1,8 +1,6 @@
 @extends('master')
 @section('css')
-  <?php
-
-    $CSS = ['perfil'];?>
+  <?php $CSS = ['perfil'];?>
 @endsection
 @section('content')
   <div class="perfil-container">
@@ -18,12 +16,12 @@
 
       <div class="datosBasicos">
           <h4>Email: </h4><span>{{$usuario['email']}}</span>
-          <h4>Genero: </h4> <span>{{$usuario['genero']}}</span>
-          <h4>Edad: </h4> <span>{{$usuario['edad']}}</span>
+          <h4>Genero: </h4><span>{{$usuario['generoDato']}}</span>
+          <h4>Edad: </h4><span>{{$usuario['edad']}}</span>
           <h4>Fecha de Nacimiento: </h4><span>{{$usuario['fechaNacimiento']}}</span>
-          <h4>Provincia: </h4><span>{{$usuario['provincia']}}</span>
-          <h4>Tipo de Piel: </h4><span>{{$usuario['tipoPiel']}}</span>
-          <h4>Tono de Piel: </h4><span>{{$usuario['tonoPiel']}}</span>
+          <h4>Provincia: </h4><span>{{$usuario['provinciaDato']}}</span>
+          <h4>Tipo de Piel: </h4><span>{{$usuario['tipoPielDato']}}</span>
+          <h4>Tono de Piel: </h4><span>{{$usuario['tonoPielDato']}}</span>
       </div>
 
       <div class="caja-botones">

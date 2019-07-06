@@ -3,6 +3,11 @@
   <?php $CSS = ['infoProducto'];?>
 @endsection
 @section('content')
+      @if(\Session::has('mensaje'))
+        <div class="">
+          <span>{{\Session::get('mensaje')}}</span>
+        </div>
+      @endif
       <div class="caja-producto">
           <div class="fotoProducto">
               <img src="/storage/productos/{{$producto['foto']}}" alt="Foto Producto">
@@ -18,15 +23,17 @@
               <div class="infoProducto">
                   <p>{{$producto['descripcion']}}</p>
               </div>
-              <form class="formulario-cantidad" action="" method="post">
+              <div class="precio">
+                  <p>${{$producto['precio']}}</p>
+              </div>
+              <form class="formulario-cantidad" action="/addtocart" method="post">
+                @csrf
                   <div class="cantidad">
                       <i class='less'>-</i>
-                      <input id="cantidad" type="int" name="cantidad" value="">
+                      <input id="cantidad" type="int" name="cantidad" value="1">
                       <i class='more'>+</i>
                   </div>
-                  <div class="precio">
-                      <p>${{$producto['precio']}}</p>
-                  </div>
+                  <input type="text" hidden name="producto_id" value="{{$producto['id']}}">
                   <button class="agregar" type="submit" name="button">Agregar a carrito</button>
               </form>
               <a class="link-button" href="/">

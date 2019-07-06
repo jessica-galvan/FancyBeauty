@@ -13,7 +13,7 @@
             <section class="form-editar">
                 <label for="tipoPiel">Tipo de piel:</label>
                 @foreach ($listaArray['tipoPiel'] as $tipo)
-                    @if ($usuario['tipoPiel'] == $tipo['dato'] || old('tipoPiel') == $tipo['valor'])
+                    @if ($usuario['tipoPiel'] == $tipo['valor'] || old('tipoPiel') == $tipo['valor'])
                         <div class="check-box">
                             <input type="radio" name="tipoPiel" value="<?=$tipo['valor']?>" checked><span><?=$tipo['dato']?></span>
                         </div>
@@ -31,7 +31,7 @@
             <section class="form-editar">
                 <label for="tonoPiel">Tono de piel:</label>
                 @foreach ($listaArray['tonoPiel'] as $tono)
-                    @if ($usuario['tonoPiel'] == $tono['dato'] || old('tonoPiel') == $tono['valor'])
+                    @if ($usuario['tonoPiel'] == $tono['valor'] || old('tonoPiel') == $tono['valor'])
                     <div class="check-box">
                         <input type="radio" name="tonoPiel" value="<?=$tono['valor']?>" checked><span><?=$tono['dato']?></span>
                     </div>
@@ -47,7 +47,7 @@
                 <label for="genero">Género:</label>
                 <div class="genero-options">
                     @foreach ($listaArray['genero'] as $generos)
-                        @if ($usuario['genero'] == $generos['dato'] || old('genero') == $generos['valor'])
+                        @if ($usuario['genero'] == $generos['valor'] || old('genero') == $generos['valor'])
                         <div class="check-box">
                             <input type="radio" name="genero" value="<?=$generos['valor']?>" checked><span><?=$generos['dato']?></span>
                         </div>
@@ -67,7 +67,7 @@
                         <option hidden value=""> <i>Seleccionar</i> </option>
                     @endif
                     @foreach ($listaArray['provincia'] as $unaProvincia) {
-                        @if ($usuario['provincia'] == $unaProvincia['dato'] || old('provincia') == $unaProvincia['valor'])
+                        @if ($usuario['provincia'] == $unaProvincia['valor'] || old('provincia') == $unaProvincia['valor'])
                         <option value='<?=$unaProvincia['valor']?>' selected>
                             <?=$unaProvincia['dato']?>
                         </option>

@@ -64,6 +64,21 @@
     text-align: center;
 }
 
+/*Boton Comprar*/
+.editar-button-amarillo button {
+  padding: 5vw;
+  margin-top: 2vh;
+  border: none;
+  text-transform: uppercase;
+  font-family: 'Bree Serif', serif;
+  margin: auto;
+  color: black;
+  cursor: pointer;
+  background: #F7EB61;
+  box-shadow: 4px 4px 0 #73d2e6;
+}
+
+
 
 @media (min-width: 992px) { /*DESKTOP*/
     .main-container {
@@ -116,5 +131,10 @@
     .precio {
         margin-top: 20px;
         font-size: 1.5em;
+    }
+
+    /*Boton Comprar*/
+    .editar-button-amarillo button {
+      padding: 20px;
     }
 }

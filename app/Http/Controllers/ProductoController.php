@@ -6,15 +6,53 @@ use App\Producto;
 use App\Categoria;
 use App\Estado;
 use App\ TipoProducto;
+use Auth;
 
 class ProductoController extends Controller {
-
+    /*PARA USERS*/
     public function index(){
         $listaProductos = Producto::all();
         return view('index', compact('listaProductos'));
     }
 
+    public function show($id){
+        $producto = Producto::find($id);
+        return view('producto', compact('producto'));
+    }
+    
+    public function categoria($id){
+        $productos = Producto::where('categoria_id', $id)->get();
+
+        $categoria = Categoria::find($id);
+
+        return view('categoria', compact('productos', 'categoria'));
+    }
+
+    public function buscador($palabra){
+      //Si quiero que busque frases, voy a tener que hacer un split por espacios, para que me arme un array con todas las palabras que hay en la frase, y luego haga un foreach donde busque con el where like, con cada palabra, y lo meta en un array (que previamente estaba vacio), hasta que termine. Luego ese nuevo array de productos que coinciden con alguna de las palabras, es enviado a la pagina de busquedas.
+
+        $productos = Producto::where('nombre', 'like', "%$palabra%")->orWhere('categoria', 'like', "%$palabra%")->get();
+
+        return view('filtro', compact('productos'));
+
+    }
+
+    /*PARA ADMINS*/
+    public function indexEdit(){
+      /*SOLO ADMINS*/
+        if(Auth::user()->rol < 100){
+          return redirect('/');
+        }
+
+      $productos = Producto::all();
+      return view('lista-productos', compact('productos'));
+    }
+
     public function create(){
+        /*SOLO ADMINS*/
+        if(Auth::user()->rol < 100){
+          return redirect('/');
+        }
         $tipoProductos = TipoProducto::all();
         $categorias = Categoria::all();
         $estados = Estado::all();
@@ -22,6 +60,10 @@ class ProductoController extends Controller {
     }
 
     public function store(Request $req){
+      /*SOLO ADMINS*/
+      if(Auth::user()->rol < 100){
+        return redirect('/');
+      }
         $tipoProductos = TipoProducto::all();
         $categorias = Categoria::all();
         $estados = Estado::all();
@@ -61,17 +103,11 @@ class ProductoController extends Controller {
         return view('nuevoProducto', compact('mensajePrincipal','categorias', 'estados', 'tipoProductos'));
     }
 
-    public function show($id){
-        $producto = Producto::find($id);
-        return view('producto', compact('producto'));
-    }
-
-    public function indexEdit(){
-        $productos = Producto::all();
-        return view('lista-productos', compact('productos'));
-    }
-
     public function edit($id){
+        /*SOLO ADMINS*/
+        if(Auth::user()->rol < 100){
+          return redirect('/');
+        }
         $tipoProductos = TipoProducto::all();
         $categorias = Categoria::all();
         $estados = Estado::all();
@@ -79,8 +115,11 @@ class ProductoController extends Controller {
         return view('editarProducto', compact('producto', 'categorias', 'estados', 'tipoProductos'));
     }
 
-
     public function update(Request $req, $id){
+        /*SOLO ADMINS*/
+        if(Auth::user()->rol < 100){
+          return redirect('/');
+        }
         /*VALIDACIONES*/
         $reglas = [
           'nombre' => 'required|string',
@@ -125,11 +164,20 @@ class ProductoController extends Controller {
     }
 
     public function showDestroy($id){
+        /*SOLO ADMINS*/
+        if(Auth::user()->rol < 100){
+          return redirect('/');
+        }
         $producto = Producto::find($id);
         return view('borrarProducto', compact('producto'));
     }
 
     public function destroy(Request $req){
+      /*SOLO ADMINS*/
+      if(Auth::user()->rol < 100){
+        return redirect('/');
+      }
+
       $producto = Producto::find($req['id']);
       // unlink("/public/productos/".$producto['foto']);
       $producto->delete();

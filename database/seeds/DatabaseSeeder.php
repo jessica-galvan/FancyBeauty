@@ -9,6 +9,7 @@ class DatabaseSeeder extends Seeder{
     $this->call(CategoriaSeeder::class);
     $this->call(EstadoSeeder::class);
     $this->call(TipoProductoSeeder::class);
+    $this->call(UserSeeder::class);
 
     /*Si tengo la carpeta de imagenes de los productos originales, podes correr este tambien*/
     $this->call(ProductoSeeder::class);

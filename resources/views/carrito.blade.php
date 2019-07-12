@@ -6,7 +6,7 @@
     <h2 id="titulo-carrito">Carrito</h2>
   {{-- COMENTARIOS:
       Faltaria ver como se va a ver el carrito, como se pone cada producto, que botones tiene que tener (modificar la cantidad, sacar del carrito), un boton para ejecutar la compra, donde irian los mensajes, que pasa si no tiene nada en el carrito,--}}
-  @foreach($carrito as $item)
+  @forelse($carrito as $item)
     <article class="item">
         <ul>
             <li><img src="/storage/productos/{{$item['foto']}}" alt="Foto Producto"></li>
@@ -30,6 +30,16 @@
             <li><a href="/eliminar/{{$item['id']}}">Eliminar</a></li>
         </ul>
     </article>
-  @endforeach
-  <h3>Total: {{$total}}</h3>
+  @empty
+      <p>Su carrito esta vacio</p>
+  @endforelse
+
+  @if($total != '')
+      <h3>Total: {{$total}}</h3>
+
+      <form class="editar-button-amarillo" action="/closecart" method="post">
+        @csrf
+          <button type="submit" name="button">Comprar</button>
+      </form>
+  @endif
 @endsection

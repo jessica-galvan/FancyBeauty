@@ -12,6 +12,10 @@ class Carrito extends Model {
         return $this->belongsTo('App\User', 'user_id');
     }
 
+    public function subtotal(){
+      return $this->cantidad * $this->precio;
+    }
+
     // public function getTotal($carrito){
     //   $total = 0;
     //   foreach($carrito as $item){

@@ -10,7 +10,7 @@
       @foreach ($productos as $producto)
           <article class="producto">
               <div class="p-imagen">
-                  <img src="/public/productos/{{$producto["foto"]}}" alt="{{$producto["nombre"]}}">
+                  <img src="/storage/productos/{{$producto["foto"]}}" alt="{{$producto["nombre"]}}">
               </div>
               <div class="producto-texto">
                   <h3>{{$producto["nombre"]}}</h3>

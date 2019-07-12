@@ -61,6 +61,25 @@ class CarritoController extends Controller{
         //
     }
 
+    public function historial(){
+      $carts = Carrito::where('user_id', Auth::user()->id)->where('estado', 1)->get()->groupBy('num_carrito');
+
+      return view('historial', compact($carts));
+    }
+
+    public function closecart(){
+        $items = Carrito::where('user_id', Auth::user()->id)->where('estado', 0)->get();
+
+        $cartNumber = Carrito::all()->max('num_carrito')+1;
+
+        foreach($items as $item){
+          $item->num_carrito = $cartNumber;
+          $item->estado = 1;
+          $item->save();
+        }
+        return redirect('/felicitaciones');
+    }
+
     public function destroy($id){
         $carrito = Carrito::where('id', $id)->where('user_id', Auth::user()->id)->where('estado', '0')->first();
         $carrito->delete();

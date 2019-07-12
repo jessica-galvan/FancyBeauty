@@ -130,7 +130,7 @@
                                     <a href="#">CATEGORIAS</a>
                                     <div class="dropdown-category">
                                         @foreach($categorias as $categoria)
-                                        <a href="filtro?id={{$categoria['id']}}&tabla=categorias">
+                                        <a href="/categoria/{{$categoria['id']}}">
                                         {{$categoria['nombre']}}
                                         </a>
                                         @endforeach

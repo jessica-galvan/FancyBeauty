@@ -8,7 +8,7 @@
   } else {
     $textoBienvenida = "Ingresar";
     $textoHamburguesa = "Ingresar";
-    $linkUsuario = 'login';
+    $linkUsuario = '/login';
     $nombre_usuario = "";
     $textoLogout = "";
   }
@@ -53,12 +53,12 @@
 
                                 <?php /*Lo que va dentro del menu desplegable*/?>
                                 <ul id="menu">
-                                    <a href="index"><li>Inicio</li></a>
+                                    <a href="/"><li>Inicio</li></a>
                                     <a href="#"><li>Categorias</li></a>
                                     <a href="#"><li>Contacto</li></a>
-                                    <a href="faq"><li>Preguntas Frecuentes</li></a>
+                                    <a href="/faq"><li>Preguntas Frecuentes</li></a>
                                     <a href="{{$linkUsuario}}"><li>{{$textoHamburguesa}}</li></a>
-                                    {{-- <a href="actions/logout.php"><li>{{$textoLogout}}</li></a> --}}
+                                    {{-- <a href="{{ route('logout') }}"><li>{{$textoLogout}}</li></a> --}}
                                 </ul>
                             </div>
                         </nav>
@@ -108,7 +108,7 @@
                                     <div class="dropdown-content">
                                         <a href="/perfil">Perfil</a>
                                         <a href="/perfil/editar">Editar Perfil</a>
-                                        {{-- <a href="actions/logout">Cerrar Sesión</a> --}}
+                                        <a href="/logout">Cerrar Sesión</a>
                                     </div>
                                 </div>
                                 @endif
@@ -124,7 +124,7 @@
                         {{-- /*Segunda Linea del Menu*/ --}}
                         <div class="menu-bottom">
                             <ul>
-                                <li><a href="index">INICIO</a></li>
+                                <li><a href="/">INICIO</a></li>
                                 <li>|</li>
                                 <li class="dropdown">
                                     <a href="#">CATEGORIAS</a>
@@ -139,7 +139,7 @@
                                 <li>|</li>
                                 <li><a href="#">CONTACTO</a></li>
                                 <li>|</li>
-                                <li><a href="faq">PREGUNTAS FRECUENTES</a></li>
+                                <li><a href="/faq">PREGUNTAS FRECUENTES</a></li>
                             </ul>
                         </div>
                     </nav>

@@ -38,9 +38,13 @@
               </a>
           </div>
           <div class="editar-button-rosa">
-              <a href="/perfil/logout">
+              {{-- <a href="/perfil/logout">
                   <button type="button" name="">Cerrar Sesión</button>
-              </a>
+              </a> --}}
+              <form id="logout-form" action="{{ route('logout') }}" method="POST">
+                  @csrf
+                <button type="submit" name="button">Cerrar sesión</button>
+              </form>
           </div>
       </div>
   </div>

@@ -5,7 +5,7 @@
 /*SECCION OTROS*/
 Route::get('/', 'ProductoController@index');
 Route::get('/index', 'ProductoController@index');
-Route::get('/faq', function(){return view('faq');});
+Route::get('/faq', 'HomeController@faq');
 Route::get('/categoria/{id}', 'ProductoController@categoria');
 Route::get('/buscar/{palabra}', 'ProductoController@buscador');
 Route::get('/producto/{id}', 'ProductoController@show'); /*Detalle producto*/
@@ -17,7 +17,7 @@ Route::post('/addtocart', 'CarritoController@store')->middleware('auth');
 Route::get('/eliminar/{id}', 'CarritoController@destroy')->middleware('auth');
 Route::get('/comprar/{{id}}', 'CarritoController@comprar')->middleware('auth');
 Route::post('/closecart', 'CarritoController@closecart')->middleware('auth');
-Route::get('/felicitaciones', function(){return view('congrats');})->middleware('auth');
+Route::get('/felicitaciones', 'HomeController@congrats')->middleware('auth');
 Route::get('/historial', 'CarritoController@historial')->middleware('auth');
 
 
@@ -27,6 +27,7 @@ Route::get('/perfil/editar', 'UsuarioController@edit')->middleware('auth');
 Route::post('/perfil/editar', 'UsuarioController@update')->middleware('auth');
 Route::get('/perfil/password', 'UsuarioController@editPass')->middleware('auth');
 Route::post('/perfil/password', 'UsuarioController@updatePass')->middleware('auth');
+Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->middleware('auth');
 
 //SECCION ADMINS para agregar, editar y borrar productos
 Route::get('/lista', 'ProductoController@indexEdit')->middleware('auth');

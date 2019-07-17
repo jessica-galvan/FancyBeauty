@@ -5,7 +5,9 @@
 @section('content')
   <div class="perfil-container">
       <h2>Mi Perfil</h2>
-
+      @if(isset($mensajePrincipal))
+          <span style="color:blue;" class = "mensajeConfirmar">{{$mensajePrincipal}}</span>
+      @endif
       <div class="fotoPerfil">
           <img src="/storage/user-avatar/{{$usuario['foto']}}" alt="Foto Perfil">
       </div>

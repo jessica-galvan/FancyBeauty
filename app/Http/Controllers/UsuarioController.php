@@ -56,7 +56,7 @@ class UsuarioController extends Controller{
       $usuario['provinciaDato']= $info->recuperarDato('provincia', $usuario['provincia']);
       $usuario['generoDato'] = $info->recuperarDato('genero', $usuario['genero']);
       if($usuario['date_of_birth'] != "") {
-          $usuario['fechaNacimiento'] = date("d-m-Y", strtotime($usuario['date_of_birth']));
+          $usuario['fechaNacimiento'] = date("d/m/Y", strtotime($usuario['date_of_birth']));
           $usuario['edad'] = calcularEdad($usuario['date_of_birth']);
       }
 
@@ -74,17 +74,10 @@ class UsuarioController extends Controller{
       $usuario = Auth::user();
 
       $reglas = [
-        // 'tonoPiel' => 'string',
-        // 'tipoPiel' => 'string',
-        // 'genero' => 'string',
-        // 'provincia' => 'string',
-        // 'fechaNacimiento' => 'date',
         'foto' => 'image',
       ];
 
       $mensajes = [
-        // 'string' => '* El campo debe ser de texto',
-        // 'date' => '* Debe ser una fecha',
         'image' => '* El archivo subido no es una imagen',
       ];
 
@@ -109,29 +102,59 @@ class UsuarioController extends Controller{
   }
 
   public function updatePass(Request $req){
-      $usuario = Auth::user();
-      $reglas = [
-          'oldPassword' => 'required'|'string',
-          'password' => 'required'|'string'|'min:6'|'confirmed'|'different:now_password',
-      ];
-      $mensajes = [
-          'required' => '* El campo no puede estar vacio',
-          'string' => '* El campo debe ser del tipo texto',
-          'min' => '* La contraseña debe tener al menos caracteres',
-          'confirmed' => '* Las contraseñas no coinciden',
-          'different' => '* La nueva contraseña no puede ser igual a la anterior',
-      ];
-      $this->validate($req, $reglas, $mensajes);
+      // dd($req);
+        //Primero, chequea que la contraseña original sea la correcta.
+        if (!(Hash::check($req->get('currentPassword'), Auth::user()->password))) {
+            $errorContrasenia = "* Contraseña incorrecta";
+            return view('cambiarContrasenia', compact('errorContrasenia'));
+        }
 
-      $contraseniaOriginal = $usuario->password;
-      if(!password_verify($req['oldPassword'], $contraseniaOriginal)){
-          $errorPrincipal = 'Contraseña incorrecta';
-          return view('cambiarContrasenia', compact('errorPrincipal'));
-      }
-      /*HASTA ACÁ VALIDA*/
-dd($req);
-      $usuario->password = Hash::make($req['password']);
-      $usuario->save();
-      return redirect('/perfil');
+        //Segundo, que el password original y el nuevo no sean el mismo
+        if(strcmp($req->get('current-password'), $req->get('password')) == 0){
+            $errorPrincipal = "* Tu nueva contraseña no puede ser igual a tu contraseña anterior";
+            return view('cambiarContrasenia', compact('errorPrincipal'));
+        }
+
+        $mensajes = [
+            'required' => '* El campo no puede estar vacio',
+            'string' => '* El campo debe ser del tipo texto',
+            'min' => '* La contraseña debe tener al menos :min caracteres',
+            'confirmed' => '* Las contraseñas no coinciden',
+        ];
+        $reglas = [
+            // 'currentPassword' => 'required',
+            'password' => 'required|string|min:6|confirmed',
+        ];
+        $this->validate($req, $reglas, $mensajes);
+        /*HASTA ACÁ VALIDA*/
+
+        $user = Auth::user();
+        $user->password = bcrypt($req->get('password'));
+        $user->save();
+        return redirect('/perfil')->with("mensajePrincipal","Tu contraseña se ha cambiado correctamente.");
+
+      // $usuario = Auth::user();
+      // $reglas = [
+      //     'currentPassword' => 'required|string',
+      //     'password' => 'required|string|min:6|confirmed|different:currentPassword',
+      // ];
+      // $mensajes = [
+      //     'required' => '* El campo no puede estar vacio',
+      //     'string' => '* El campo debe ser del tipo texto',
+      //     'min' => '* La contraseña debe tener al menos caracteres',
+      //     'confirmed' => '* Las contraseñas no coinciden',
+      //     'different' => '* La nueva contraseña no puede ser igual a la anterior',
+      // ];
+      // $this->validate($req, $reglas, $mensajes);
+      //
+      // $contraseniaOriginal = $usuario->password;
+      // if(!password_verify($req['oldPassword'], $contraseniaOriginal)){
+      //     $errorContrasenia = 'Contraseña incorrecta';
+      //     return view('cambiarContrasenia', compact('errorContrasenia'));
+      // }
+      // /*HASTA ACÁ VALIDA*/
+      // $usuario->password = Hash::make($req['password']);
+      // $usuario->save();
+      // return redirect('/perfil');
   }
 }

@@ -1,13 +1,6 @@
 @extends('master')
 @section('css')
-    <?php
-      // $email = "";
-      $recordar = ""; /*En este caso, no estoy seguro de como se devolveria*/
-      $errorEmail = "";
-      $errorContrasenia = "";
-
-      $CSS = ['form'];
-     ?>
+    <?php $CSS = ['form'];?>
 @endsection
 @section('content')
     <div class="form-container">
@@ -44,7 +37,7 @@
             <h2>¿No tenés una cuenta?</h2>
             <p>Completa este formulario y crea tu cuenta para obtener varios beneficios.</p>
         </div>
-        <a class='login-button' href="/password/reset">
+        <a class='login-button' href="/register">
           <button type="button" name="">Registrarse</button>
         </a>
     </div>

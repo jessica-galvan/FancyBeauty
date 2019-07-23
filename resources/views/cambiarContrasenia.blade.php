@@ -7,9 +7,9 @@
         <div class="login-text">
             <h2>Cambiar Contraseña</h2>
         </div>
-        @php
+        {{-- @php
             var_dump($errors);
-        @endphp
+        @endphp --}}
         @if(isset($errorPrincipal))
             <span class="error-form">{{$errorPrincipal}}</span>
         @endif

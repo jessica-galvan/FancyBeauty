@@ -70,7 +70,7 @@
         @foreach ($listaProductos as $producto)
             @if($producto['estado_id'] == '2')
                 <article class="producto">
-                    <a href="detalle?id={{$producto['id']}}">
+                    <a href="/producto/{{$producto['id']}}">
                         <div class="etiqueta-nuevo">
                             <img src="/img/new/NewRosa.png" alt="Nuevo">
                         </div>

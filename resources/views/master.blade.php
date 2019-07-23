@@ -8,17 +8,17 @@
   } else {
     $textoBienvenida = "Ingresar";
     $textoHamburguesa = "Ingresar";
-    $linkUsuario = 'login';
+    $linkUsuario = '/login';
     $nombre_usuario = "";
     $textoLogout = "";
   }
 
   /* OJO $categorias, hasta que no logre conectarme con la base de datos, para traer la info de categorias y eso.., cree esta basura para safar y no tener que volver a modificar todo de nuevo.*/
   $categorias = [
-      ['id' => '1', 'nombre' => 'Rostro'],
-      ['id' => '2', 'nombre' => 'Labios'],
-      ['id' => '3', 'nombre' => 'Ojos'],
-      ['id' => '4', 'nombre' => 'Accesorios'],
+      ['id' => '1', 'link' => 'rostro', 'nombre' => 'Rostro'],
+      ['id' => '2', 'link' => 'labios', 'nombre' => 'Labios'],
+      ['id' => '3', 'link' => 'ojos', 'nombre' => 'Ojos'],
+      ['id' => '4', 'link' => 'accesorios', 'nombre' => 'Accesorios'],
   ];
 
   /*El yield('css') de aca abajo es para que se pueda definir el $CSS que teniamos antes.*/
@@ -53,12 +53,12 @@
 
                                 <?php /*Lo que va dentro del menu desplegable*/?>
                                 <ul id="menu">
-                                    <a href="index"><li>Inicio</li></a>
+                                    <a href="/"><li>Inicio</li></a>
                                     <a href="#"><li>Categorias</li></a>
                                     <a href="#"><li>Contacto</li></a>
-                                    <a href="faq"><li>Preguntas Frecuentes</li></a>
+                                    <a href="/faq"><li>Preguntas Frecuentes</li></a>
                                     <a href="{{$linkUsuario}}"><li>{{$textoHamburguesa}}</li></a>
-                                    {{-- <a href="actions/logout.php"><li>{{$textoLogout}}</li></a> --}}
+                                    {{-- <a href="{{ route('logout') }}"><li>{{$textoLogout}}</li></a> --}}
                                 </ul>
                             </div>
                         </nav>
@@ -108,7 +108,7 @@
                                     <div class="dropdown-content">
                                         <a href="/perfil">Perfil</a>
                                         <a href="/perfil/editar">Editar Perfil</a>
-                                        {{-- <a href="actions/logout">Cerrar Sesión</a> --}}
+                                        <a href="/logout">Cerrar Sesión</a>
                                     </div>
                                 </div>
                                 @endif
@@ -124,13 +124,13 @@
                         {{-- /*Segunda Linea del Menu*/ --}}
                         <div class="menu-bottom">
                             <ul>
-                                <li><a href="index">INICIO</a></li>
+                                <li><a href="/">INICIO</a></li>
                                 <li>|</li>
                                 <li class="dropdown">
                                     <a href="#">CATEGORIAS</a>
                                     <div class="dropdown-category">
                                         @foreach($categorias as $categoria)
-                                        <a href="/categoria/{{$categoria['id']}}">
+                                        <a href="/categoria/{{$categoria['id']}}/{{$categoria['link']}}">
                                         {{$categoria['nombre']}}
                                         </a>
                                         @endforeach
@@ -139,7 +139,7 @@
                                 <li>|</li>
                                 <li><a href="#">CONTACTO</a></li>
                                 <li>|</li>
-                                <li><a href="faq">PREGUNTAS FRECUENTES</a></li>
+                                <li><a href="/faq">PREGUNTAS FRECUENTES</a></li>
                             </ul>
                         </div>
                     </nav>

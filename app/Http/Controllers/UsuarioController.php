@@ -136,7 +136,7 @@ class UsuarioController extends Controller{
       // $usuario = Auth::user();
       // $reglas = [
       //     'currentPassword' => 'required|string',
-      //     'password' => 'required|string|min:6|confirmed|different:currentPassword',
+      //     'password' => 'required|string|min:6|confirmed|different: currentPassword',
       // ];
       // $mensajes = [
       //     'required' => '* El campo no puede estar vacio',

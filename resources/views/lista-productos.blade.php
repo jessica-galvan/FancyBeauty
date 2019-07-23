@@ -3,10 +3,15 @@
   <?php $CSS = ['lista-productos'];?>
 @endsection
 @section('content')
-  <section class="productos">
-      <div class="titulo-seccion">
-          <h2>Lista de Productos</h2>
-      </div>
+    <section class="titulo-seccion">
+        <h2>Lista de Productos</h2>
+    </section>
+    <section class="productos agregar">
+        <a href="/nuevo">
+            <button class="rosa-button" type="button" style='margin-bottom: 15px;' name="button">Agregar un nuevo producto</button>
+        </a>
+    </section>
+    <section class="productos">
       @foreach ($productos as $producto)
           <article class="producto">
               <div class="p-imagen">
@@ -33,10 +38,6 @@
               </div>
           </article>
       @endforeach
-  </section>
-  <section class="productos agregar">
-      <a href="/nuevo">
-          <button class="cancelar-button" type="button" style='margin-bottom: 15px;' name="button">Agregar un nuevo producto</button>
-      </a>
-  </section>
+    </section>
+
 @endsection

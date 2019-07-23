@@ -38,5 +38,7 @@
           </article>
           @endif
       @endforeach
+
+      {{$productos->links()}}
   </section>
 @endsection

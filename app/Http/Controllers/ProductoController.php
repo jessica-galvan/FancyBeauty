@@ -19,9 +19,9 @@ class ProductoController extends Controller {
         $producto = Producto::find($id);
         return view('producto', compact('producto'));
     }
-    
+
     public function categoria($id){
-        $productos = Producto::where('categoria_id', $id)->get();
+        $productos = Producto::where('categoria_id', $id)->paginate(10);
 
         $categoria = Categoria::find($id);
 

@@ -42,4 +42,6 @@
           <button type="submit" name="button">Comprar</button>
       </form>
   @endif
+
+  <a href="/historial">Ver Historial de Compras</a>
 @endsection

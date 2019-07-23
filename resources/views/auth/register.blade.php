@@ -1,10 +1,6 @@
 @extends('master')
 @section('css')
-  <?php
-    /*Data vacia*/
-    $errorPrincial = "";
-    $CSS = ['form'];
-    ?>
+  <?php $CSS = ['form']; ?>
 @endsection
 @section('content')
   <div class="register-form">
@@ -43,7 +39,9 @@
               <input id="password-confirm" type="password" name="password_confirmation" value="">
           </div>
 
-          <span class="error-form"><?=$errorPrincial?></span>
+          @if(isset($errorPrincipal))
+              <span class="error-form"><?=$errorPrincial?></span>
+          @endif
           <div class="login-button">
               <button type="submit" name="registro">ENVIAR</button>
           </div>

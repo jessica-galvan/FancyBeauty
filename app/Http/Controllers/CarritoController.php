@@ -25,6 +25,15 @@ class CarritoController extends Controller{
     }
 
     public function store(Request $req){
+
+        $existe = Carrito::where('producto_id', $req->id)->where('user_id',Auth::user()->id)->where('estado','0')->first();
+        if($existe){
+            $existe->cantidad += 1;
+            $existe->save();
+            return redirect('/');
+        }
+
+
         $carrito = new Carrito;
         $producto = Producto::find($req['id']);
 
@@ -63,7 +72,6 @@ class CarritoController extends Controller{
 
     public function historial(){
       $carts = Carrito::where('user_id', Auth::user()->id)->where('estado', 1)->get()->groupBy('num_carrito');
-
       return view('historial', compact($carts));
     }
 

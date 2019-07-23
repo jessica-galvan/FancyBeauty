@@ -6,11 +6,7 @@
 Route::get('/', 'ProductoController@index');
 Route::get('/index', 'ProductoController@index');
 Route::get('/faq', 'HomeController@faq');
-<<<<<<< HEAD
 Route::get('/categoria/{id}/{palabra}', 'ProductoController@categoria');
-=======
-Route::get('/categoria/{id}', 'ProductoController@categoria');
->>>>>>> master
 Route::get('/buscar/{palabra}', 'ProductoController@buscador');
 Route::get('/producto/{id}', 'ProductoController@show'); /*Detalle producto*/
 

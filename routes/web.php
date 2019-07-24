@@ -37,14 +37,13 @@ Route::get('/editar/{id}', 'ProductoController@edit')->middleware('auth');
 Route::post('/editar/{id}', 'ProductoController@update')->middleware('auth');
 Route::get('/borrar/{id}', 'ProductoController@showDestroy')->middleware('auth');
 Route::post('/borrar', 'ProductoController@destroy')->middleware('auth');
-Route::get('/confirmacion-borrado', function(){return view('confirmacion-borrado');})->middleware('auth');
+Route::get('/borrado', 'ProductoController@borrado')->middleware('auth');
 
 /*SECCION LOGIN, RECUPERO Y REGISTER*/
 Auth::routes();
-Route::get('/confirmacion', 'HomeController@confirmacion')->middleware('guest');
+Route::get('/confirmacion', function(){return view('confirmacion');})->middleware('guest'); //Creo que este quedo innecesario, porque Laravel loguea y te manda directo al index, cuando te registras. No te pide que te loguees una vez ya registrada.
 
 Route::get('/recupero/email', 'Auth\ForgotPasswordController@showLinkRequestForm');
 Route::post('/recupero/email', 'Auth\ForgotPasswordController@sendResetLinkEmail');
 Route::get('/recupero', 'Auth\ResetPasswordController@showResetForm');
 Route::post('/recupero', 'Auth\ResetPasswordController@reset');
-/*Cuando te registras correctamente, te lleva a esta, no se si sirve o es necesaria luego*/

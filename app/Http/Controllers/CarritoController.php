@@ -25,24 +25,19 @@ class CarritoController extends Controller{
     }
 
     public function store(Request $req){
-
+        //Esto controla si el producto ya esta agregado en el carrito del usuario. Si ya esta, dependiendo de donde viene, agrega un producto, o la cantidad seleccionada por el usuario.
         $existe = Carrito::where('producto_id', $req->id)->where('user_id',Auth::user()->id)->where('estado','0')->first();
+        //si, la cantidad esta seteada en el request, pone eso en la variable, sino pone 1.
+        $cantidad = isset($req->cantidad)?$req->cantidad:1;
         if($existe){
-            $existe->cantidad += 1;
+            $existe->cantidad += $cantidad;
             $existe->save();
             return redirect('/');
         }
 
-
         $carrito = new Carrito;
         $producto = Producto::find($req['id']);
-
-        if(isset($req['cantidad'])){
-          $cantidad = $req['cantidad'];
-        } else {
-          $cantidad = 1;
-        }
-
+        //agregamos toda la data.
         $carrito->user_id = Auth::user()->id;
         $carrito->producto_id = $producto['id'];
         $carrito->nombre = $producto['nombre'];
@@ -72,7 +67,7 @@ class CarritoController extends Controller{
 
     public function historial(){
       $carts = Carrito::where('user_id', Auth::user()->id)->where('estado', 1)->get()->groupBy('num_carrito');
-      return view('historial', compact($carts));
+      return view('historial', compact('carts'));
     }
 
     public function closecart(){

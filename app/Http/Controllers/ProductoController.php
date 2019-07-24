@@ -21,7 +21,7 @@ class ProductoController extends Controller {
     }
 
     public function categoria($id){
-        $productos = Producto::where('categoria_id', $id)->paginate(10);
+        $productos = Producto::where('categoria_id', $id)->get();
 
         $categoria = Categoria::find($id);
 
@@ -181,6 +181,14 @@ class ProductoController extends Controller {
       $producto = Producto::find($req['id']);
       // unlink("/public/productos/".$producto['foto']);
       $producto->delete();
-      return redirect('/confirmacion-borrado');
+      return redirect('/borrado');
+    }
+
+    public function borrado(){
+      if(Auth::user()->rol < 100){
+        return redirect('/');
+      }
+
+      return view ('confirmacion-borrado');
     }
 }

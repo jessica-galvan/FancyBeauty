@@ -110,10 +110,16 @@ class UsuarioController extends Controller{
         }
 
         //Segundo, que el password original y el nuevo no sean el mismo
-        if(strcmp($req->get('current-password'), $req->get('password')) == 0){
-            $errorPrincipal = "* Tu nueva contraseña no puede ser igual a tu contraseña anterior";
+        // if(strcmp($req->get('current-password'), $req->get('password')) == 0){
+        //     $errorPrincipal = "* Tu nueva contraseña no puede ser igual a tu contraseña anterior";
+        //     return view('cambiarContrasenia', compact('errorPrincipal'));
+        // }
+
+        if (!(Hash::check($req->get('password'), Auth::user()->password))) {
+            $errorPrincipala = "* Tu nueva contraseña no puede ser igual a tu contraseña anterior";;
             return view('cambiarContrasenia', compact('errorPrincipal'));
         }
+
 
         $mensajes = [
             'required' => '* El campo no puede estar vacio',
@@ -136,7 +142,7 @@ class UsuarioController extends Controller{
       // $usuario = Auth::user();
       // $reglas = [
       //     'currentPassword' => 'required|string',
-      //     'password' => 'required|string|min:6|confirmed|different: currentPassword',
+      //     'password' => 'required|string|min:6|confirmed|different:currentPassword',
       // ];
       // $mensajes = [
       //     'required' => '* El campo no puede estar vacio',

@@ -219,5 +219,6 @@
             </footer>
         </div>
     </div>
+    <script src="/js/master.js"></script>
 </body>
 </html>

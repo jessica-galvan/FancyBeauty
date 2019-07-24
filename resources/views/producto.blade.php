@@ -33,7 +33,7 @@
                       <input id="cantidad" type="int" name="cantidad" value="1">
                       <i class='more'>+</i>
                   </div>
-                  <input type="text" hidden name="producto_id" value="{{$producto['id']}}">
+                  <input type="text" hidden name="id" value="{{$producto['id']}}">
                   <button class="agregar" type="submit" name="button">Agregar a carrito</button>
               </form>
               <a class="link-button" href="/">

@@ -261,7 +261,24 @@ nav a {
     color: white;
   }
 
+/*-------------------------------------MEDIA QUERYS----------------------------------------------*/
 
+@media (min-width: 336px){
+    /*--------HEADER---------*/
+/*--------LOGO CARRITO---------*/
+.icon-img {
+  width: 7vw;
+}
+
+@media (min-width: 400px){
+    /*--------HEADER---------*/
+/*--------LOGO CARRITO---------*/
+.icon-img {
+  width: 6vw;
+ 
+}
+    
+} 
 
 @media (min-width: 700px) { /*TABLET*/
   * {

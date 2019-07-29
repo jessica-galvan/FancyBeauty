@@ -156,7 +156,7 @@
                     </article>
 
                     <article class="footer-info-mobile">
-                        <a href="login"><h3>MI CUENTA</h3></a>
+                        <a href="{{$linkUsuario}}"><h3>MI CUENTA</h3></a>
                     </article>
 
                     <article class="footer-info-mobile">
@@ -164,7 +164,7 @@
                     </article>
 
                     <article class="footer-info-mobile">
-                        <a href="faq"><h3>PREGUNTAS FRECUENTES</h3></a>
+                        <a href="/faq"><h3>PREGUNTAS FRECUENTES</h3></a>
                     </article>
 
                     <article class="footer-info-mobile">
@@ -188,8 +188,8 @@
                 <section class="links-desktop">
                     <article class="cuenta">
                         <a href="{{$linkUsuario}}"><h3>{{$textoHamburguesa}}</h3></a>
-                        <a href="#"><h3>VER CARRITO</h3></a>
-                        <a href="faq"><h3>PREGUNTAS FRECUENTES</h3></a>
+                        <a href="/carrito"><h3>VER CARRITO</h3></a>
+                        <a href="/faq"><h3>PREGUNTAS FRECUENTES</h3></a>
                         <a href="#"><h3>SOBRE NOSOTROS</h3> </a>
                         <a href="#"><h3>CONTACTO</h3> </a>
                     </article>

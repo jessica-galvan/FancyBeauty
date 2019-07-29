@@ -21,6 +21,8 @@ class ProductoController extends Controller {
     }
 
     public function categoria($id){
+        // $productos = Producto::where('categoria_id', $id)->paginate(5);
+
         $productos = Producto::where('categoria_id', $id)->get();
 
         $categoria = Categoria::find($id);
@@ -30,11 +32,14 @@ class ProductoController extends Controller {
 
     public function buscador($palabra){
       //Si quiero que busque frases, voy a tener que hacer un split por espacios, para que me arme un array con todas las palabras que hay en la frase, y luego haga un foreach donde busque con el where like, con cada palabra, y lo meta en un array (que previamente estaba vacio), hasta que termine. Luego ese nuevo array de productos que coinciden con alguna de las palabras, es enviado a la pagina de busquedas.
-
-        $productos = Producto::where('nombre', 'like', "%$palabra%")->orWhere('categoria', 'like', "%$palabra%")->get();
-
+      $array = explode(" ", $palabra);
+      $productos = [];
+      foreach ($array as $item) {
+          $productos[] = Producto::where('nombre', 'like', "%$item%")->get();
+      }
+        // $productos = Producto::where('nombre', 'like', "%$palabra%")->orWhere('categoria', 'like', "%$palabra%")->get();
+        dd($productos);
         return view('filtro', compact('productos'));
-
     }
 
     /*PARA ADMINS*/

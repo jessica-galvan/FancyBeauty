@@ -10,7 +10,7 @@
       @foreach ($productos as $producto)
           @if($producto['estado_id'] == '1')
           <article class="producto">
-              <a style="text-decoration:none;" href="producto/{{$producto['id']}}">
+              <a style="text-decoration:none;" href="/producto/{{$producto['id']}}">
                   <div class="p-imagen">
                       <img src="/storage/productos/{{$producto["foto"]}}" alt="{{$producto["nombre"]}}">
                   </div>

@@ -17,10 +17,18 @@ class UserSeeder extends Seeder{
         [
           'name'=> 'Jessica',
           'surname'=>'Galvan',
-          'email'=>'jessica_lamelli@galvan.com',
+          'email'=>'jessica_lamelli@hotmail.com',
           'password'=>'123456',
           'rol'=>'100'
-        ]
+      ],
+      [
+        'name'=> 'Jessica',
+        'surname'=>'Galvan',
+        'email'=>'jessica.galvan@hotmail.com',
+        'password'=>'123456',
+        'rol'=>'10'
+    ],
+
       ];
 
       foreach ($datos as $dato){

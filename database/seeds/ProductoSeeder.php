@@ -107,7 +107,7 @@ class ProductoSeeder extends Seeder{
             "estado_id" => "2",
             'rating' => '5.0',
           ],
-        //----------Productos Nuevos---------------//
+        /*Productos Nuevos*/
          [
             "nombre" => "Polvo bronceador",
             "descripcion" => "De larga duración, resistente a la transferencia, un polvo bronceador que le regalará a tu piel un tono bronceado y un brillo instantáneo. Con una formula suave, fácil de difuminar, este producto te dará el bronceado de tus sueños.",
@@ -115,7 +115,7 @@ class ProductoSeeder extends Seeder{
             "foto" => "polvo bronceador.jpg",
             "categoria_id" => "1",
             'tipoproducto_id' => '9',
-            "estado_id" => "2",
+            "estado_id" => "3",
             'rating' => '5.0',
           ],
         [
@@ -125,10 +125,10 @@ class ProductoSeeder extends Seeder{
             "foto" => "contorno en crema.jpg",
             "categoria_id" => "1",
             'tipoproducto_id' => '10',
-            "estado_id" => "2",
+            "estado_id" => "4",
             'rating' => '5.0',
           ],
-        
+
             [
             "nombre" => "Iluminador Plateado",
             "descripcion" => "Un iluminador con un tono plateado único, con un subtono frio y de larga duración. Con una fórmula de crema a polvo y un terminado súper metálico para que le des protagonismo a todas las zonas altas de tu rostro como tus pómulos y el arco de las cejas.",
@@ -136,11 +136,11 @@ class ProductoSeeder extends Seeder{
             "foto" => "iluminador plateado.jpg",
             "categoria_id" => "1",
             'tipoproducto_id' => '11',
-            "estado_id" => "2",
+            "estado_id" => "5",
             'rating' => '3.0',
           ],
-            
-            
+
+
             [
             "nombre" => "Prebase Hidratante",
             "descripcion" => "Una prebase que será tu primer paso en tu rutina de maquillaje, ayuda a que la base dure mucho más tiempo a la vez que cierra poros e hidrata tu piel. La fórmula es libre de aceites, mejorando así la textura de tu piel.",
@@ -148,10 +148,10 @@ class ProductoSeeder extends Seeder{
             "foto" => "prebase hidratante.jpg",
             "categoria_id" => "1",
             'tipoproducto_id' => '12',
-            "estado_id" => "2",
+            "estado_id" => "3",
             'rating' => '5.0',
           ],
-            
+
               [
             "nombre" => "Delineador Liquido Negro Matte",
             "descripcion" => "Un producto infaltable en cualquier colección de maquillaje. Un delineador negro para ojos, con una fórmula matte de larga duración, que no se mueve de su lugar hasta que vos decidas quitarlo!",
@@ -159,10 +159,10 @@ class ProductoSeeder extends Seeder{
             "foto" => "delineador liquido negro matte.jpg",
             "categoria_id" => "3",
             'tipoproducto_id' => '13',
-            "estado_id" => "2",
+            "estado_id" => "4",
             'rating' => '4.0',
           ],
-        
+
                   [
             "nombre" => "Delineador Liquido Rosa",
             "descripcion" => "Un producto para ojos colorido, para darle un toque de color a tu maquillaje. Este delineador liquido en color rosa, con la misma fórmula matte y de larga duración llamará la atención de todos.",
@@ -170,10 +170,10 @@ class ProductoSeeder extends Seeder{
             "foto" => "delineador liquido rosa.jpg",
             "categoria_id" => "3",
             'tipoproducto_id' => '14',
-            "estado_id" => "2",
+            "estado_id" => "5",
             'rating' => '5.0',
           ],
-            
+
              [
             "nombre" => "Duo de Sombras",
             "descripcion" => "Un dúo de sombras de ojos metálicas, una violeta y otra rosa, para darle un cambio al maquillaje neutro de siempre.",
@@ -181,10 +181,10 @@ class ProductoSeeder extends Seeder{
             "foto" => "duo de sombras.png",
             "categoria_id" => "3",
             'tipoproducto_id' => '15',
-            "estado_id" => "2",
+            "estado_id" => "3",
             'rating' => '5.0',
           ],
-            
+
              [
             "nombre" => "Esponja",
             "descripcion" => "La mejor herramienta para aplicar todo tipo de productos, tanto líquidos o en polvo, con un terminado sutil y natural. Nuestra esponja tiene el tamaño perfecto para tu rostro y para aplicar todos tus productos favoritos.",
@@ -192,10 +192,10 @@ class ProductoSeeder extends Seeder{
             "foto" => "esponja.jpg",
             "categoria_id" => "4",
             'tipoproducto_id' => '16',
-            "estado_id" => "2",
+            "estado_id" => "1",
             'rating' => '5.0',
           ],
-            
+
              [
             "nombre" => "Espejo Pequeño",
             "descripcion" => "Un espejo de tamaño compacto que te acompañará a todos los lugares a donde vayas.",
@@ -203,10 +203,10 @@ class ProductoSeeder extends Seeder{
             "foto" => "espejo chico.jpg",
             "categoria_id" => "4",
             'tipoproducto_id' => '17',
-            "estado_id" => "2",
+            "estado_id" => "2 ",
             'rating' => '5.0',
           ],
-            
+
              [
             "nombre" => "Brocha de Viaje",
             "descripcion" => "Una brocha compacta y pequeña para que la lleves a todos lados. Para aplicar productos en polvo y retocar tu maquillaje, será tu mejor acompañante vayas donde vayas.",
@@ -214,11 +214,11 @@ class ProductoSeeder extends Seeder{
             "foto" => "brocha de viaje.jpg",
             "categoria_id" => "4",
             'tipoproducto_id' => '18',
-            "estado_id" => "2",
+            "estado_id" => "3",
             'rating' => '5.0',
           ],
-        
-            
+
+
              [
             "nombre" => "Labial Matte Violeta",
             "descripcion" => "Una formula liviana en los labios, de larga duración y con un terminado matte, en una tonalidad que quedara perfecta en todos los tonos de piel. Un labial con un impactante color y completamente opaco desde la primera aplicación.",
@@ -226,9 +226,9 @@ class ProductoSeeder extends Seeder{
             "foto" => "labial matte violeta.jpg",
             "categoria_id" => "2",
             'tipoproducto_id' => '19',
-            "estado_id" => "2",
+            "estado_id" => "5",
             'rating' => '5.0',
-          ],   
+          ],
           [
             "nombre" => "Labial Matte Salmón",
             "descripcion" => "Una formula liviana en los labios, de larga duración y con un terminado matte, en una tonalidad que quedara perfecta en todos los tonos de piel. Un labial con un impactante color y completamente opaco desde la primera aplicación.",
@@ -236,7 +236,7 @@ class ProductoSeeder extends Seeder{
             "foto" => "labial matte salmon.png",
             "categoria_id" => "2",
             'tipoproducto_id' => '20',
-            "estado_id" => "2",
+            "estado_id" => "5",
             'rating' => '5.0',
           ],
         ];

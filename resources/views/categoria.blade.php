@@ -16,8 +16,8 @@
           <h2>{{$categoria['nombre']}}</h2>
           <p>{{$categoria['descripcion']}}</p>
       </div>
+
       @foreach ($productos as $producto)
-          @if($producto['estado_id'] == '1')
           <article class="producto">
               <a style="text-decoration:none;" href="/producto/{{$producto['id']}}">
                   <div class="p-imagen">
@@ -36,12 +36,9 @@
                   </form>
               </div>
           </article>
-          @endif
       @endforeach
-
-
   </section>
-  <section>
-      {{-- {{$productos->links()}} --}}
+  <section class='paginar'>
+      {{$productos->links()}}
   </section>
 @endsection

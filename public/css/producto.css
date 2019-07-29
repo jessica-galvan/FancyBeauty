@@ -1,3 +1,17 @@
+.paginar {
+    text-align: center;
+    padding: 2vh;
+}
+
+.paginar li {
+  display: inline;
+  list-style: none;
+}
+
+.paginar li a:hover {
+  color: yellow;
+}
+
 /*PRODUCT*/
 .producto {
   background: white;
@@ -105,8 +119,13 @@
 @media (min-width: 768px) { /*TABLET*/}
 
 @media (min-width: 992px) { /*DESKTOP*/
-  .productos {
-    /* margin: 0 10%; */
+  /* .productos {
+    margin: 0 10%;
+  } */
+
+  .paginar {
+    padding: 10px;
+    padding-bottom: 30px;
   }
 
   .producto {

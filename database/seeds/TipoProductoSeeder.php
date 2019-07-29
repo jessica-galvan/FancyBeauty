@@ -6,7 +6,7 @@ use Illuminate\Support\Facades\DB;
 class TipoProductoSeeder extends Seeder{
 
     public function run(){
-        $datos = ['Brocha', 'Gloss', 'Labial', 'Base', 'Polvo Translucido', 'Rubor', 'Paleta de sombras', 'Iluminador', 'Polvo Bronceador', 'Bronceador en crema', 'Iluminador Plateado', "Prebase Hidratante", "Delineador Liquido Negro Matte", "Delinedor Liquido Rosa", "Duo de Sombras", "esponja", "Espejo Pequeño", "Brocha de Viaje", "Labial Matte Violeta", "Labial Matte Salmón"];
+        $datos = ['Brocha', 'Gloss', 'Labial', 'Base', 'Polvo Translucido', 'Rubor', 'Sombras', 'Iluminador', 'Bronceador', "Delinedor", "Esponja", "Espejo"];
 
         foreach ($datos as $dato){
           DB::table('tipoProductos')->insert([

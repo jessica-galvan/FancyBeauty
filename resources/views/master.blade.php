@@ -137,7 +137,7 @@
                                     </div>
                                 </li>
                                 <li>|</li>
-                                <li><a href="#">CONTACTO</a></li>
+                                <li><a href="">CONTACTO</a></li>
                                 <li>|</li>
                                 <li><a href="/faq">PREGUNTAS FRECUENTES</a></li>
                             </ul>

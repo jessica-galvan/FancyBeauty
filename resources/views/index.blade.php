@@ -40,7 +40,7 @@
                     <p class="precio">${{$producto["precio"]}}</p>
                     <form class="form-agregar" action="/addtocart" method="post">
                       @csrf
-                        <input type="text" hidden name="id" value="{{$producto['id']}}">
+                        <input type="hidden" name="id" value="{{$producto['id']}}">
                         <button class="comprar" type="submit" name="button">Comprar</button>
                     </form>
                 </div>

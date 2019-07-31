@@ -1,5 +1,83 @@
 window.onload = function() {
 
+    // -------------------------
+    //      CARRITO
+    //--------------------------
+    var user_box = document.querySelector('#user-box');
+    var user_id = user_box.getAttribute('data-userid');
+
+    function getCarrito(id){
+      fetch('http://localhost:8000/api/carrito/'+ id)
+        .then(function(respuesta){
+           return respuesta.json();
+        })
+        .then(function(respuesta){
+            console.log(respuesta);
+        })
+        .catch (function (error) {
+          console.log(error);
+        });
+    }
+
+    getCarrito(user_id);
+
+    function addtocart(event){
+        event.preventDefault();
+        let hijos = this.children;
+        let productID = hijos[1].value;
+
+        let dataAgregar = {
+            id: productID,
+            user_id: user_id
+        }
+        fetch('http://localhost:8000/api/carrito', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body:JSON.stringify(dataAgregar)
+          })
+         .then(function(respuesta){
+              return respuesta.json();
+         })
+         .then(function(respuesta){
+             console.log(respuesta);
+         })
+         .catch (function (error) {
+             console.log(error);
+         });
+    }
+
+    function deletefromcart(event){
+        event.preventDefault();
+
+        let productID = this.getAttribute('name');
+        let dataAgregar = {
+            id: productID,
+            user_id: user_id
+        }
+
+        fetch('http://localhost:8000/api/carrito/eliminar', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body:JSON.stringify(dataAgregar)
+          })
+         .then(function(respuesta){
+              return respuesta.json();
+         })
+         .then(function(respuesta){
+             // console.log(respuesta);
+             // refreshCarrito(respuesta);
+         })
+         .catch (function (error) {
+             console.log(error);
+         });
+    }
+
     //--------------------------------------------------
     //        VALIDACIONES FORMULARIO REGISTRO
     //--------------------------------------------------
@@ -30,7 +108,7 @@ window.onload = function() {
         //EMAIL
         var campoEmail = document.querySelector('input#email');
         campoEmail.addEventListener('blur', function(){
-            var regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+            var regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm; //validacion de email
             var spanError = document.querySelector('span#error-email');
             if(this.value.trim() == ""){
                 spanError.innerText = '* El campo no puede estar vacio';
@@ -60,7 +138,7 @@ window.onload = function() {
         var campoPasswordConfirm = document.querySelector('input#password-confirm');
         campoPasswordConfirm.addEventListener('blur', function(){
             var spanError = document.querySelector('span#error-password');
-            if(this.value.trim() == "") {
+            if(this.value.trim() == "") { //trim(this.value)
                 hayError = true;
                 spanError.innerText = '* El campo no puede estar vacio';
             } else if(this.value != campoPassword.value){
@@ -110,37 +188,90 @@ window.onload = function() {
         // formularioCantidad.addEventListener('submit', postDataCantidad);
     }
 
-    // var formularioAgregar = document.querySelector('form.form-agregar');
-    // if(formularioAgregar){
-    //     formularioAgregar.addEventListener('submit', postData);
-    // }
+    var formularioAgregar = document.querySelectorAll('.form-agregar');
+    if(formularioAgregar){
+        for (formAg of formularioAgregar) {
+          formAg.addEventListener('submit', addtocart);
+        }
+    }
 
-    // -------------------------
-    //      POST-DATA
-    //--------------------------
+    //----------------------------------------------------------
+    //      CARRITO
+    //----------------------------------------------------------
+    var carrito = document.querySelector('.carrito');
+    if(carrito){
 
-    //COMENTARIO: Todavia no estoy segura de como funciona. ¿Como seria lo de la API con el carrito? Preguntar el miércoles, asi empiezo a aplicarlo acá
-    // function postData(event){
-    //     var dataAgregar = {
-    //         user_id = "",
-    //         producto_id = "" //Hay que capturar la data que vamos a pasarle
-    //     }
-    //      event.preventDefault();
-    //      fetch(URL, {
-    //             method: 'POST',
-    //             headers : new Headers(),
-    //             body:JSON.stringify(dataAgregar)
-    //         })
-    //          .then(function(respuesta){
-    //             return respuesta.json();
-    //          })
-    //          .then(function(respuesta){
-    //              //NI IDEA
-    //          })
-    //          .catch (function (error) {
-    //            console.log(error);
-    //          });
-    // }
+    }
+
+    var eliminar = document.querySelectorAll('.btn-eliminar');
+    if(eliminar){
+        for(item of eliminar){
+            item.addEventListener('click', deletefromcart);
+        }
+    }
+
+    function refreshCarrito(carrito){
+      // CANTIDAD
+      // <li>
+      //     <!--Cantidad-->
+      //     <form class="formulario-cantidad" action="" method="post">
+      //       @csrf
+      //         <div class="cantidad">
+      //             <i class='less'>-</i>
+      //             <input id="cantidad" type="int" name="cantidad" value="{{$item['cantidad']}}">
+      //             <i class='more'>+</i>
+      //         </div>
+      //         <input type="text" hidden name="" value="">
+      //         <input type="text" hidden name="producto_id" value="{{$item['id']}}">
+      //         {{-- Estaria genial que cuando sepamos javascript, en vez de tener que darle a un boton, que nos lleve a otra pagina y luego nos vuelva a traer, para que se cambie en la base de datos, que con darle a los numeros y a un tilde o algo, se haga la modificacion. Ni idea de si se puede. Actualmente estos botones estan de decoracion, no funcionan--}}
+      //     </form>
+      // </li>
+
+      //BUTTON
+      // <li>
+      //     <button class = "btn-eliminar" type="button" name="{{$item['id']}}">Eliminar</button>
+      // </li>
+
+
+      for (item of carrito) {
+        var carrito = document.querySelector('.carrito');
+
+        let article = document.createElement('article');
+        article.setAttribute('class', 'item');
+        carrito.append(article);
+        let ul = document.createElemente('ul');
+        article.append(ul);
+
+        let imageli = document.createElement('li');
+        let image = document.createElement('img');
+        let link ='/storage/productos/' + item['foto']+ '" alt="Foto Producto'
+        image.setAttribute('src', link);
+        ul.append(imageli);
+        imageli.append(image);
+
+        let nombre = document.createElement('li');
+        nombre.innterText = item['nombre'];
+        ul.append(nombre);
+
+        let precio = document.createElement('li');
+        precio.innerText = item['precio'];
+        ul.append(precio);
+
+        let cantidad = document.createElement('li');
+        cantidad.innetText = item['cantidad'];
+        ul.appned(cantidad);
+
+        let subtotal = document.createElement('li');
+        subtotal.innerText = 'Subtotal: $'+ item['cantidad']*item['precio'];
+        ul.append(subtotal);
+
+        let eliminar = document.createElement('li');
+        eliminar.innerText = '<button class = "btn-eliminar" type="button" name="' + item['id']+'">Eliminar</button>';
+        ul.append(eliminar);
+      }
+    }
+
+
 
 //ACÁ TERMINA EL WINDOW ONLOAD
 }

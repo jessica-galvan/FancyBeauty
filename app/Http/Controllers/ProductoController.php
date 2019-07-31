@@ -10,10 +10,17 @@ use Auth;
 use DB;
 
 class ProductoController extends Controller {
-    /*PARA USERS*/
+    //--------------------------------
+    //            PARA USERS
+    //--------------------------------
     public function index(){
         $listaProductos = Producto::all();
         return view('index', compact('listaProductos'));
+    }
+
+    public function todos(){
+      $productos = Producto::all()->orderBy('categoria_id');
+      return view('todos-productos', compact('productos'));
     }
 
     public function show($id){
@@ -53,7 +60,9 @@ class ProductoController extends Controller {
         return view('filtro', compact('productos'));
     }
 
-    /*PARA ADMINS*/
+    //--------------------------------
+    //          PARA ADMINS
+    //--------------------------------
     public function indexEdit(){
       /*SOLO ADMINS*/
         if(Auth::user()->rol < 100){

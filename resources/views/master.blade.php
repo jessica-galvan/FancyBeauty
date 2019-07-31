@@ -1,11 +1,13 @@
 <?php
   if(Auth::check()){
     $nombre_usuario  = "";
+    $user_id = Auth::user()->id;
     $linkUsuario = "/perfil";
     $textoBienvenida = "Hola ".Auth::user()->name;
     $textoHamburguesa = "Perfil";
     $textoLogout = "Cerrar Sesión";
   } else {
+    $user_id = "";
     $textoBienvenida = "Ingresar";
     $textoHamburguesa = "Ingresar";
     $linkUsuario = '/login';
@@ -95,7 +97,7 @@
 
                             <div class="icons">
                                 <a href="{{$linkUsuario}}">
-                                    <div id="user-box" class="icon-box">
+                                    <div id="user-box" data-userID="{{$user_id}}" class="icon-box">
                                         <img id="user" class="icon-img" src="/img/icons/logInRegister.png" alt="User">
                                         <p>{{$textoBienvenida}}</p>
                                     </div>
@@ -173,9 +175,9 @@
 
                     <div class="suscribe">
                         <h3>SUSCRIBITE</h3>
-                        <form class="suscribe-form" action="#suscribe-button" method="post">
+                        <form class="suscribe-form" action="" method="post">
                             <input class="email-suscribe" type="email" name="email" value="">
-                            <button id="suscribe-button" type="submit" name="button">ENVIAR</button>
+                            <button id="suscribe-button-mobile" type="submit" name="button">ENVIAR</button>
                         </form>
                     </div>
 
@@ -206,9 +208,9 @@
 
                     <div class="suscribe">
                         <h3>SUSCRIBITE</h3>
-                        <form class="suscribe-form" action="#" method="post">
+                        <form class="suscribe-form" action="" method="post">
                             <input class="email-suscribe" type="email" name="email" value="">
-                            <button id="suscribe-button" type="submit" name="button">ENVIAR</button>
+                            <button id="suscribe-button-desktop" type="submit" name="button">ENVIAR</button>
                         </form>
                     </div>
 

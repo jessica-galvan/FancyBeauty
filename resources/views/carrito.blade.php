@@ -27,12 +27,20 @@
                 </form>
             </li>
             <li>Sub-total:  {{$item['cantidad']*$item['precio']}}</li>
-            <li><a href="/eliminar/{{$item['id']}}">Eliminar</a></li>
+            <li>
+                <button class = "btn-eliminar" type="button" name="{{$item['id']}}">Eliminar</button>
+            </li>
         </ul>
     </article>
   @empty
-      <p>Su carrito esta vacio</p>
+    <div class="carrito-vacio">
+        <p>Su carrito esta vacio</p>
+    </div>
   @endforelse
+
+  {{-- <div class="carrito">
+
+  </div> --}}
 
   @if($total != '')
       <h3>Total: {{$total}}</h3>

@@ -20,8 +20,45 @@ class CarritoController extends Controller{
         return view('carrito', compact('carrito', 'total'));
     }
 
-    public function create(){
-        //
+    public function api($user_id){
+      $carrito = Carrito::where('estado', '0')->where('user_id', $user_id)->get();
+      return $carrito;
+    }
+
+    public function apiStore(Request $req){
+      $user_id = $req->user_id;
+      // Si el producto ya esta en el carrito...
+      $existe = Carrito::where('producto_id', $req->id)->where('user_id', $user_id)->where('estado','0')->first();
+      // //Si la cantidad esta seteada en el request, pone eso en la variable, sino pone 1.
+      $cantidad = isset($req->cantidad)?$req->cantidad:1;
+      // $cantidad = 1;
+      if($existe){
+          $existe->cantidad += $cantidad;
+          $existe->save();
+          return $this->api($user_id);
+      }
+
+      $carrito = new Carrito;
+      $producto = Producto::find($req->id);
+      //agregamos toda la data.
+      $carrito->user_id = $user_id;
+      $carrito->producto_id = $producto['id'];
+      $carrito->nombre = $producto['nombre'];
+      $carrito->precio = $producto['precio'];
+      $carrito->cantidad = $cantidad;
+      $carrito->foto = $producto['foto'];
+      $carrito->estado = '0';
+      $carrito->num_carrito = 0;
+      $carrito->save();
+
+      return $this->api($user_id);
+    }
+
+    public function apiBorrar(Request $req){
+        $user_id = $req->user_id;
+        $carrito = Carrito::where('id', $req->id)->where('user_id', $user_id)->where('estado', '0')->first();
+        $carrito->delete();
+        return $this->api($user_id);
     }
 
     public function store(Request $req){

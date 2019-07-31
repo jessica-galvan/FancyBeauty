@@ -16,3 +16,7 @@ use Illuminate\Http\Request;
 Route::middleware('auth:api')->get('/user', function (Request $request) {
     return $request->user();
 });
+
+Route::post('/carrito/eliminar', 'CarritoController@apiBorrar');
+Route::get('/carrito/{user_id}', 'CarritoController@api');
+Route::post('/carrito', 'CarritoController@apiStore');

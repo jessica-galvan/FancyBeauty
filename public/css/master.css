@@ -179,6 +179,30 @@ nav a {
   transform: none;
 }
 
+.totalItems{ /* cantidad de productos en el header */
+    position: absolute;
+    top: 4px;
+    right: 8px;
+    height: 20px;
+    width: 20px;
+    line-heizght: 18px;
+    background-color: #C4AAD7;
+    color: white;
+    font-size: 1rem;
+    font-weight: bold;
+    text-align: center;
+    border-radius: 50%;
+    -webkit-transform: scale(1);
+    -moz-transform: scale(1);
+    -ms-transform: scale(1);
+    -o-transform: scale(1);
+    transform: scale(1);
+    -webkit-transition: -webkit-transform 0.2s 0s;
+    -moz-transition: -moz-transform 0.2s 0s;
+    transition: transform 0.2s 0s;
+    }
+
+
   /*------------FOOTER--------------------*/
 .footer-info {
   background: #8CD0E3; /*Lightblue*/
@@ -269,16 +293,42 @@ nav a {
 .icon-img {
   width: 7vw;
 }
+}
 
 @media (min-width: 400px){
     /*--------HEADER---------*/
 /*--------LOGO CARRITO---------*/
 .icon-img {
-  width: 6vw;
-
+  width: 5vw;
+ 
+}
 }
 
+@media (min-width: 430px){
+    /*--------HEADER---------*/
+.menu-mobile {
+  height: 13vh;
 }
+
+.logo {
+  height: 6vh;
+}
+.icon-img {
+  width: 5vw;
+}
+
+.totalItems{
+    top: 9px;
+    right: 10px;
+    }
+}
+
+@media (min-width: 630px){
+    /*--------HEADER---------*/    
+    .icon-img {
+   width: 4.5vw;
+}
+    }
 
 @media (min-width: 700px) { /*TABLET*/
   * {
@@ -294,7 +344,7 @@ nav a {
   .menu-mobile {
     position: fixed;
     width: 100vw;
-    height: 10vw;
+    height: 12vw;
     background: #8CD0E3; /*Lightblue*/
     padding: 3vw;
     padding-bottom: 7vh;
@@ -303,17 +353,30 @@ nav a {
     justify-content: space-between;
     color: white;
   }
+   
 
+
+    .logo{
+        height: 10vh;
+    }
+    
   .icon-img {
     width: 5vw;
     margin-right: 1vw;
+    
   }
 
   #user-icon {
     display: inline;
   }
+    .totalItems{
+    top: 15px;
+    right: 20px;
+    height: 25px;
+    width: 25px;
+    font-size: 0.7rem;
+    }
 }
-
 @media (min-width: 992px) { /*DESKTOP*/
   /*GENERAL*/
   * {

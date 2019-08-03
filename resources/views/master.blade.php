@@ -181,8 +181,9 @@
                         <h3>SUSCRIBITE</h3>
                         <form class="suscribe-form" action="" method="post">
                             <input class="email-suscribe" type="email" name="email" value="">
-                            <button id="suscribe-button-mobile" type="submit" name="button">ENVIAR</button>
+                            <button id="suscribe-button-mobile" class='btn-suscribe' type="click" name="button">ENVIAR</button>
                         </form>
+                        <span class='suscribe-error'></span>
                     </div>
 
                     <div class="copyright">
@@ -214,8 +215,9 @@
                         <h3>SUSCRIBITE</h3>
                         <form class="suscribe-form" action="" method="post">
                             <input class="email-suscribe" type="email" name="email" value="">
-                            <button id="suscribe-button-desktop" type="submit" name="button">ENVIAR</button>
+                            <button id="suscribe-button-desktop" class='btn-suscribe' type="button" name="button">ENVIAR</button>
                         </form>
+                        <span class='suscribe-error'></span>
                     </div>
 
                     <div class="copyright">

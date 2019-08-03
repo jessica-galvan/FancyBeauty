@@ -19,8 +19,6 @@ window.onload = function() {
         });
     }
 
-    getCarrito(user_id);
-
     function addtocart(event){
         event.preventDefault();
         let hijos = this.children;
@@ -78,6 +76,79 @@ window.onload = function() {
          });
     }
 
+    if(user_id){
+        getCarrito(user_id);
+    }
+
+    //--------------------------------------------------
+    //        SUSCRIBE
+    //--------------------------------------------------
+    var suscribe_input = document.querySelectorAll('.email-suscribe');
+    var suscribe_button = document.querySelectorAll('.btn-suscribe');
+    var suscribe_error = document.querySelectorAll('.suscribe-error');
+
+    function validarEmail(){
+        var regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+        if (this.value.trim() != "" && !regex.test(this.value)){
+            for (error of suscribe_error){
+                error.innerText = '* Email invalido';
+            }
+        } else {
+            for (error of suscribe_error){
+                error.innerText = '';
+            }
+        }
+    }
+
+    function addSuscriber(event){
+        event.preventDefault();
+        var regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+        let email = "";
+        for(input of suscribe_input){
+            if (input.value.trim() == "") {
+                event.preventDefault();
+            } else if(!regex.test(input.value)) {
+                event.preventDefault();
+            } else {
+                for (error of suscribe_error){
+                    error.innerText = email;
+                }
+                email = input.value;
+            }
+        }
+
+        let dataAgregar = {
+            email: email,
+        }
+
+        fetch('http://localhost:8000/api/suscribe', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body:JSON.stringify(dataAgregar)
+          })
+         .then(function(respuesta){
+              return respuesta.json();
+         })
+         .then(function(respuesta){
+             console.log(respuesta);
+             for (input of suscribe_input) {
+                 input.value = "";
+             }
+         })
+         .catch (function (error) {
+             console.log(error);
+         });
+    }
+
+    for (input of suscribe_input) {
+        input.addEventListener('blur', validarEmail);
+    }
+    for (button of suscribe_button) {
+        button.addEventListener('click', addSuscriber);
+    }
     //--------------------------------------------------
     //        VALIDACIONES FORMULARIO REGISTRO
     //--------------------------------------------------
@@ -233,42 +304,42 @@ window.onload = function() {
       // </li>
 
 
-      for (item of carrito) {
-        var carrito = document.querySelector('.carrito');
-
-        let article = document.createElement('article');
-        article.setAttribute('class', 'item');
-        carrito.append(article);
-        let ul = document.createElemente('ul');
-        article.append(ul);
-
-        let imageli = document.createElement('li');
-        let image = document.createElement('img');
-        let link ='/storage/productos/' + item['foto']+ '" alt="Foto Producto'
-        image.setAttribute('src', link);
-        ul.append(imageli);
-        imageli.append(image);
-
-        let nombre = document.createElement('li');
-        nombre.innterText = item['nombre'];
-        ul.append(nombre);
-
-        let precio = document.createElement('li');
-        precio.innerText = item['precio'];
-        ul.append(precio);
-
-        let cantidad = document.createElement('li');
-        cantidad.innetText = item['cantidad'];
-        ul.appned(cantidad);
-
-        let subtotal = document.createElement('li');
-        subtotal.innerText = 'Subtotal: $'+ item['cantidad']*item['precio'];
-        ul.append(subtotal);
-
-        let eliminar = document.createElement('li');
-        eliminar.innerText = '<button class = "btn-eliminar" type="button" name="' + item['id']+'">Eliminar</button>';
-        ul.append(eliminar);
-      }
+      // for (item of carrito) {
+      //   var carrito = document.querySelector('.carrito');
+      //
+      //   let article = document.createElement('article');
+      //   article.setAttribute('class', 'item');
+      //   carrito.append(article);
+      //   let ul = document.createElemente('ul');
+      //   article.append(ul);
+      //
+      //   let imageli = document.createElement('li');
+      //   let image = document.createElement('img');
+      //   let link ='/storage/productos/' + item['foto']+ '" alt="Foto Producto'
+      //   image.setAttribute('src', link);
+      //   ul.append(imageli);
+      //   imageli.append(image);
+      //
+      //   let nombre = document.createElement('li');
+      //   nombre.innterText = item['nombre'];
+      //   ul.append(nombre);
+      //
+      //   let precio = document.createElement('li');
+      //   precio.innerText = item['precio'];
+      //   ul.append(precio);
+      //
+      //   let cantidad = document.createElement('li');
+      //   cantidad.innetText = item['cantidad'];
+      //   ul.appned(cantidad);
+      //
+      //   let subtotal = document.createElement('li');
+      //   subtotal.innerText = 'Subtotal: $'+ item['cantidad']*item['precio'];
+      //   ul.append(subtotal);
+      //
+      //   let eliminar = document.createElement('li');
+      //   eliminar.innerText = '<button class = "btn-eliminar" type="button" name="' + item['id']+'">Eliminar</button>';
+      //   ul.append(eliminar);
+      // }
     }
 
 

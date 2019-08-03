@@ -265,6 +265,11 @@ nav a {
   width: 70vw;
 }
 
+.suscribe-error {
+  color: red;
+  font-size: 0.8em;
+}
+
 #suscribe-button-mobile{
   border: none;
   padding: 10px;
@@ -300,7 +305,7 @@ nav a {
 /*--------LOGO CARRITO---------*/
 .icon-img {
   width: 5vw;
- 
+
 }
 }
 
@@ -324,7 +329,7 @@ nav a {
 }
 
 @media (min-width: 630px){
-    /*--------HEADER---------*/    
+    /*--------HEADER---------*/
     .icon-img {
    width: 4.5vw;
 }
@@ -353,17 +358,17 @@ nav a {
     justify-content: space-between;
     color: white;
   }
-   
+
 
 
     .logo{
         height: 10vh;
     }
-    
+
   .icon-img {
     width: 5vw;
     margin-right: 1vw;
-    
+
   }
 
   #user-icon {

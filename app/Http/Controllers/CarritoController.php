@@ -30,8 +30,17 @@ class CarritoController extends Controller{
       // Si el producto ya esta en el carrito...
       $existe = Carrito::where('producto_id', $req->id)->where('user_id', $user_id)->where('estado','0')->first();
       // //Si la cantidad esta seteada en el request, pone eso en la variable, sino pone 1.
-      $cantidad = isset($req->cantidad)?$req->cantidad:1;
-      // $cantidad = 1;
+      // $cantidad = isset($req->cantidad)?$req->cantidad:1;
+      if(isset($req->cantidad)){
+          if($req->cantidad < 1){
+              $cantida = 1;
+          } else {
+              $cantidad = $req->cantidad;
+          }
+      } else {
+          $cantida = 1;
+      }
+
       if($existe){
           $existe->cantidad += $cantidad;
           $existe->save();
@@ -52,6 +61,15 @@ class CarritoController extends Controller{
       $carrito->save();
 
       return $this->api($user_id);
+    }
+
+    public function apiCantidad(Request $req){
+        $user_id = $req->user_id;
+        $producto_id = $req->producto_id;
+        Carrito::where('producto_id', $producto_id)->where('user_id', $user_id)->where('estado','0')->first();
+        $existe->cantidad += $req ->cantidad;
+        $existe->save();
+        return $this->api($user_id);
     }
 
     public function apiBorrar(Request $req){
@@ -88,18 +106,6 @@ class CarritoController extends Controller{
         // return redirect::back()->with('mensaje', 'El producto ha sido agregado al carrito');
         // return redirect::back();
         return redirect('/');
-    }
-
-    public function show(Carrito $carrito){
-        //
-    }
-
-    public function edit(Carrito $carrito){
-        //
-    }
-
-    public function update(Request $request, Carrito $carrito){
-        //
     }
 
     public function historial(){

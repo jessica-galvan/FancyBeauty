@@ -5,6 +5,16 @@ window.onload = function() {
     //--------------------------
     var user_box = document.querySelector('#user-box');
     var user_id = user_box.getAttribute('data-userid');
+    var total_items = document.querySelectorAll('.totalItems');
+
+    function getTotalItems(arrayCarrito){
+        var total = 0;
+        for(item of arrayCarrito) {
+            total = total + item['cantidad'];
+        }
+
+        return total;
+    }
 
     function getCarrito(id){
       fetch('http://localhost:8000/api/carrito/'+ id)
@@ -12,7 +22,9 @@ window.onload = function() {
            return respuesta.json();
         })
         .then(function(respuesta){
-            console.log(respuesta);
+            for (item of total_items){
+                item.innerText = getTotalItems(respuesta);
+            }
         })
         .catch (function (error) {
           console.log(error);
@@ -40,7 +52,9 @@ window.onload = function() {
               return respuesta.json();
          })
          .then(function(respuesta){
-             console.log(respuesta);
+             for (item of total_items){
+                 item.innerText = getTotalItems(respuesta);
+             }
          })
          .catch (function (error) {
              console.log(error);
@@ -70,6 +84,9 @@ window.onload = function() {
          .then(function(respuesta){
              // console.log(respuesta);
              // refreshCarrito(respuesta);
+             for (item of total_items){
+                 item.innerText = getTotalItems(respuesta);
+             }
          })
          .catch (function (error) {
              console.log(error);
@@ -146,6 +163,7 @@ window.onload = function() {
     for (input of suscribe_input) {
         input.addEventListener('blur', validarEmail);
     }
+
     for (button of suscribe_button) {
         button.addEventListener('click', addSuscriber);
     }
@@ -232,17 +250,18 @@ window.onload = function() {
     //----------------------------------------------------------
     //      BOTONES DE + Y - EN PRODUCTOS y EVENT SUBMIT
     //----------------------------------------------------------
-    var formularioCantidad = document.querySelector('form.formulario-cantidad');
+    var formularioCantidad = document.querySelectorAll('form.formulario-cantidad');
+    var carrito = document.querySelector('.carrito');
+
+
     if(formularioCantidad){
         var btnLess = document.querySelector('i.less');
         var btnMore = document.querySelector('i.more');
         var cantidad = document.querySelector('input#cantidad');
-
-        //readonly hace que algo no sea modificable con clickearlo y escribir (funcionaria con estos more o less que tocan desde adentro.
-        //PERO mejor cambiar a input type="number", que tendria que modificar el css, para que quede lindo Y validar el campo para que no acepte numeros negativos. VER EN CASA
         btnMore.addEventListener('click', function(){
             cantidad.value++;
         });
+
         btnLess.addEventListener('click', function(){
             if(cantidad.value <= 1) {
               cantidad.value = 1;
@@ -250,14 +269,82 @@ window.onload = function() {
               cantidad.value--;
             }
         });
+
         cantidad.addEventListener('blur', function(){
             if(this.value < 1){
                 this.value = 1;
             }
         });
-
-        // formularioCantidad.addEventListener('submit', postDataCantidad);
     }
+
+
+    // if(formularioCantidad){
+    //     for(form of formularioCantidad){
+    //         // var elementosHijos = ;
+    //         var cantidad_div = form.children[1];
+    //         console.log(cantidad_div);
+    //         var div_hijos = cantidad_div.children;
+    //         var btnLess = div_hijos[0];
+    //
+    //         console.log(div_hijos);
+    //         console.log(btnLess);
+    //
+    //
+    //         console.log(cantidad);
+    //
+    //         //readonly hace que algo no sea modificable con clickearlo y escribir (funcionaria con estos more o less que tocan desde adentro.
+    //         //PERO mejor cambiar a input type="number", que tendria que modificar el css, para que quede lindo Y validar el campo para que no acepte numeros negativos. VER EN CASA
+    //         btnMore.addEventListener('click', function(){
+    //             cantidad.value++;
+    //             if(carrito){
+    //                 // modifyCantidadDB(cantidad, item)
+    //             }
+    //         });
+    //
+    //         btnLess.addEventListener('click', function(){
+    //             if(cantidad.value <= 1) {
+    //               cantidad.value = 1;
+    //             } else {
+    //               cantidad.value--;
+    //             }
+    //         });
+    //
+    //         cantidad.addEventListener('blur', function(){
+    //             if(this.value < 1){
+    //                 this.value = 1;
+    //             }
+    //         });
+    //     }
+    //
+    //
+    //     function modifyCantidadDB(cantidad, user_id, producto_id){
+    //         let dataAgregar = {
+    //             cantidad: cantidad,
+    //             producto_id:producto_id,
+    //             user_id: user_id
+    //         }
+    //
+    //         fetch('http://localhost:8000/api/itemcantidad', {
+    //               method: 'POST',
+    //               headers: {
+    //                 'Accept': 'application/json',
+    //                 'Content-Type': 'application/json'
+    //               },
+    //               body:JSON.stringify(dataAgregar)
+    //           })
+    //          .then(function(respuesta){
+    //               return respuesta.json();
+    //          })
+    //          .then(function(respuesta){
+    //              console.log(respuesta);
+    //          })
+    //          .catch (function (error) {
+    //              console.log(error);
+    //          });
+    //     }
+    //
+    //     // formularioCantidad.addEventListener('submit', postDataCantidad);
+    // }
 
     var formularioAgregar = document.querySelectorAll('.form-agregar');
     if(formularioAgregar){
@@ -269,10 +356,8 @@ window.onload = function() {
     //----------------------------------------------------------
     //      CARRITO
     //----------------------------------------------------------
-    var carrito = document.querySelector('.carrito');
-    if(carrito){
 
-    }
+    if(carrito){}
 
     var eliminar = document.querySelectorAll('.btn-eliminar');
     if(eliminar){

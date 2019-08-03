@@ -20,4 +20,5 @@ Route::middleware('auth:api')->get('/user', function (Request $request) {
 Route::post('/carrito/eliminar', 'CarritoController@apiBorrar');
 Route::get('/carrito/{user_id}', 'CarritoController@api');
 Route::post('/carrito', 'CarritoController@apiStore');
+Route::post('/itemcantidad', 'CarritoController@apiCantidad');
 Route::post('/suscribe', 'SuscriberController@apiStore');

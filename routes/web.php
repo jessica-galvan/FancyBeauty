@@ -26,8 +26,8 @@ Route::get('/historial', 'CarritoController@historial')->middleware('auth');
 Route::get('/perfil', 'UsuarioController@show')->middleware('auth');
 Route::get('/perfil/editar', 'UsuarioController@edit')->middleware('auth');
 Route::post('/perfil/editar', 'UsuarioController@update')->middleware('auth');
-Route::get('/perfil/password', 'UsuarioController@editPass')->middleware('auth');
-Route::post('/perfil/password', 'UsuarioController@updatePass')->middleware('auth');
+// Route::get('/perfil/password', 'UsuarioController@editPass')->middleware('auth');
+// Route::post('/perfil/password', 'UsuarioController@updatePass')->middleware('auth');
 Route::get('/logout', '\App\Http\Controllers\Auth\LoginController@logout')->middleware('auth');
 
 //SECCION ADMINS para agregar, editar y borrar productos

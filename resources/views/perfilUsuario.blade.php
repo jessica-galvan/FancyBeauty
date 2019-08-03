@@ -32,11 +32,11 @@
                   <button type="button" name="">Editar Perfil</button>
               </a>
           </div>
-          <div class="editar-button-amarillo">
+          {{-- <div class="editar-button-amarillo">
               <a href="/perfil/password">
                   <button type="button" name="">Cambiar Contraseña</button>
               </a>
-          </div>
+          </div> --}}
           <div class="editar-button-rosa">
               {{-- <a href="/perfil/logout">
                   <button type="button" name="">Cerrar Sesión</button>

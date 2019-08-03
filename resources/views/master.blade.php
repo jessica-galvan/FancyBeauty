@@ -74,7 +74,9 @@
 
                             <a href="/carrito">
                                 <?php /*total de items del carrito en el header*/?>
-                                        <span class="totalItems">0</span>
+                                @if(Auth::check())
+                                        <span class="totalItems"></span>
+                                @endif
                                 <img class="icon-img" src="/img/icons/BolsaDeCompra.png" alt="Carrito">
                             </a>
                         </div>
@@ -120,7 +122,9 @@
                                 <a href="/carrito">
                                     <div id='bag-box' class="icon-box">
                                               <?php /*total de items del carrito en el header*/?>
-                                        <span class="totalItems">0</span>
+                                              @if(Auth::check())
+                                                      <span class="totalItems"></span>
+                                              @endif
                                         <img id="bag" class="icon-img" src="/img/icons/BolsaDeCompra.png" alt="Carrito">
                                         <p>Carrito</p>
                                     </div>

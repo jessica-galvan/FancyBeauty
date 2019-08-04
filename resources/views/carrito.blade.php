@@ -23,7 +23,8 @@
                           <input id="cantidad" type="int" name="cantidad" value="{{$item['cantidad']}}">
                           <i class='more'>+</i>
                       </div>
-                      <input type="text" hidden name="producto_id" value="{{$item['id']}}">
+                      <input type="text" hidden name="producto_id" value="{{$item['producto_id']}}">
+                      <input type="text" hidden name="carrito_id" value="{{$item['id']}}">
                   </form>
               </li>
               <li>Sub-total:  {{$item['cantidad']*$item['precio']}}</li>
@@ -45,7 +46,7 @@
   </div> --}}
 
   @if($total != '')
-      <h3>Total: {{$total}}</h3>
+      <h3 id='total'>Total: {{$total}}</h3>
 
       <form class="editar-button-amarillo" action="/closecart" method="post">
         @csrf

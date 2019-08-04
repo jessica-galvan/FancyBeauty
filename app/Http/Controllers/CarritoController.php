@@ -66,16 +66,23 @@ class CarritoController extends Controller{
     public function apiCantidad(Request $req){
         $user_id = $req->user_id;
         $producto_id = $req->producto_id;
-        Carrito::where('producto_id', $producto_id)->where('user_id', $user_id)->where('estado','0')->first();
-        $existe->cantidad += $req ->cantidad;
-        $existe->save();
+        $carrito = Carrito::where('producto_id', $req->producto_id)->where('user_id', $user_id)->where('estado','0')->first();
+        $carrito->cantidad = $req->cantidad;
+        $carrito->save();
+
         return $this->api($user_id);
     }
 
     public function apiBorrar(Request $req){
         $user_id = $req->user_id;
-        $carrito = Carrito::where('id', $req->id)->where('user_id', $user_id)->where('estado', '0')->first();
-        $carrito->delete();
+        $producto_id = $req->producto_id;
+        $carrito = Carrito::where('producto_id', $producto_id)->where('user_id', $user_id)->where('estado', '0')->first();
+        if($carrito){
+            $carrito->delete();
+        } else {
+            $carrito2 = Carrito::find($req->item_id);
+            $carrito2->delete;
+        }
         return $this->api($user_id);
     }
 

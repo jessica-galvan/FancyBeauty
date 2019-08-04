@@ -12,7 +12,15 @@ window.onload = function() {
         for(item of arrayCarrito) {
             total = total + item['cantidad'];
         }
+        return total;
+    }
 
+    function getTotalMonto(arrayCarrito){
+        var total = 0;
+        for(item of arrayCarrito) {
+            let subtotal = item['cantidad']*item['precio'];
+            total = total + subtotal;
+        }
         return total;
     }
 
@@ -52,38 +60,6 @@ window.onload = function() {
               return respuesta.json();
          })
          .then(function(respuesta){
-             for (item of total_items){
-                 item.innerText = getTotalItems(respuesta);
-             }
-         })
-         .catch (function (error) {
-             console.log(error);
-         });
-    }
-
-    function deletefromcart(event){
-        event.preventDefault();
-
-        let productID = this.getAttribute('name');
-        let dataAgregar = {
-            id: productID,
-            user_id: user_id
-        }
-
-        fetch('http://localhost:8000/api/carrito/eliminar', {
-              method: 'POST',
-              headers: {
-                'Accept': 'application/json',
-                'Content-Type': 'application/json'
-              },
-              body:JSON.stringify(dataAgregar)
-          })
-         .then(function(respuesta){
-              return respuesta.json();
-         })
-         .then(function(respuesta){
-             // console.log(respuesta);
-             // refreshCarrito(respuesta);
              for (item of total_items){
                  item.innerText = getTotalItems(respuesta);
              }
@@ -167,6 +143,7 @@ window.onload = function() {
     for (button of suscribe_button) {
         button.addEventListener('click', addSuscriber);
     }
+
     //--------------------------------------------------
     //        VALIDACIONES FORMULARIO REGISTRO
     //--------------------------------------------------
@@ -248,185 +225,173 @@ window.onload = function() {
     }
 
     //----------------------------------------------------------
-    //      BOTONES DE + Y - EN PRODUCTOS y EVENT SUBMIT
+    //      BOTONES DE + Y - EN DETALLE PRODUCTO
     //----------------------------------------------------------
     var formularioCantidad = document.querySelectorAll('form.formulario-cantidad');
     var carrito = document.querySelector('.carrito');
 
+    function updateItemCantidad(cantidad, producto_id, user_id){
+        let dataAgregar = {
+                    cantidad: cantidad.value,
+                    producto_id:producto_id,
+                    user_id: user_id
+                }
 
-    if(formularioCantidad){
-        var btnLess = document.querySelector('i.less');
-        var btnMore = document.querySelector('i.more');
-        var cantidad = document.querySelector('input#cantidad');
-        btnMore.addEventListener('click', function(){
-            cantidad.value++;
-        });
-
-        btnLess.addEventListener('click', function(){
-            if(cantidad.value <= 1) {
-              cantidad.value = 1;
-            } else {
-              cantidad.value--;
-            }
-        });
-
-        cantidad.addEventListener('blur', function(){
-            if(this.value < 1){
-                this.value = 1;
-            }
-        });
+        fetch('http://localhost:8000/api/cantidad', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body:JSON.stringify(dataAgregar)
+          })
+         .then(function(respuesta){
+              return respuesta.json();
+         })
+         .then(function(respuesta){
+             console.log(respuesta);
+             for (item of total_items){
+                 item.innerText = getTotalItems(respuesta);
+             }
+             total_compra.innerText = 'Total: '+ getTotalMonto(respuesta);
+         })
+         .catch (function (error) {
+             console.log(error);
+         });
     }
 
+    function deleteItem(producto_id, user_id, item_id) {
+        let dataAgregar = {
+            producto_id: producto_id,
+            user_id: user_id,
+            item_id: item_id
+        }
 
-    // if(formularioCantidad){
-    //     for(form of formularioCantidad){
-    //         // var elementosHijos = ;
-    //         var cantidad_div = form.children[1];
-    //         console.log(cantidad_div);
-    //         var div_hijos = cantidad_div.children;
-    //         var btnLess = div_hijos[0];
-    //
-    //         console.log(div_hijos);
-    //         console.log(btnLess);
-    //
-    //
-    //         console.log(cantidad);
-    //
-    //         //readonly hace que algo no sea modificable con clickearlo y escribir (funcionaria con estos more o less que tocan desde adentro.
-    //         //PERO mejor cambiar a input type="number", que tendria que modificar el css, para que quede lindo Y validar el campo para que no acepte numeros negativos. VER EN CASA
-    //         btnMore.addEventListener('click', function(){
-    //             cantidad.value++;
-    //             if(carrito){
-    //                 // modifyCantidadDB(cantidad, item)
-    //             }
-    //         });
-    //
-    //         btnLess.addEventListener('click', function(){
-    //             if(cantidad.value <= 1) {
-    //               cantidad.value = 1;
-    //             } else {
-    //               cantidad.value--;
-    //             }
-    //         });
-    //
-    //         cantidad.addEventListener('blur', function(){
-    //             if(this.value < 1){
-    //                 this.value = 1;
-    //             }
-    //         });
-    //     }
-    //
-    //
-    //     function modifyCantidadDB(cantidad, user_id, producto_id){
-    //         let dataAgregar = {
-    //             cantidad: cantidad,
-    //             producto_id:producto_id,
-    //             user_id: user_id
-    //         }
-    //
-    //         fetch('http://localhost:8000/api/itemcantidad', {
-    //               method: 'POST',
-    //               headers: {
-    //                 'Accept': 'application/json',
-    //                 'Content-Type': 'application/json'
-    //               },
-    //               body:JSON.stringify(dataAgregar)
-    //           })
-    //          .then(function(respuesta){
-    //               return respuesta.json();
-    //          })
-    //          .then(function(respuesta){
-    //              console.log(respuesta);
-    //          })
-    //          .catch (function (error) {
-    //              console.log(error);
-    //          });
-    //     }
-    //
-    //     // formularioCantidad.addEventListener('submit', postDataCantidad);
-    // }
+        fetch('http://localhost:8000/api/carrito/eliminar', {
+              method: 'POST',
+              headers: {
+                'Accept': 'application/json',
+                'Content-Type': 'application/json'
+              },
+              body:JSON.stringify(dataAgregar)
+          })
+         .then(function(respuesta){
+              return respuesta.json();
+         })
+         .then(function(respuesta){
+             console.log(respuesta);
+             // for (item of total_items){
+             //     item.innerText = getTotalItems(respuesta);
+             // }
+             // total_compra.innerText = 'Total: '+ getTotalMonto(respuesta);
+         })
+         .catch (function (error) {
+             console.log(error);
+         });
+    }
 
-    var formularioAgregar = document.querySelectorAll('.form-agregar');
-    if(formularioAgregar){
-        for (formAg of formularioAgregar) {
-          formAg.addEventListener('submit', addtocart);
+    if(formularioCantidad && !carrito){
+        for(form of formularioCantidad){
+            let btn = form.getElementsByTagName('i');
+            let btnLess = btn[0];
+            let btnMore = btn[1];
+            let producto_id = form[2].value;
+            let cantidad = form[1];
+
+            btnMore.addEventListener('click', function(){
+                cantidad.value++;
+            });
+
+            btnLess.addEventListener('click', function(){
+                if(cantidad.value <= 1) {
+                     cantidad.value = 1;
+                } else {
+                      cantidad.value--;
+                }
+            });
+
+            cantidad.addEventListener('blur', function(){
+                if(this.value < 1){
+                    this.value = 1;
+                }
+            });
         }
     }
 
     //----------------------------------------------------------
-    //      CARRITO
+    //      CARRITO (INCLUYE + Y -, ELIMINAR, ETC.)
     //----------------------------------------------------------
+    var article_carrito = document.querySelectorAll('article.item');
+    if(carrito){
+        var total_compra = document.querySelector('h3#total');
+        for (var i = 0; i < article_carrito.length; i++) {
+            let article = article_carrito[i];
+            let formCantidad =  article.getElementsByTagName('form');
+            let btn_i = article.getElementsByTagName('i');
+            let input_collection = article.getElementsByTagName('input')
+            let cantidad = input_collection[1];
+            let item_id =  input_collection[2];
+            let li_collection = article.getElementsByTagName('li');
+            let subtotal = li_collection[4];
+            let precio_li = li_collection[2].innerText;
+            let producto_id = input_collection[2].value;
+            let btnLess = btn_i[0];
+            let btnMore = btn_i[1];
+            let btnEliminar = article.getElementsByTagName('button')[0];
 
-    if(carrito){}
 
-    var eliminar = document.querySelectorAll('.btn-eliminar');
-    if(eliminar){
-        for(item of eliminar){
-            item.addEventListener('click', deletefromcart);
+            btnMore.addEventListener('click', function(){
+                cantidad.value++;
+                console.log(cantidad.value);
+                let precio_array = precio_li.split(': $');
+                let precio = precio_array[1].split('.');
+                let nuevoSubtotal = cantidad.value*precio[0];
+                subtotal.innerText = "Subtotal: " + nuevoSubtotal;
+                updateItemCantidad(cantidad, producto_id, user_id);
+            });
+
+            btnLess.addEventListener('click', function(){
+                if(cantidad.value <= 1) {
+                     cantidad.value = 1;
+                } else {
+                      cantidad.value--;
+                      if(carrito){
+                          let number = precio_li.split(': $');
+                          let precio = number[1].split('.');
+                          let nuevoSubtotal = cantidad.value*precio[0];
+                          subtotal.innerText = "Subtotal: " + nuevoSubtotal;
+                          updateItemCantidad(cantidad, producto_id, user_id);
+                      }
+                }
+            });
+
+            cantidad.addEventListener('blur', function(){
+                if(this.value < 1){
+                    this.value = 1;
+                    if(carrito){
+                        //tirar prompt para eliminar del carrito?
+                    }
+                } else {
+                    if(carrito){
+                        updateItemCantidad(cantidad, producto_id, user_id);
+                        let number = precio_li.split(': $');
+                        let precio = number[1].split('.');
+                        let nuevoSubtotal = cantidad.value*precio[0];
+                        subtotal.innerText = "Subtotal: " + nuevoSubtotal;
+                    }
+                }
+            });
+
+            btnEliminar.addEventListener('click', function(){
+                var confirmar = confirm('¿Deseas eliminar eliminar este articulo del carrito?');
+                if(confirmar){
+                    article.style.display = 'none';
+                    console.log('borrar');
+                    deleteItem(producto_id, user_id);
+                }
+            });
         }
     }
-
-    function refreshCarrito(carrito){
-      // CANTIDAD
-      // <li>
-      //     <!--Cantidad-->
-      //     <form class="formulario-cantidad" action="" method="post">
-      //       @csrf
-      //         <div class="cantidad">
-      //             <i class='less'>-</i>
-      //             <input id="cantidad" type="int" name="cantidad" value="{{$item['cantidad']}}">
-      //             <i class='more'>+</i>
-      //         </div>
-      //         <input type="text" hidden name="" value="">
-      //         <input type="text" hidden name="producto_id" value="{{$item['id']}}">
-      //         {{-- Estaria genial que cuando sepamos javascript, en vez de tener que darle a un boton, que nos lleve a otra pagina y luego nos vuelva a traer, para que se cambie en la base de datos, que con darle a los numeros y a un tilde o algo, se haga la modificacion. Ni idea de si se puede. Actualmente estos botones estan de decoracion, no funcionan--}}
-      //     </form>
-      // </li>
-
-      //BUTTON
-      // <li>
-      //     <button class = "btn-eliminar" type="button" name="{{$item['id']}}">Eliminar</button>
-      // </li>
-
-
-      // for (item of carrito) {
-      //   var carrito = document.querySelector('.carrito');
-      //
-      //   let article = document.createElement('article');
-      //   article.setAttribute('class', 'item');
-      //   carrito.append(article);
-      //   let ul = document.createElemente('ul');
-      //   article.append(ul);
-      //
-      //   let imageli = document.createElement('li');
-      //   let image = document.createElement('img');
-      //   let link ='/storage/productos/' + item['foto']+ '" alt="Foto Producto'
-      //   image.setAttribute('src', link);
-      //   ul.append(imageli);
-      //   imageli.append(image);
-      //
-      //   let nombre = document.createElement('li');
-      //   nombre.innterText = item['nombre'];
-      //   ul.append(nombre);
-      //
-      //   let precio = document.createElement('li');
-      //   precio.innerText = item['precio'];
-      //   ul.append(precio);
-      //
-      //   let cantidad = document.createElement('li');
-      //   cantidad.innetText = item['cantidad'];
-      //   ul.appned(cantidad);
-      //
-      //   let subtotal = document.createElement('li');
-      //   subtotal.innerText = 'Subtotal: $'+ item['cantidad']*item['precio'];
-      //   ul.append(subtotal);
-      //
-      //   let eliminar = document.createElement('li');
-      //   eliminar.innerText = '<button class = "btn-eliminar" type="button" name="' + item['id']+'">Eliminar</button>';
-      //   ul.append(eliminar);
-      // }
-    }
-
 
 
 //ACÁ TERMINA EL WINDOW ONLOAD

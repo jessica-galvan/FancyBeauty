@@ -1,4 +1,6 @@
 window.addEventListener('load', function(){
+    // var link = 'http://fancybeauty.dhalumnos.com' ;
+    var link = 'http://localhost:8000/';
 
     // -------------------------
     //      CARRITO
@@ -25,8 +27,7 @@ window.addEventListener('load', function(){
     }
 
     function getCarrito(id){
-      // fetch('http://localhost:8000/api/carrito/'+ id)
-      fetch('http://fancybeauty.dhalumnos.com/api/carrito/'+ id)
+      fetch(link + '/api/carrito/'+ id)
         .then(function(respuesta){
            return respuesta.json();
         })
@@ -44,13 +45,15 @@ window.addEventListener('load', function(){
         event.preventDefault();
         let hijos = this.children;
         let productID = hijos[1].value;
+        let cantidad = 1;
 
         let dataAgregar = {
             id: productID,
-            user_id: user_id
+            user_id: user_id,
+            cantidad: cantidad
         }
         // fetch('http://localhost:8000/api/carrito', {
-        fetch('http://fancybeauty.dhalumnos.com/api/carrito', {
+        fetch(link + '/api/carrito', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -117,7 +120,7 @@ window.addEventListener('load', function(){
         }
 
         // fetch('http://localhost:8000/api/suscribe', {
-        fetch('http://fancybeauty.dhalumnos.com/api/suscribe', {
+        fetch(link + '/api/suscribe', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -312,7 +315,7 @@ window.addEventListener('load', function(){
                 }
 
         // fetch('http://localhost:8000/api/cantidad', {
-        fetch('http://fancybeauty.dhalumnos.com/api/cantidad', {
+        fetch(link + '/api/cantidad', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -343,7 +346,7 @@ window.addEventListener('load', function(){
         }
 
         // fetch('http://localhost:8000/api/carrito/eliminar', {
-        fetch('http://fancybeauty.dhalumnos.com/api/carrito/eliminar', {
+        fetch(link + '/api/carrito/eliminar', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -469,11 +472,12 @@ window.addEventListener('load', function(){
         }
     }
 
-
     //----------------------------------------------------------
     //      AGREGAR PRODUCTOS
     //----------------------------------------------------------
     var formularioAgregar = document.querySelectorAll('.form-agregar');
+    console.log(formularioAgregar);
+
     if(formularioAgregar){
         for (formAg of formularioAgregar) {
           formAg.addEventListener('submit', addtocart);

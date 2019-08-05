@@ -1,4 +1,4 @@
-window.onload = function() {
+window.addEventListener('load', function(){
 
     // -------------------------
     //      CARRITO
@@ -25,7 +25,8 @@ window.onload = function() {
     }
 
     function getCarrito(id){
-      fetch('http://localhost:8000/api/carrito/'+ id)
+      // fetch('http://localhost:8000/api/carrito/'+ id)
+      fetch('http://fancybeauty.dhalumnos.com/api/carrito/'+ id)
         .then(function(respuesta){
            return respuesta.json();
         })
@@ -48,7 +49,8 @@ window.onload = function() {
             id: productID,
             user_id: user_id
         }
-        fetch('http://localhost:8000/api/carrito', {
+        // fetch('http://localhost:8000/api/carrito', {
+        fetch('http://fancybeauty.dhalumnos.com/api/carrito', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -114,7 +116,8 @@ window.onload = function() {
             email: email,
         }
 
-        fetch('http://localhost:8000/api/suscribe', {
+        // fetch('http://localhost:8000/api/suscribe', {
+        fetch('http://fancybeauty.dhalumnos.com/api/suscribe', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -149,10 +152,10 @@ window.onload = function() {
     //--------------------------------------------------
     var formularioRegistro = document.querySelector('form#registro');
     if(formularioRegistro) {
-        var hayError = false;
+        var hayError = true;
 
         //PARA CAMPOS COMUNES
-        var validarVacio = function() {
+        function validarVacio() {
             var name = this.getAttribute('name');
             var spanError = document.querySelector('span#error-'+name);
             if(this.value.trim() == ""){
@@ -163,7 +166,51 @@ window.onload = function() {
                 hayError = true;
             }else{
                 spanError.innerText = '';
+                hayError = false;
             }
+        }
+
+        function validarEmail(){
+          var regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+          var spanError = document.querySelector('span#error-email');
+          if(this.value.trim() == ""){
+              spanError.innerText = '* El campo no puede estar vacio';
+              hayError = true;
+          }else if (!regex.test(this.value)){
+              spanError.innerText = '* Email no valido';
+              hayError = true;
+          } else {
+              spanError.innerText = '';
+              hayError = false;
+          }
+        }
+
+        function validarPassword(){
+          var spanError = document.querySelector('span#error-password');
+          if(this.value.trim() == ""){
+              spanError.innerText = '* El campo no puede estar vacio';
+              hayError = true;
+          } else if(this.value.length < 6){
+              spanError.innerText = '* La contraseña debe tener minimo 6 caracteres';
+              hayError = true;
+          } else {
+              spanError.innerText = '';
+              hayError = false;
+          }
+        }
+
+        function validarConfirm(){
+          var spanError = document.querySelector('span#error-password');
+          if(this.value.trim() == "") { //trim(this.value)
+              hayError = true;
+              spanError.innerText = '* El campo no puede estar vacio';
+          } else if(this.value != campoPassword.value){
+              hayError = true;
+              spanError.innerText = '* Las contraseñas no coinciden';
+          } else {
+              spanError.innerText = '';
+              hayError = false;
+          }
         }
 
         var campoNombre = document.querySelector('input#name');
@@ -173,59 +220,91 @@ window.onload = function() {
 
         //EMAIL
         var campoEmail = document.querySelector('input#email');
-        campoEmail.addEventListener('blur', function(){
-            var regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm; //validacion de email
-            var spanError = document.querySelector('span#error-email');
-            if(this.value.trim() == ""){
-                spanError.innerText = '* El campo no puede estar vacio';
-                hayError = true;
-            }else if (!regex.test(this.value)){
-                spanError.innerText = '* Email no valido';
-                hayError = true;
-            } else {
-                spanError.innerText = '';
-            }
-        });
+        campoEmail.addEventListener('blur', validarEmail);
 
         //CONTRASENIA
         var campoPassword = document.querySelector('input#password');
-        campoPassword.addEventListener('blur', function(){
-            var spanError = document.querySelector('span#error-password');
-            if(this.value.trim() == ""){
-                spanError.innerText = '* El campo no puede estar vacio';
-                hayError = true;
-            } else if(this.value.length < 6){
-                spanError.innerText = '* La contraseña debe tener minimo 6 caracteres';
-                hayError = true;
-            } else {
-                spanError.innerText = '';
-            }
-        });
+        campoPassword.addEventListener('blur', validarPassword);
         var campoPasswordConfirm = document.querySelector('input#password-confirm');
-        campoPasswordConfirm.addEventListener('blur', function(){
-            var spanError = document.querySelector('span#error-password');
-            if(this.value.trim() == "") { //trim(this.value)
-                hayError = true;
-                spanError.innerText = '* El campo no puede estar vacio';
-            } else if(this.value != campoPassword.value){
-                hayError = true;
-                spanError.innerText = '* Las contraseñas no coinciden';
-            } else {
-                spanError.innerText = '';
-            }
-        });
+        campoPasswordConfirm.addEventListener('blur', validarConfirm);
 
+        formularioRegistro.onsubmit = function(e) {
+
+          if(hayError == true) {
+            e.preventDefault();
+          }
+        };
         //NO ENVIES EL FORMULARIO HASTA QUE NO HAYA ERRORES.
         formularioRegistro.onsubmit = function(event){
-            event.preventDefault();
+            function validarVacioForm(campo){
+              var name = campo.getAttribute('name');
+              var spanError = document.querySelector('span#error-'+name);
+              if(campo.value.trim() == ""){
+                  spanError.innerText = '* El campo no puede estar vacio';
+                  hayError = true;
+              } else if(!isNaN(campo.value)){
+                  spanError.innerText = '* El campo no puede ser de tipo numerico';
+                  hayError = true;
+              }else{
+                  spanError.innerText = '';
+                  hayError = false;
+              }
+            }
+            function validarEmailForm(campo){
+              var regex = /[A-Z0-9._%+-]+@[A-Z0-9.-]+.[A-Z]{2,4}/igm;
+              var spanError = document.querySelector('span#error-email');
+              if(campo.value.trim() == ""){
+                  spanError.innerText = '* El campo no puede estar vacio';
+                  hayError = true;
+              }else if (!regex.test(campo.value)){
+                  spanError.innerText = '* Email no valido';
+                  hayError = true;
+              } else {
+                  spanError.innerText = '';
+                  hayError = false;
+              }
+            }
+            function validarPasswordForm(campo){
+              var spanError = document.querySelector('span#error-password');
+              if(campo.value.trim() == ""){
+                  spanError.innerText = '* El campo no puede estar vacio';
+                  hayError = true;
+              } else if(campo.value.length < 6){
+                  spanError.innerText = '* La contraseña debe tener minimo 6 caracteres';
+                  hayError = true;
+              } else {
+                  spanError.innerText = '';
+                  hayError = false;
+              }
+            }
+            function validarConfirmForm(campo){
+              var spanError = document.querySelector('span#error-password');
+              if(campo.value.trim() == "") { //trim(this.value)
+                  hayError = true;
+                  spanError.innerText = '* El campo no puede estar vacio';
+              } else if(campo.value != campoPassword.value){
+                  hayError = true;
+                  spanError.innerText = '* Las contraseñas no coinciden';
+              } else {
+                  spanError.innerText = '';
+                  hayError = false;
+              }
+            }
+            validarVacioForm(campoNombre);
+            validarVacioForm(campoApellido);
+            validarEmailForm(campoEmail);
+            validarPasswordForm(campoPassword);
+            validarConfirmForm(campoPasswordConfirm);
+            console.log('probando');
             if(hayError == true){
                 event.preventDefault();
+                console.log('error');
             }
         }
     }
 
     //----------------------------------------------------------
-    //      BOTONES DE + Y - EN DETALLE PRODUCTO
+    //     BOTONES DE + Y - EN DETALLE PRODUCTO
     //----------------------------------------------------------
     var formularioCantidad = document.querySelectorAll('form.formulario-cantidad');
     var carrito = document.querySelector('.carrito');
@@ -237,7 +316,8 @@ window.onload = function() {
                     user_id: user_id
                 }
 
-        fetch('http://localhost:8000/api/cantidad', {
+        // fetch('http://localhost:8000/api/cantidad', {
+        fetch('http://fancybeauty.dhalumnos.com/api/cantidad', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -267,7 +347,8 @@ window.onload = function() {
             item_id: item_id
         }
 
-        fetch('http://localhost:8000/api/carrito/eliminar', {
+        // fetch('http://localhost:8000/api/carrito/eliminar', {
+        fetch('http://fancybeauty.dhalumnos.com/api/carrito/eliminar', {
               method: 'POST',
               headers: {
                 'Accept': 'application/json',
@@ -394,5 +475,16 @@ window.onload = function() {
     }
 
 
+    //----------------------------------------------------------
+    //      AGREGAR PRODUCTOS
+    //----------------------------------------------------------
+    var formularioAgregar = document.querySelectorAll('.form-agregar');
+    if(formularioAgregar){
+        for (formAg of formularioAgregar) {
+          formAg.addEventListener('submit', addtocart);
+        }
+    }
+
+
 //ACÁ TERMINA EL WINDOW ONLOAD
-}
+})

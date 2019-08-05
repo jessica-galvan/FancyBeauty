@@ -5,24 +5,11 @@
    
 }
 
-.caras-Dechicas{
-    width: 30%;
-    align-self: center;
-    margin-top: 3%;
-}
-
-.compraRealizada{
-    display: flex;
-    flex-direction: column;
-    justify-content: center;
-}
-
  #lista{
     list-style: none;
     display: flex;
     flex-direction: column;
     align-items: center;
-  
 }
 #titulo-carrito{
     text-align: center;
@@ -74,7 +61,7 @@
 }
 
 #cantidad{
-    width: 52px;
+    width: 30px;
     padding: 7%;
     font-size: 30px;
     color: #C4AAD7;
@@ -126,12 +113,6 @@
 
 @media (min-width: 990px){
 
-    .caras-Dechicas{
-    width: 15%;
-    
-}
-
-    
  #titulo-carrito{
     font-size: 30px;
        margin-top: 1%;

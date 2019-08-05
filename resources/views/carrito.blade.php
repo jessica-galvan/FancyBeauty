@@ -12,9 +12,9 @@
     @forelse($carrito as $item)
       <article class="item">
           <ul id="lista" >
-              <li class="nombre-del-producto">Nombre: {{$item['nombre']}}</li>
+              <li class="nombre-del-producto">{{$item['nombre']}}</li>
               <li ><img class="fotoproducto" src="/storage/productos/{{$item['foto']}}" alt="Foto Producto"></li>
-              <li>Precio: ${{$item['precio']}}</li>
+              <li> ${{$item['precio']}}</li>
               <li>
                   <!--Cantidad-->
                   <form class="formulario-cantidad" action="" method="post">

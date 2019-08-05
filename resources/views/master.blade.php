@@ -29,10 +29,13 @@
 <!DOCTYPE html>
 <html>
     <head>
+       
         <title>Fancy Beauty</title>
+        <meta charset="utf-8">
         <meta charset="utf-8">
         <meta name="viewport" content="width=device-width, initial-scale=1.0">
         <link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.8.2/css/all.css" integrity="sha384-oS3vJWv+0UjzBfQzYUhtDYW+Pj2yciDJxpsK1OYPAYjqT085Qq/1cq5FLXAZQ7Ay" crossorigin="anonymous">
+        <link rel="shortcut icon" href="{{ asset('logoDeTitel.png') }}" />
         <link rel="stylesheet" href="/css/master.css">
         @foreach($CSS as $variable => $valor)
           <link rel="stylesheet" href="/css/{{$valor}}.css">
@@ -57,7 +60,7 @@
                                 <ul id="menu">
                                     <a href="/"><li>Inicio</li></a>
                                     <a href="#"><li>Categorias</li></a>
-                                    <a href="#"><li>Contacto</li></a>
+                                    <a href="#"><li>Catálogo</li></a>
                                     <a href="/faq"><li>Preguntas Frecuentes</li></a>
                                     <a href="{{$linkUsuario}}"><li>{{$textoHamburguesa}}</li></a>
                                     {{-- <a href="{{ route('logout') }}"><li>{{$textoLogout}}</li></a> --}}
@@ -147,7 +150,7 @@
                                     </div>
                                 </li>
                                 <li>|</li>
-                                <li><a href="">CONTACTO</a></li>
+                                <li><a href="">CATÁLOGO</a></li>
                                 <li>|</li>
                                 <li><a href="/faq">PREGUNTAS FRECUENTES</a></li>
                             </ul>
@@ -202,7 +205,7 @@
                         <a href="/carrito"><h3>VER CARRITO</h3></a>
                         <a href="/faq"><h3>PREGUNTAS FRECUENTES</h3></a>
                         <a href="#"><h3>SOBRE NOSOTROS</h3> </a>
-                        <a href="#"><h3>CONTACTO</h3> </a>
+                        <a href="#"><h3>CATÁLOGO</h3> </a>
                     </article>
 
                     <article class="social-media">

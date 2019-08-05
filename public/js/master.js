@@ -132,7 +132,7 @@ window.addEventListener('load', function(){
               return respuesta.json();
          })
          .then(function(respuesta){
-             console.log(respuesta);
+             // console.log(respuesta);
              for (input of suscribe_input) {
                  input.value = "";
              }
@@ -293,10 +293,8 @@ window.addEventListener('load', function(){
             validarEmailForm(campoEmail);
             validarPasswordForm(campoPassword);
             validarConfirmForm(campoPasswordConfirm);
-            console.log('probando');
             if(hayError == true){
                 event.preventDefault();
-                console.log('error');
             }
         }
     }
@@ -358,11 +356,11 @@ window.addEventListener('load', function(){
               return respuesta.json();
          })
          .then(function(respuesta){
-             console.log(respuesta);
-             // for (item of total_items){
-             //     item.innerText = getTotalItems(respuesta);
-             // }
-             // total_compra.innerText = 'Total: '+ getTotalMonto(respuesta);
+             // console.log(respuesta);
+             for (item of total_items){
+                 item.innerText = getTotalItems(respuesta);
+             }
+             total_compra.innerText = 'Total: '+ getTotalMonto(respuesta);
          })
          .catch (function (error) {
              console.log(error);
@@ -421,24 +419,28 @@ window.addEventListener('load', function(){
 
             btnMore.addEventListener('click', function(){
                 cantidad.value++;
-                console.log(cantidad.value);
                 let precio_array = precio_li.split(': $');
                 let precio = precio_array[1].split('.');
                 let nuevoSubtotal = cantidad.value*precio[0];
-                subtotal.innerText = "Subtotal: " + nuevoSubtotal;
+                subtotal.innerText = "Subtotal: $" + nuevoSubtotal;
                 updateItemCantidad(cantidad, producto_id, user_id);
             });
 
             btnLess.addEventListener('click', function(){
                 if(cantidad.value <= 1) {
                      cantidad.value = 1;
+                     var confirmar = confirm('¿Deseas eliminar este articulo del carrito?');
+                     if(confirmar){
+                         article.style.display = 'none';
+                         deleteItem(producto_id, user_id);
+                     }
                 } else {
                       cantidad.value--;
                       if(carrito){
                           let number = precio_li.split(': $');
                           let precio = number[1].split('.');
                           let nuevoSubtotal = cantidad.value*precio[0];
-                          subtotal.innerText = "Subtotal: " + nuevoSubtotal;
+                          subtotal.innerText = "Subtotal: $" + nuevoSubtotal;
                           updateItemCantidad(cantidad, producto_id, user_id);
                       }
                 }
@@ -448,7 +450,11 @@ window.addEventListener('load', function(){
                 if(this.value < 1){
                     this.value = 1;
                     if(carrito){
-                        //tirar prompt para eliminar del carrito?
+                      var confirmar = confirm('¿Deseas eliminar este articulo del carrito?');
+                      if(confirmar){
+                          article.style.display = 'none';
+                          deleteItem(producto_id, user_id);
+                      }
                     }
                 } else {
                     if(carrito){
@@ -456,16 +462,15 @@ window.addEventListener('load', function(){
                         let number = precio_li.split(': $');
                         let precio = number[1].split('.');
                         let nuevoSubtotal = cantidad.value*precio[0];
-                        subtotal.innerText = "Subtotal: " + nuevoSubtotal;
+                        subtotal.innerText = "Subtotal: $" + nuevoSubtotal;
                     }
                 }
             });
 
             btnEliminar.addEventListener('click', function(){
-                var confirmar = confirm('¿Deseas eliminar eliminar este articulo del carrito?');
+                var confirmar = confirm('¿Deseas eliminar este articulo del carrito?');
                 if(confirmar){
                     article.style.display = 'none';
-                    console.log('borrar');
                     deleteItem(producto_id, user_id);
                 }
             });
@@ -476,7 +481,7 @@ window.addEventListener('load', function(){
     //      AGREGAR PRODUCTOS
     //----------------------------------------------------------
     var formularioAgregar = document.querySelectorAll('.form-agregar');
-    console.log(formularioAgregar);
+    // console.log(formularioAgregar);
 
     if(formularioAgregar){
         for (formAg of formularioAgregar) {

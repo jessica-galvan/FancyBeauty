@@ -14,18 +14,6 @@ use App\EditarPerfil;
 
 
 class UsuarioController extends Controller{
-  public function index(){
-      //
-  }
-
-  public function create(Request $req){
-      //
-  }
-
-  public function store(Request $request){
-      //
-  }
-
   public function show(){
       $usuario = Auth::user();
       $info = new EditarPerfil;
@@ -102,7 +90,6 @@ class UsuarioController extends Controller{
   }
 
   public function updatePass(Request $req){
-      // dd($req);
         //Primero, chequea que la contraseña original sea la correcta.
         if (!(Hash::check($req->get('currentPassword'), Auth::user()->password))) {
             $errorContrasenia = "* Contraseña incorrecta";
@@ -128,7 +115,6 @@ class UsuarioController extends Controller{
             'confirmed' => '* Las contraseñas no coinciden',
         ];
         $reglas = [
-            // 'currentPassword' => 'required',
             'password' => 'required|string|min:6|confirmed',
         ];
         $this->validate($req, $reglas, $mensajes);
@@ -138,29 +124,5 @@ class UsuarioController extends Controller{
         $user->password = bcrypt($req->get('password'));
         $user->save();
         return redirect('/perfil')->with("mensajePrincipal","Tu contraseña se ha cambiado correctamente.");
-
-      // $usuario = Auth::user();
-      // $reglas = [
-      //     'currentPassword' => 'required|string',
-      //     'password' => 'required|string|min:6|confirmed|different:currentPassword',
-      // ];
-      // $mensajes = [
-      //     'required' => '* El campo no puede estar vacio',
-      //     'string' => '* El campo debe ser del tipo texto',
-      //     'min' => '* La contraseña debe tener al menos caracteres',
-      //     'confirmed' => '* Las contraseñas no coinciden',
-      //     'different' => '* La nueva contraseña no puede ser igual a la anterior',
-      // ];
-      // $this->validate($req, $reglas, $mensajes);
-      //
-      // $contraseniaOriginal = $usuario->password;
-      // if(!password_verify($req['oldPassword'], $contraseniaOriginal)){
-      //     $errorContrasenia = 'Contraseña incorrecta';
-      //     return view('cambiarContrasenia', compact('errorContrasenia'));
-      // }
-      // /*HASTA ACÁ VALIDA*/
-      // $usuario->password = Hash::make($req['password']);
-      // $usuario->save();
-      // return redirect('/perfil');
   }
 }

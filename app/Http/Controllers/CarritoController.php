@@ -31,15 +31,17 @@ class CarritoController extends Controller{
       $existe = Carrito::where('producto_id', $req->id)->where('user_id', $user_id)->where('estado','0')->first();
       // //Si la cantidad esta seteada en el request, pone eso en la variable, sino pone 1.
       // $cantidad = isset($req->cantidad)?$req->cantidad:1;
-      if(isset($req->cantidad)){
-          if($req->cantidad < 1){
-              $cantida = 1;
-          } else {
-              $cantidad = $req->cantidad;
-          }
-      } else {
-          $cantida = 1;
-      }
+      // if(isset($req->cantidad)){
+      //     if($req->cantidad < 1){
+      //         $cantida = 1;
+      //     } else {
+      //         $cantidad = $req->cantidad;
+      //     }
+      // } else {
+      //     $cantida = 1;
+      // }
+
+      $cantidad = 1;
 
       if($existe){
           $existe->cantidad += $cantidad;

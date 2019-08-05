@@ -228,12 +228,7 @@ window.addEventListener('load', function(){
         var campoPasswordConfirm = document.querySelector('input#password-confirm');
         campoPasswordConfirm.addEventListener('blur', validarConfirm);
 
-        formularioRegistro.onsubmit = function(e) {
 
-          if(hayError == true) {
-            e.preventDefault();
-          }
-        };
         //NO ENVIES EL FORMULARIO HASTA QUE NO HAYA ERRORES.
         formularioRegistro.onsubmit = function(event){
             function validarVacioForm(campo){

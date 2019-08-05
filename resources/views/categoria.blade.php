@@ -11,9 +11,10 @@
 
 @endsection
 @section('content')
-  <section class="productos">
+  <div class="categoria-fondo">
+    <section class="productos">
       <div class="titulo-seccion">
-          <h2>{{$categoria['nombre']}}</h2>
+          <h2 id="titulo-categoria">{{$categoria['nombre']}}</h2>
           <p>{{$categoria['descripcion']}}</p>
       </div>
 
@@ -41,4 +42,5 @@
   <section class='paginar'>
       {{$productos->links()}}
   </section>
+  </div>
 @endsection

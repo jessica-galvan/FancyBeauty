@@ -1,7 +1,7 @@
 /*Error*/
 .main-container {
-  background: rgba(196,170,215, 0.8);
-  padding: 5vw;
+  background-image: url(../img/Fondos/FondoSeccionesTres.png);
+    padding: 6vw;
 }
 .error-caja {
   background-color: white;
@@ -31,6 +31,8 @@
     display: flex;
     flex-wrap: wrap;
     justify-content: center;
+    width: 90%;
+    margin-bottom: 8%;
 }
 
 .textoProducto {
@@ -60,10 +62,11 @@
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
+    
 }
 
 .cantidad{
-    border: 1px solid black;
+    border: 1px solid #C4AAD7;
 	height: 40px;
 	position: relative;
 	width: 122px;
@@ -91,6 +94,22 @@
     transition: none;
 }
 
+.less{
+    color: white;
+    background-color: #C4AAD7;
+    padding: 8%;
+    font-size: 30px;
+    
+}
+.more{
+     color: white;
+     background-color: #C4AAD7;
+     padding: 8%;
+     font-size: 30px;
+    
+}
+
+
 .cantidad input {
     border: 0px solid;
     float: left;
@@ -99,7 +118,9 @@
     text-align: center;
     outline: none;
     width: 54px;
+    color:#C4AAD7;
 }
+
 
 .precio {
     margin-top: 2vh;
@@ -145,6 +166,8 @@
     background: linear-gradient(to left,#FFB6BF 0,#f08ccd 100%);
 }
 
+
+
 @media (min-width: 992px) { /*DESKTOP*/
     /*Error*/
     .main-container {
@@ -165,6 +188,8 @@
     }
 
     /*Producto*/
+    
+  
     .caja-producto {
         padding: 20px;
         width: 70%;
@@ -220,3 +245,5 @@
         margin-top: 15px;
         padding: 10px;
     }
+    
+    

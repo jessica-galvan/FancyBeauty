@@ -71,7 +71,6 @@ nav a {
   display: flex;
   flex-wrap: wrap;
   justify-content: space-between;
-
   color: white;
 }
 
@@ -183,8 +182,8 @@ nav a {
     position: absolute;
     top: 4px;
     right: 8px;
-    height: 20px;
-    width: 20px;
+    height: 15px;
+    width: 15px;
     line-heizght: 18px;
     background-color: #C4AAD7;
     color: white;
@@ -296,15 +295,15 @@ nav a {
     /*--------HEADER---------*/
 /*--------LOGO CARRITO---------*/
 .icon-img {
-  width: 7vw;
+  width: 7.5vw;
 }
 }
 
-@media (min-width: 400px){
+@media (min-width: 380px){
     /*--------HEADER---------*/
 /*--------LOGO CARRITO---------*/
 .icon-img {
-  width: 5vw;
+  width: 6vw;
 
 }
 }
@@ -312,14 +311,11 @@ nav a {
 @media (min-width: 430px){
     /*--------HEADER---------*/
 .menu-mobile {
-  height: 13vh;
+  height: 11vh;
 }
 
 .logo {
   height: 6vh;
-}
-.icon-img {
-  width: 5vw;
 }
 
 .totalItems{
@@ -328,11 +324,51 @@ nav a {
     }
 }
 
-@media (min-width: 630px){
+@media (min-width: 472px){
+    .icon-img {
+  width: 5.5vw;
+}
+}
+
+@media (min-width: 518px){
+    .icon-img {
+  width: 5.1vw;
+}
+
+}
+
+@media (min-width: 546px){
+    .icon-img {
+  width: 4.6vw;
+}
+
+.totalItems{ /* cantidad de productos en el header */
+    position: absolute;
+    top: 14px;
+    right: 10px;
+    height: 17px;
+    width: 17px;
+   
+    }
+
+}
+
+@media (min-width: 588px){
+    .icon-img {
+  width: 4.3vw;
+}
+  .menu-mobile{
+         height: 10.3vw;
+    }
+    
+}
+
+@media (min-width: 620px){
     /*--------HEADER---------*/
     .icon-img {
-   width: 4.5vw;
+   width: 4vw;
 }
+  
     }
 
 @media (min-width: 700px) { /*TABLET*/
@@ -349,7 +385,7 @@ nav a {
   .menu-mobile {
     position: fixed;
     width: 100vw;
-    height: 12vw;
+    height: 11vw;
     background: #8CD0E3; /*Lightblue*/
     padding: 3vw;
     padding-bottom: 7vh;
@@ -377,11 +413,16 @@ nav a {
     .totalItems{
     top: 15px;
     right: 20px;
-    height: 25px;
-    width: 25px;
+    height: 22px;
+    width: 22px;
     font-size: 0.7rem;
     }
 }
+
+@media (min-width: 700px){
+    
+}
+
 @media (min-width: 992px) { /*DESKTOP*/
   /*GENERAL*/
   * {
@@ -555,6 +596,14 @@ nav a {
   .dropdown:hover .dropbtn {
   	background: #8CD0E3; /*Lightblue*/
   }
+    
+     .totalItems{
+    top: 2px;
+    right: 4px;
+    height: 22px;
+    width: 22px;
+    font-size: 0.7rem;
+    }
 
   /*FIN PRIMERA LINEA*/
 

@@ -10,21 +10,21 @@ class UserSeeder extends Seeder{
         [
           'name'=> 'Admin',
           'surname'=>'FB',
-          'email'=>'admin1@fancybeauty.com',
+          'email'=>'admin4@fancybeauty.com',
           'password'=>'123456',
           'rol'=>'100'
         ],
         [
           'name'=> 'Jessica',
           'surname'=>'Galvan',
-          'email'=>'jessica_lamelli1@hotmail.com',
+          'email'=>'jessica_lamelli4@hotmail.com',
           'password'=>'123456',
           'rol'=>'100'
       ],
       [
         'name'=> 'Jessica',
         'surname'=>'Galvan',
-        'email'=>'jessica.galvan1@hotmail.com',
+        'email'=>'jessica.galvan4@hotmail.com',
         'password'=>'123456',
         'rol'=>'10'
     ],

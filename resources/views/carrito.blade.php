@@ -3,16 +3,17 @@
   <?php $CSS = ['carrito'];?>
 @endsection
 @section('content')
-    <h2 id="titulo-carrito">Carrito</h2>
+    <div class="carrito-container">
+    <h2 id="titulo-carrito">Mi Carrito</h2>
   {{-- COMENTARIOS:
       Faltaria ver como se va a ver el carrito, como se pone cada producto, que botones tiene que tener (modificar la cantidad, sacar del carrito), un boton para ejecutar la compra, donde irian los mensajes, que pasa si no tiene nada en el carrito,--}}
 
 <div class="carrito">
     @forelse($carrito as $item)
       <article class="item">
-          <ul>
-              <li><img src="/storage/productos/{{$item['foto']}}" alt="Foto Producto"></li>
-              <li>Nombre: {{$item['nombre']}}</li>
+          <ul id="lista" >
+              <li class="nombre-del-producto">Nombre: {{$item['nombre']}}</li>
+              <li ><img class="fotoproducto" src="/storage/productos/{{$item['foto']}}" alt="Foto Producto"></li>
               <li>Precio: ${{$item['precio']}}</li>
               <li>
                   <!--Cantidad-->
@@ -29,7 +30,7 @@
               </li>
               <li>Sub-total:  {{$item['cantidad']*$item['precio']}}</li>
               <li>
-                  <button class = "btn-eliminar" type="button" name="{{$item['id']}}">Eliminar</button>
+                  <button class = "btn" type="button" name="{{$item['id']}}">Eliminar</button>
               </li>
           </ul>
       </article>
@@ -46,13 +47,17 @@
   </div> --}}
 
   @if($total != '')
+      <div class="totalYcomprar" >
       <h3 id='total'>Total: {{$total}}</h3>
 
       <form class="editar-button-amarillo" action="/closecart" method="post">
         @csrf
-          <button type="submit" name="button">Comprar</button>
+          <button class = "btn" type="submit" name="button">Comprar</button>
       </form>
+      </div>
   @endif
-
-  <a href="/historial">Ver Historial de Compras</a>
+    <div class="historial-caja">
+  <a class="historial" href="/historial">Ver Historial de Compras</a>
+  </div>
+  </div>
 @endsection

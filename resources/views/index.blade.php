@@ -5,7 +5,7 @@
 @section('content')
     <section class="intro">
         <div class="intro-imagen">
-            <img src="/img/swatches-height.jpg" alt="Swatches">
+            <img src="/img/fotoinicio.jpeg" alt="Swatches">
         </div>
         <div class="intro-texto">
             <h1>Para todas</h1>

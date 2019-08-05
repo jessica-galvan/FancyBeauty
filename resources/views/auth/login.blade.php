@@ -28,14 +28,14 @@
         </form>
 
         <div class="form-links">
-            <a href="/recupero">¿Olvidó su contraseña?</a>
+            <a href="/recupero">¿Olvidaste tu contraseña?</a>
         </div>
     </div>
 
     <div class="register-container">
         <div class="login-text">
             <h2>¿No tenés una cuenta?</h2>
-            <p>Completa este formulario y crea tu cuenta para obtener varios beneficios.</p>
+            <p>Completá este formulario y creá tu cuenta para obtener beneficios.</p>
         </div>
         <a class='login-button' href="/register">
           <button type="button" name="">Registrarse</button>

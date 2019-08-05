@@ -7,7 +7,7 @@
         <div class="">
             <div class="login-text">
                 <h2>Olvidé mi contraseña</h2>
-                <p>Ingresa tu email y te enviaremos un email con un link para poder cambiarla</p>
+                <p>Ingresá tu email y te enviaremos un email con un link para poder cambiarla</p>
             </div>
             <form method="POST" action="{{ route('password.update') }}">
                 @csrf

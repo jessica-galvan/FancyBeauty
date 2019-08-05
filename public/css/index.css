@@ -10,7 +10,7 @@
 }
 
 .intro-imagen {
-  width: 100vw;
+  width: 100%;
 }
 
 .intro-imagen img {
@@ -128,6 +128,7 @@ button {
 
   .intro-imagen {
     width: 45%;
+    height: 45%;
     display: flex;
     flex-wrap: wrap;
     align-items: center;

@@ -57,7 +57,7 @@ class ProductoController extends Controller {
             ->orHaving('categoriaNom', 'like', "%$palabra%")
             ->orHaving('tipoProductoNom', 'like', "%$palabra%")
             ->get();
-        return view('filtro', compact('productos'));
+        return view('buscar', compact('productos'));
     }
 
     //--------------------------------

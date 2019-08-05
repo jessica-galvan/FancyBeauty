@@ -92,8 +92,14 @@
                             <div class="icons">
                                 <a href="#">
                                     <div class="icon-box">
-                                        <img id="lupa" class="icon-img" src="/img/icons/LupaDeBusqueda.png" alt="Busqueda">
-                                        <p>Buscar</p>
+                                        <div>
+                                            <img id="lupa" class="icon-img" src="/img/icons/LupaDeBusqueda.png" alt="Busqueda">
+                                            <p>Buscar</p>
+                                        </div>
+                                        <div class="buscador">
+                                            <input type="text">
+                                            <input type="submit">
+                                        </div>
                                     </div>
                                 </a>
                             </div>
@@ -235,5 +241,15 @@
         </div>
     </div>
     <script src="/js/master.js"></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script> 
+$(document).ready(function(){
+  $("#lupa").click(function(){
+    $(".buscador").slideToggle("slow");
+  });
+
+});
+</script>
+
 </body>
 </html>

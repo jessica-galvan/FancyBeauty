@@ -87,6 +87,9 @@ nav a {
 .logo {
   height: 5vh;
 }
+.icon-box{
+    display: flex;
+}
 
 #user-icon {
   display: none;
@@ -429,6 +432,19 @@ nav a {
     font-size: 20px;
     box-sizing: border-box;
   }
+    /*BUSCADOR*/
+    .buscador{
+     display: flex;
+     flex-direction: column;
+        width: 5%;
+        display: none;
+      
+    }
+    
+    .icon-box{
+        display: flex;
+        flex-direction: row;
+    }
 
   /*MAIN-CONTAINER*/
   .main-container {

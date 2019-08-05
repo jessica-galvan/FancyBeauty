@@ -47,9 +47,7 @@
             </article>
             @endif
         @endforeach
-        <div class="mas">
-            <button class="ver-mas" type="button" name="button">Ver más</button>
-        </div>
+        
     </section>
 
     <section class="ofertas-mobile">
@@ -92,8 +90,6 @@
                 </article>
             @endif
         @endforeach
-        <div class="mas">
-            <button class="ver-mas" type="button" name="button">Ver más</button>
-        </div>
+        
     </section>
 @endsection

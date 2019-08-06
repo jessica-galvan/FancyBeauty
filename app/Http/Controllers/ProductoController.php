@@ -19,7 +19,8 @@ class ProductoController extends Controller {
     }
 
     public function todos(){
-      $productos = Producto::all()->orderBy('categoria_id');
+      // $productos = Producto::orderBy('estado_id')->get();
+      $productos = Producto::paginate(10);
       return view('todos-productos', compact('productos'));
     }
 
@@ -38,25 +39,20 @@ class ProductoController extends Controller {
         return view('categoria', compact('productos', 'categoria'));
     }
 
-    public function buscador($palabra){
+    public function buscador(Request $req){
       //Si quiero que busque frases, voy a tener que hacer un split por espacios, para que me arme un array con todas las palabras que hay en la frase, y luego haga un foreach donde busque con el where like, con cada palabra, y lo meta en un array (que previamente estaba vacio), hasta que termine. Luego ese nuevo array de productos que coinciden con alguna de las palabras, es enviado a la pagina de busquedas.
-      // $array = explode(" ", $palabra);
-      // $productos = [];
-      // foreach ($array as $item) {
-      //     $productos[] = Producto::where('nombre', 'like', "%$item%")->get();
-      // }
-        // $productos = Producto::where('nombre', 'like', "%$palabra%");
-        // ->orWhere('categoria', 'like', "%$palabra%")->get();
-
-
-        $productos = DB::table('productos')
-            ->join('categorias', 'productos.categoria_id', '=', 'categorias.id')
-            ->join('tipoProductos', 'productos.tipoproducto_id', '=', 'tipoProductos.id')
-            ->select('productos.id', 'productos.nombre AS productoNom', 'productos.foto', 'productos.precio', 'categorias.nombre AS categoriaNom', 'tipoProductos.nombre AS tipoProductoNom')
-            ->having('productoNom', 'like', "%$palabra%")
-            ->orHaving('categoriaNom', 'like', "%$palabra%")
-            ->orHaving('tipoProductoNom', 'like', "%$palabra%")
-            ->get();
+        $array = explode(" ", $req['query']);
+        $productos = [];
+        foreach ($array as $palabra){
+            $productos [] = DB::table('productos')
+                ->join('categorias', 'productos.categoria_id', '=', 'categorias.id')
+                ->join('tipoProductos', 'productos.tipoproducto_id', '=', 'tipoProductos.id')
+                ->select('productos.id', 'productos.nombre AS productoNom', 'productos.foto', 'productos.precio', 'categorias.nombre AS categoriaNom', 'tipoProductos.nombre AS tipoProductoNom')
+                ->having('productoNom', 'like', "%$palabra%")
+                ->orHaving('categoriaNom', 'like', "%$palabra%")
+                ->orHaving('tipoProductoNom', 'like', "%$palabra%")
+                ->get();
+        }
         return view('buscar', compact('productos'));
     }
 

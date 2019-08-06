@@ -124,13 +124,11 @@ class CarritoController extends Controller{
 
     public function closecart(){
         $items = Carrito::where('user_id', Auth::user()->id)->where('estado', 0)->get();
-
         $cartNumber = Carrito::all()->max('num_carrito')+1;
-
         foreach($items as $item){
-          $item->num_carrito = $cartNumber;
-          $item->estado = 1;
-          $item->save();
+            $item->num_carrito = $cartNumber;
+            $item->estado = 1;
+            $item->save();
         }
         return redirect('/felicitaciones');
     }

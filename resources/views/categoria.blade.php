@@ -1,21 +1,12 @@
 @extends('master')
 @section('css')
-  <?php
-    $CSS = ['index', 'producto'];
-    $descripcion = [
-      'Rostro' => 'Chamuyo rostro',
-      'Accesorios' => 'Chamuyo 2',
-    ]
-
-  ?>
-
+  <?php $CSS = ['index', 'producto']; ?>
 @endsection
 @section('content')
   <div class="categoria-fondo">
     <section class="productos">
       <div class="titulo-seccion">
           <h2 id="titulo-categoria">{{$categoria['nombre']}}</h2>
-          <p>{{$categoria['descripcion']}}</p>
       </div>
 
       @foreach ($productos as $producto)
@@ -30,7 +21,7 @@
               </a>
               <div class="producto-boton">
                   <p class="precio">${{$producto["precio"]}}</p>
-                  <form class="" action="/addtocart" method="post">
+                  <form class="form-agregar" action="/addtocart" method="post">
                     @csrf
                       <input type="text" hidden name="id" value="{{$producto['id']}}">
                       <button class="comprar" type="submit" name="button">Comprar</button>

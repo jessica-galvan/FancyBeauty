@@ -7,9 +7,10 @@ Route::get('/', 'ProductoController@index');
 Route::get('/index', 'ProductoController@index');
 Route::get('/faq', 'HomeController@faq');
 Route::get('/categoria/{id}/{palabra}', 'ProductoController@categoria');
-Route::get('/buscar/{palabra}', 'ProductoController@buscador');
+// Route::get('/buscar/{palabra}', 'ProductoController@buscador');
+Route::get('/buscar', 'ProductoController@buscador');
 Route::get('/producto/{id}', 'ProductoController@show'); /*Detalle producto*/
-Route::get('/productos', 'ProductoController@todos');
+Route::get('/catalogo', 'ProductoController@todos');
 
 /*SECCION CARRITOS*/
 Route::get('/carrito', 'CarritoController@index')->middleware('auth');

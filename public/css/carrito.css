@@ -22,9 +22,6 @@
 }
 
 .btn-volver{
-    /* align-self: center;
-    margin-top: 40px;
-    padding: 2%; */
     padding: 1.5vw;
     margin-top: 1.5vh;
     background: #C4AAD7;
@@ -134,19 +131,13 @@
 .cantidad{
     display: flex;
     flex-direction: row;
-    font-size: 1px;
+    font-size: 0.5em;
 }
-.less{
+.less, .more{
     color: white;
     background-color: #C4AAD7;
-    padding: 8%;
-    font-size: 30px;
-}
-.more{
-     color: white;
-     background-color: #C4AAD7;
-     padding: 8%;
-     font-size: 30px;
+    padding: 2vw;
+    font-size: 3.5em;
 }
 
 .totalYcomprar{
@@ -218,10 +209,7 @@
     .carrito-container {
         padding: 5%;
     }
-    .extra {
-        color: white;
-        padding: 2%;
-    }
+
     .btn-historial, .btn-comprar, .btn-volver {
       padding: 20px;
       padding-top: 10px;
@@ -255,9 +243,13 @@
         margin-right: 5%;
     }
 
+    .more, .less{
+        font-size:3em;
+        padding:10%;
+    }
+
     .item{
         margin: 2%;
-        /* margin-bottom: %; */
     }
 
     #total{

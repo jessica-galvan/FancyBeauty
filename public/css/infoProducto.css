@@ -62,7 +62,7 @@
     flex-wrap: wrap;
     flex-direction: column;
     justify-content: center;
-    
+
 }
 
 .cantidad{
@@ -79,9 +79,9 @@
 .cantidad i {
     cursor: pointer;
     font-family: serif;
-    height: 40px;
-    float: left;
-    line-height: 40px;
+    height: 39px;
+    /* float: left; */
+    line-height: 20px;
     text-align: center;
     user-select: none;
     transition: all 150ms ease-out;
@@ -94,21 +94,12 @@
     transition: none;
 }
 
-.less{
+.less, .more{
     color: white;
     background-color: #C4AAD7;
-    padding: 8%;
-    font-size: 30px;
-    
+    padding: 2vw;
+    font-size: 3.5em;
 }
-.more{
-     color: white;
-     background-color: #C4AAD7;
-     padding: 8%;
-     font-size: 30px;
-    
-}
-
 
 .cantidad input {
     border: 0px solid;
@@ -188,8 +179,6 @@
     }
 
     /*Producto*/
-    
-  
     .caja-producto {
         padding: 20px;
         width: 70%;
@@ -202,10 +191,6 @@
 
     .fotoProducto img{
         width: 100%;
-        /* margin: auto;
-        display: flex;
-        flex-wrap: wrap;
-        justify-content: center; */
     }
 
     .textoProducto {
@@ -236,6 +221,12 @@
         font-size: 1.5em;
     }
 
+    .more, .less {
+        font-size:2em;
+        padding:7%;
+        padding-left: 4%;
+    }
+
     /*Botones*/
     .agregar {
         margin-top: 40px;
@@ -245,5 +236,3 @@
         margin-top: 15px;
         padding: 10px;
     }
-    
-    

@@ -119,6 +119,15 @@ class CarritoController extends Controller{
 
     public function historial(){
       $carts = Carrito::where('user_id', Auth::user()->id)->where('estado', 1)->get()->groupBy('num_carrito');
+      foreach ($carts as $cart) {
+          $total = 0;
+          foreach($cart as $item){
+              $item['subtotal'] = $item['precio']*$item['cantidad'];
+              $total = $total + $item['subtotal'];
+          }
+          $cart['total'] = $total;
+      }
+      // dd($carts);
       return view('historial', compact('carts'));
     }
 

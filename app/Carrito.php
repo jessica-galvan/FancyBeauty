@@ -13,18 +13,10 @@ class Carrito extends Model {
     }
 
     public function subtotal(){
-      return $this->cantidad * $this->precio;
+        return $this->cantidad * $this->precio;
     }
 
-    // public function getTotal($carrito){
-    //   $total = 0;
-    //   foreach($carrito as $item){
-    //       $total = $total + ($item['precio']*$item['cantidad']);
-    //   }
-    //
-    //   return $total;
-    // }
-    // public function producto(){
-    //     return $this->belongsTo('App\Producto', 'producto_id');
-    // }
+    function getOrderNoAttribute() {
+        return str_pad($this->num_carrito,4,'0',STR_PAD_LEFT);
+    }
 }

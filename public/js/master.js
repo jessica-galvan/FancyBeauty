@@ -1,6 +1,6 @@
 window.addEventListener('load', function(){
-    // var link = 'http://fancybeauty.dhalumnos.com' ;
-    var link = 'http://localhost:8000/';
+    var link = 'http://fancybeauty.dhalumnos.com' ;
+    // var link = 'http://localhost:8000/';
 
     // -------------------------
     //      CARRITO
@@ -329,7 +329,7 @@ window.addEventListener('load', function(){
              for (item of total_items){
                  item.innerText = getTotalItems(respuesta);
              }
-             total_compra.innerText = 'Total: '+ getTotalMonto(respuesta);
+             total_compra.innerText = 'Total: $'+ getTotalMonto(respuesta);
          })
          .catch (function (error) {
              console.log(error);
@@ -360,7 +360,7 @@ window.addEventListener('load', function(){
              for (item of total_items){
                  item.innerText = getTotalItems(respuesta);
              }
-             total_compra.innerText = 'Total: '+ getTotalMonto(respuesta);
+             total_compra.innerText = 'Total: $'+ getTotalMonto(respuesta);
          })
          .catch (function (error) {
              console.log(error);

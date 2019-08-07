@@ -46,7 +46,7 @@ class ProductoController extends Controller {
         foreach ($array as $palabra){
             $productos [] = DB::table('productos')
                 ->join('categorias', 'productos.categoria_id', '=', 'categorias.id')
-                ->join('tipoProductos', 'productos.tipoproducto_id', '=', 'tipoProductos.id')
+                ->join('tipoproductos', 'productos.tipoproducto_id', '=', 'tipoproductos.id')
                 ->select('productos.id', 'productos.nombre AS productoNom', 'productos.foto', 'productos.precio', 'categorias.nombre AS categoriaNom', 'tipoProductos.nombre AS tipoProductoNom')
                 ->having('productoNom', 'like', "%$palabra%")
                 ->orHaving('categoriaNom', 'like', "%$palabra%")

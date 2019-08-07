@@ -40,15 +40,15 @@
 }
 
 /*PUBLICIDAD*/
-.publicidad-mobile {
+.p-mobile {
   margin-top:50px;
   width: 100%;
 }
-.publicidad-mobile  img {
+.p-mobile  img {
   width: 100%;
 }
 
-.publicidad-desktop {
+.p-desktop {
   display: none;
 }
 
@@ -160,16 +160,16 @@ button {
   }
 
   /*PUBLICIDAD*/
-  .publicidad-mobile {
+  .p-mobile {
     display: none;
   }
 
-  .publicidad-desktop {
+  .p-desktop {
     display: block;
     width: 100%;
     margin-top: 5px;
   }
-  .publicidad-desktop img {
+  .p-desktop img {
     width: 100%;
   }
 
@@ -210,5 +210,3 @@ button {
     margin: auto;
     color: black;
 }
-
-  

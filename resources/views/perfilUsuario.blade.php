@@ -32,15 +32,7 @@
                   <button type="button" name="">Editar Perfil</button>
               </a>
           </div>
-          {{-- <div class="editar-button-amarillo">
-              <a href="/perfil/password">
-                  <button type="button" name="">Cambiar Contraseña</button>
-              </a>
-          </div> --}}
           <div class="editar-button-rosa">
-              {{-- <a href="/perfil/logout">
-                  <button type="button" name="">Cerrar Sesión</button>
-              </a> --}}
               <form id="logout-form" action="{{ route('logout') }}" method="POST">
                   @csrf
                 <button type="submit" name="button">Cerrar sesión</button>

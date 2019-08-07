@@ -2,7 +2,6 @@
 .carrito-container{
     background-image: url(../img/Fondos/FondoSeccionesTres.png);
     padding: 6vw;
-   
 }
 
 .historial-container{
@@ -20,16 +19,26 @@
     color: white;
     padding: 1%;
     margin-top: 5%;
-    }
-#boton-comprar{
-    align-self: center;
+}
+
+.btn-volver{
+    /* align-self: center;
     margin-top: 40px;
-    background-color: #C4AAD7;
+    padding: 2%; */
+    padding: 1.5vw;
+    margin-top: 1.5vh;
+    background: #C4AAD7;
+    box-shadow: 4px 4px 0 #73d2e6;
+    border: none;
+    /* font-family: 'Bree Serif', serif; */
+    margin: auto;
+    color: white;
     text-decoration: none;
-    color:white;
-    padding: 2%;
-    
-    
+    margin-top: 2%;
+}
+
+.btn-volver:hover {
+  background: linear-gradient(to left,#C4AAD7 0,#f08ccd 100%);
 }
 .caras-Dechicas{
     width: 30%;
@@ -48,8 +57,23 @@
     display: flex;
     flex-direction: column;
     align-items: center;
-  
+    padding: 5vh 0;
 }
+
+.item li {
+    list-style: none;
+}
+
+.item li img {
+    display: flex;
+    flex-wrap: wrap;
+    align-items: center;
+}
+
+.item li #total {
+    text-align: right;
+}
+
 #titulo-carrito{
     text-align: center;
     margin-bottom: 20px;
@@ -61,27 +85,29 @@
     margin-top: 5%;
 }
 
-.item{
+.item {
     background-color: white;
     margin-bottom: 10%;
-    padding: 1%;
-    
+    padding: 1vw;
+
 }
 
 .nombre-del-producto{
     width: 100%;
-    text-align:left;
-    font-size: 25px;
+    text-align:center;
+    font-size: 1.2em;
     color: black;
-
 }
 
 .fotoproducto{
+    margin: auto;
+    text-align: center;
+    max-width:150px;
     width: 70%;
     height: 70%;
 }
 
-.btn{
+.btn-eliminar {
   padding: 1.5vw;
   margin-top: 1.5vh;
   background: #C4AAD7; /*Yellow*/
@@ -95,8 +121,8 @@
   margin-top: 2%;
 }
 
-.btn:hover {
-    background: linear-gradient(to left,#F7EB61 0,#73d2e6 100%);
+.btn-eliminar:hover {
+    background: linear-gradient(to left,#C4AAD7 0,#f08ccd 100%);
 }
 
 #cantidad{
@@ -121,7 +147,6 @@
      background-color: #C4AAD7;
      padding: 8%;
      font-size: 30px;
-    
 }
 
 .totalYcomprar{
@@ -134,61 +159,108 @@
 
 #total{
        margin-bottom: 2%;
-    }
+}
+
 .historial-caja{
     display: flex;
 }
 .historial{
    text-decoration: none;
    background-color: #C4AAD7;
-    color: white;
-    padding: 2%;
-  align-items: center;
-    
+   color: white;
+   padding: 2%;
+   align-items: center;
 }
 
 .carrito-vacio{
    display: flex;
    align-items: center;
-    flex-direction: column;
-    margin-bottom: 10%;
+   flex-direction: column;
+   margin-bottom: 10%;
 }
 
+.btn-comprar {
+  padding: 5vw;
+  margin-top: 2vh;
+  border: none;
+  text-transform: uppercase;
+  font-family: 'Bree Serif', serif;
+  margin: auto;
+  color: white;
+  cursor: pointer;
+  background: #F7EB61;
+  box-shadow: 4px 4px 0 #73d2e6;
+}
+
+.btn-comprar:hover{
+    background: linear-gradient(to left,#F7EB61 0,#73d2e6 100%);
+}
+
+.btn-historial {
+  padding: 5vw;
+  margin-top: 2vh;
+  background: #FFB6BF;
+  box-shadow: 4px 4px 0 #C4AAD7;
+  border: none;
+  text-decoration: none;
+  font-family: 'Bree Serif', serif;
+  color: white;
+  cursor: pointer;
+}
+
+.btn-historial:hover{
+    background: linear-gradient(to left,#FFB6BF 0,#f08ccd 100%);
+}
 
 /*-------------------------------------MEDIA QUERYS----------------------------------------------*/
 
 @media (min-width: 990px){
+    .carrito-container {
+        padding: 5%;
+    }
+    .extra {
+        color: white;
+        padding: 2%;
+    }
+    .btn-historial, .btn-comprar, .btn-volver {
+      padding: 20px;
+      padding-top: 10px;
+    }
+    .totalYcomprar{
+        margin-bottom: 5%;
+    }
 
     .caras-Dechicas{
-    width: 15%;
-    
-}
+        width: 15%;
+    }
+     #titulo-carrito{
+        font-size: 30px;
+           margin-top: 1%;
+    }
 
-    
- #titulo-carrito{
-    font-size: 30px;
-       margin-top: 1%;
-}
+    .fotoproducto{
+        min-width: 100px;
+        width: 20%;
+        height: 20%;
+    }
 
-.fotoproducto{
-  
-}
     #lista{
         display: flex;
         flex-direction: row;
-        
+        justify-content: space-between;
+        padding: 2% 0;
     }
-    
+
     #lista li{
         margin-right: 5%;
     }
-    
+
     .item{
-    margin-bottom: 5%;
-  
-}
+        margin: 2%;
+        /* margin-bottom: %; */
+    }
+
     #total{
         font-size: 40px;
     }
-    
 }

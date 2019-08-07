@@ -5,7 +5,7 @@ namespace App;
 use Illuminate\Database\Eloquent\Model;
 
 class TipoProducto extends Model{
-    public $table = 'tipoProductos';
+    public $table = 'tipoproductos';
     public $fillable = [];
 
     public function producto(){

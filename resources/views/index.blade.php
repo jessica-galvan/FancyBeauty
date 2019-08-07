@@ -13,12 +13,12 @@
         </div>
     </section>
 
-    <section class="publicidad-mobile">
-        <img src="/img/publicidad/PublicidadUno.png" alt="Publicidad">
+    <section class="p-mobile">
+        <img src="/img/banners/PUno.png" alt="Publicidad">
     </section>
 
-    <section class="publicidad-desktop">
-        <img src="/img/publicidad/BannerUno.png" alt="Publicidad">
+    <section class="p-desktop">
+        <img src="/img/banners/BannerUno.png" alt="Publicidad">
     </section>
 
     <section class="productos">
@@ -47,7 +47,7 @@
             </article>
             @endif
         @endforeach
-        
+
     </section>
 
     <section class="ofertas-mobile">
@@ -81,7 +81,7 @@
                     </a>
                     <div class="producto-boton">
                         <p class="precio">${{$producto["precio"]}}</p>
-                        <form class="" action="/addtocart" method="post">
+                        <form class="form-agregar" action="/addtocart" method="post">
                           @csrf
                             <input type="text" hidden name="id" value="{{$producto['id']}}">
                             <button class="comprar" type="submit" name="button">Comprar</button>
@@ -90,6 +90,6 @@
                 </article>
             @endif
         @endforeach
-        
+
     </section>
 @endsection

@@ -1,6 +1,6 @@
 window.addEventListener('load', function(){
-    var link = 'http://fancybeauty.dhalumnos.com' ;
-    // var link = 'http://localhost:8000/';
+    // var link = 'http://fancybeauty.dhalumnos.com' ;
+    var link = 'http://localhost:8000/';
 
     // -------------------------
     //      CARRITO
@@ -52,7 +52,7 @@ window.addEventListener('load', function(){
             user_id: user_id,
             cantidad: cantidad
         }
-        // fetch('http://localhost:8000/api/carrito', {
+
         fetch(link + '/api/carrito', {
               method: 'POST',
               headers: {
@@ -119,7 +119,6 @@ window.addEventListener('load', function(){
             email: email,
         }
 
-        // fetch('http://localhost:8000/api/suscribe', {
         fetch(link + '/api/suscribe', {
               method: 'POST',
               headers: {
@@ -312,7 +311,6 @@ window.addEventListener('load', function(){
                     user_id: user_id
                 }
 
-        // fetch('http://localhost:8000/api/cantidad', {
         fetch(link + '/api/cantidad', {
               method: 'POST',
               headers: {
@@ -343,7 +341,6 @@ window.addEventListener('load', function(){
             item_id: item_id
         }
 
-        // fetch('http://localhost:8000/api/carrito/eliminar', {
         fetch(link + '/api/carrito/eliminar', {
               method: 'POST',
               headers: {

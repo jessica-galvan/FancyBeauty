@@ -8,7 +8,7 @@
             <h2>El producto ha sido borrado correctamente</h2>
         </div>
         <a href="/lista">
-            <button class="cancelar-button" type="button" name="">Volver</button>
+            <button class="rosa-button" type="button" name="">Volver</button>
         </a>
     </section>
 @endsection

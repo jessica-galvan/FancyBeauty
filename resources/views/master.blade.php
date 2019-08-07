@@ -83,7 +83,7 @@
                             <a href="/carrito">
                                 <?php /*total de items del carrito en el header*/?>
                                 @if(Auth::check())
-                                        <span class="totalItems"></span>
+                                        <span class="totalItems">0</span>
                                 @endif
                                 <img class="icon-img" src="/img/icons/BolsaDeCompra.png" alt="Carrito">
                             </a>
@@ -128,11 +128,11 @@
                                     <i class="fa fa-caret-down"></i>
                                     </button>
                                     <div class="dropdown-content">
-                                     
+
                                         <a href="/perfil">Perfil</a>
                                         <a href="/perfil/editar">Editar Perfil</a>
                                         <a href="/logout">Cerrar Sesión</a>
-                            
+
                                     </div>
                                 </div>
                                 @endif
@@ -141,7 +141,7 @@
                                     <div id='bag-box' class="icon-box">
                                               <?php /*total de items del carrito en el header*/?>
                                               @if(Auth::check())
-                                                      <span class="totalItems"></span>
+                                                      <span class="totalItems">0</span>
                                               @endif
                                         <img id="bag" class="icon-img" src="/img/icons/BolsaDeCompra.png" alt="Carrito">
                                         <p>Carrito</p>
@@ -255,23 +255,23 @@
     </div>
     <script src="/js/master.js"></script>
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
-<script> 
+<script>
 $(document).ready(function(){
   $("#lupa").click(function(){
     $(".buscador").slideToggle("slow");
   });
-   
+
     $(".dropdown-category").click(function(){
     $(".dropdown-category-a").slideToggle("slow");
   });
-  
+
       $("#user").click(function(){
     $(".dropdown-content").slideToggle("slow");
   });
      $(".h3-social").click(function(){
     $(".social-links-mobile").slideToggle("slow");
   });
-    
+
 });
 </script>
 

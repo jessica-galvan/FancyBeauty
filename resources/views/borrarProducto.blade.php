@@ -31,7 +31,7 @@
                     <button class="borrar-button" type="submit" name="" value="">Borrar</button>
                 </form>
                 <a href="/lista">
-                    <button class="cancelar-button" type="button">Volver</button>
+                    <button class="rosa-button" type="button">Volver</button>
                 </a>
             </div>
         </article>

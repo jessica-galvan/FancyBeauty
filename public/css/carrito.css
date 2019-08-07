@@ -30,7 +30,7 @@
     background: #C4AAD7;
     box-shadow: 4px 4px 0 #73d2e6;
     border: none;
-    /* font-family: 'Bree Serif', serif; */
+    font-family: 'Bree Serif', serif;
     margin: auto;
     color: white;
     text-decoration: none;
@@ -186,7 +186,7 @@
   text-transform: uppercase;
   font-family: 'Bree Serif', serif;
   margin: auto;
-  color: white;
+  color: black;
   cursor: pointer;
   background: #F7EB61;
   box-shadow: 4px 4px 0 #73d2e6;

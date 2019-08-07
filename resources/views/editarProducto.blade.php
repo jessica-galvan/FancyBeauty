@@ -11,9 +11,6 @@
     @if(isset($mensajePrincipal))
       <span style="color:blue;" class = "mensajeConfirmar">{{$mensajePrincipal}}</span>
     @endif
-    @php
-      var_dump($errors->all());
-    @endphp
     <form action="/editar/{{$producto['id']}}" method="post" enctype="multipart/form-data">
         @csrf
         <div class="fotoProducto">

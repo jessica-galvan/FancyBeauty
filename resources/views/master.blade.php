@@ -96,15 +96,15 @@
                         <div class="menu-top">
                             <div class="icons">
                                 <a href="#">
-                                    <div class="icon-box">
+                                    <div id="box-buscador" class="icon-box">
                                         <div>
                                             <img id="lupa" class="icon-img" src="/img/icons/LupaDeBusqueda.png" alt="Busqueda">
                                             <p>Buscar</p>
                                         </div>
                                         <div class="buscador">
                                             <form action="/buscar" method="get">
-                                                <input type="text" name="query" value="">
-                                                <button type="submit" name="">Enviar</button>
+                                                <input class="input-buscador" type="text" name="query" value="">
+                                                <button class="button-buscador"  type="submit" name="">Enviar</button>
                                             </form>
                                         </div>
                                     </div>
@@ -128,9 +128,11 @@
                                     <i class="fa fa-caret-down"></i>
                                     </button>
                                     <div class="dropdown-content">
+                                     
                                         <a href="/perfil">Perfil</a>
                                         <a href="/perfil/editar">Editar Perfil</a>
                                         <a href="/logout">Cerrar Sesión</a>
+                            
                                     </div>
                                 </div>
                                 @endif
@@ -156,7 +158,7 @@
                                     <a href="#">CATEGORIAS</a>
                                     <div class="dropdown-category">
                                         @foreach($categorias as $categoria)
-                                        <a href="/categoria/{{$categoria['id']}}/{{$categoria['link']}}">
+                                        <a class="dropdown-category-a" href="/categoria/{{$categoria['id']}}/{{$categoria['link']}}">
                                         {{$categoria['nombre']}}
                                         </a>
                                         @endforeach
@@ -177,8 +179,13 @@
                 <?php /*MOBILE VERSION*/?>
                 <section class="links-mobile">
                     <article class="footer-info-mobile">
-                        <h3>SOCIAL MEDIA</h3>
-                        <h3>+</h3>
+                        <h3 class="h3-social">SOCIAL MEDIA +</h3>
+                        <div class="social-links-mobile">
+                            <a href="http://facebook.com"><i class="fab fa-facebook-f"></i></a>
+                            <a href="http://instagram.com"><i class="fab fa-instagram"></i></a>
+                            <a href="http://youtube.com"><i class="fab fa-youtube"></i></a>
+                            <a href="http://twitter.com"><i class="fab fa-twitter"></i></a>
+                        </div>
                     </article>
 
                     <article class="footer-info-mobile">
@@ -191,10 +198,6 @@
 
                     <article class="footer-info-mobile">
                         <a href="/faq"><h3>PREGUNTAS FRECUENTES</h3></a>
-                    </article>
-
-                    <article class="footer-info-mobile">
-                        <a href="#"><h3>SOBRE NOSOTROS</h3></a>
                     </article>
 
                     <article class="footer-info-mobile">
@@ -221,7 +224,6 @@
                         <a href="{{$linkUsuario}}"><h3>{{$textoHamburguesa}}</h3></a>
                         <a href="/carrito"><h3>VER CARRITO</h3></a>
                         <a href="/faq"><h3>PREGUNTAS FRECUENTES</h3></a>
-                        <a href="#"><h3>SOBRE NOSOTROS</h3></a>
                         <a href="/catalogo"><h3>CATÁLOGO</h3></a>
                     </article>
 
@@ -258,7 +260,18 @@ $(document).ready(function(){
   $("#lupa").click(function(){
     $(".buscador").slideToggle("slow");
   });
-
+   
+    $(".dropdown-category").click(function(){
+    $(".dropdown-category-a").slideToggle("slow");
+  });
+  
+      $("#user").click(function(){
+    $(".dropdown-content").slideToggle("slow");
+  });
+     $(".h3-social").click(function(){
+    $(".social-links-mobile").slideToggle("slow");
+  });
+    
 });
 </script>
 

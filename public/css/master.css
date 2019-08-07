@@ -222,6 +222,18 @@ nav a {
 }
 
 /*FOOTER MOBILE*/
+
+.social-links-mobile{
+    display: none;
+    
+}
+
+ .social-links-mobile i {
+    font-size: 2em;
+    color: white;
+    padding: 5px;
+  }
+
 .links-mobile {
   padding: 5vh 5vw;
   padding-bottom: 3vw;
@@ -278,6 +290,7 @@ nav a {
   color: white;
   background: #C4AAD7; /*Violet*/
 }
+
 
 /*COPYRIGHT*/
 .copyright {
@@ -422,6 +435,11 @@ nav a {
     }
 }
 
+.footer-info-mobile{
+    display: flex;
+    flex-direction: column;
+}
+
 @media (min-width: 700px){
     
 }
@@ -482,6 +500,8 @@ nav a {
 
   .logo {
     height: 70px;
+     
+     
   }
 
   .icons {
@@ -538,6 +558,36 @@ nav a {
     -webkit-transition-property: transform;
     transition-property: transform;
   }
+  
+    #box-buscador{
+      flex-direction: row; 
+    
+    }
+    
+    .buscador{
+           margin-left: 3%;
+    }
+    
+    .input-buscador{
+        border: 0;
+        color: #8CD0E3;
+        margin-bottom: 10px;
+    }
+    
+    .button-buscador{
+  padding: 0.5vw;
+  margin-top: 1.5vh;
+  background: #C4AAD7; /*Yellow*/
+  box-shadow: 4px 4px 0 #73d2e6;
+  border: none;
+  text-transform: uppercase;
+  font-family: 'Bree Serif', serif;
+  margin: auto;
+  color: white;
+  text-decoration: none;
+
+        
+    }
 
   .icon-box:hover, .icon-box:focus {
     -webkit-transform: scale(0.95);
@@ -665,12 +715,12 @@ nav a {
   .dropdown-category {
     display: none;
     position: absolute;
-    right: 0;
+    right: -18px;
     background: #8CD0E3; /*Lightblue*/
     min-width: 160px;
     z-index: 101;
     text-align: right;
-    top:34px;
+    top:32px;
   }
 
   .dropdown-category a {

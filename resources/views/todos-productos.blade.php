@@ -3,7 +3,8 @@
   <?php $CSS = ['index', 'producto'];?>
 @endsection
 @section('content')
-  <section class="productos">
+  <div class="carrito-container" >
+     <section class="productos">
       <div class="titulo-seccion">
           <h2 id="titulo-categoria">Todos los productos</h2>
       </div>
@@ -31,4 +32,5 @@
   <section class='paginar'>
       {{$productos->links()}}
   </section>
+  </div>
 @endsection

@@ -6,7 +6,7 @@
     @forelse($carts as $cart)
         <article class="carrito-container">
           
-          <h4 id="titulo-carrito">Número de Compra: {{$cart[0]->num_carrito}}</h4>
+          <h4 id="titulo-carrito">Número de Orden Compra: {{$cart[0]->num_carrito}}</h4>
           {{-- <p>Fecha de Compra:??? </p> --}}
           <ul class="item">
             @foreach ($cart as $item)
@@ -19,11 +19,17 @@
             </div>
             @endforeach
           </ul>
-          <span>Total: ???</span>
+          
          
         </article>
     @empty
+        <div class="carrito-container">
+        <div class="historial-container">
+        <h2>Historia de Compras</h2>
         <p>No tiene compras realizadas</p>
         <img class="caras-Dechicas" src="/img/icons/sad-girl.png" alt="">
+        <a id="boton-comprar" href="">Comprar Productos</a>
+        </div>
+        </div>
     @endforelse
 @endsection

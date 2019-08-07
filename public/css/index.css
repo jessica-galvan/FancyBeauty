@@ -52,6 +52,7 @@
   display: none;
 }
 
+
 /*OFERTAS*/
 .ofertas-mobile {
   display: flex;
@@ -193,7 +194,6 @@ button {
     display: block;
     text-align: center;
     font-size: 2em;
-    font-family: 'Bree Serif', serif;
     color: black;
     background: white;
     padding-top: 50px;
@@ -210,3 +210,5 @@ button {
     margin: auto;
     color: black;
 }
+
+  

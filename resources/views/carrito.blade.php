@@ -36,7 +36,8 @@
       </article>
     @empty
       <div class="carrito-vacio">
-          <p>Su carrito esta vacio</p>
+           <p>Su carrito esta vacío</p>
+        <img class="caras-Dechicas" src="/img/icons/sad-girl.png" alt="">
       </div>
     @endforelse
 </div>

@@ -5,11 +5,13 @@
 
 }
 
+.cajaDePreguntaDestopk{
+    display: none;
+}
 
 .faq-body {
   padding: 5vw;
 
-  
 }
 
 .imagenDePreguntas img{
@@ -19,13 +21,19 @@
 }
 
 .faq-title {
-  font-family: 'Bree Serif', serif;
-  font-size: 1.8em;
-  text-align: center;
+    text-align: center;
+    margin-bottom: 20px;
+    font-weight: 600;
+    background-color: #C4AAD7;
+    width: 100%;
+    color: white;
+    padding: 1%;
+    margin-top: 5%;
+    font-size: 30px;
 }
 
-.cajaDePregunta{
-  margin-top: 3vh;
+.cajaDePreguntaMobile{
+  margin-top: 6vh;
   display: flex;
   flex-direction: row; 
   justify-content: flex-start;    
@@ -42,14 +50,46 @@
 
 .respuestas {
   font-size: 1em;
+    display: none;
+   font-size: 20px;
+}
+
+.preguntas2{
+      font-size: 1em;
+  margin-bottom: 10px;
+}
+
+.respuestas2 {
+  font-size: 1em;
+    display: none;
+   font-size: 20px;
 }
 
 @media (min-width: 992px) { /*DESKTOP*/
   .main-container {
     padding: 3% 5%;
   }
+    .cajaDePreguntaDestopk{
+    display: flex;
+    margin-top: 6vh;
+}
+
+    .cajaDePreguntaMobile{
+        display: none;
+    }
 
   .faq-body {
     padding: 0 5%;
   }
+ .respuestas {
+    display: block;
+}
+
+    .respuestas2 {
+  font-size: 1em;
+    display: flex;
+   font-size: 20px;
+}
+    
+
 }
